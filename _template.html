@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demo - Northern Variables</title>
+  
+  <!-- React -->
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Optional: Lucide Icons (uncomment if your artifact needs icons) -->
+  <!-- <script src="https://unpkg.com/lucide@latest"></script> -->
+  
+  <!-- Optional: Chart.js (uncomment if your artifact needs charts) -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
+  
+  <!-- Optional: Recharts (uncomment if your artifact needs recharts) -->
+  <!-- <script src="https://unpkg.com/recharts@2.5.0/dist/Recharts.js"></script> -->
+  
+  <style>
+    /* Northern Variables Brand Colors - Customize these! */
+    :root {
+      --nv-primary: #1e40af;      /* Main brand color */
+      --nv-primary-dark: #1e3a8a; /* Darker shade */
+      --nv-accent: #3b82f6;        /* Accent color */
+      --nv-text: #1f2937;          /* Main text color */
+    }
+    
+    body { 
+      margin: 0; 
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    }
+    
+    /* Optional: Branded header/footer styles */
+    .nv-header {
+      background: white;
+      border-bottom: 2px solid #e5e7eb;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    
+    .nv-footer {
+      background: var(--nv-primary-dark);
+      color: white;
+      padding: 1.5rem 2rem;
+      text-align: center;
+      font-size: 0.875rem;
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Optional: Add Northern Variables Header (remove if you want NO header in iframe) -->
+  <div class="nv-header">
+    <div class="flex items-center justify-center">
+      <img 
+        src="https://northernvariables.ca/wp-content/uploads/elementor/thumbs/Nothern-Variables-banner-e1760403100195-rd670f4sssyxaqjbgnnpaipg6s8brl3xzizqllks86.png" 
+        alt="Northern Variables"
+        style="height: 60px; object-fit: contain;"
+      />
+    </div>
+  </div>
+  
+  <!-- Main React App Container -->
+  <div id="root"></div>
+  
+  <!-- Optional: Add Northern Variables Footer (remove if you want NO footer in iframe) -->
+  <div class="nv-footer">
+    <div class="max-w-4xl mx-auto text-center">
+      <p style="font-size: 0.8rem; margin-bottom: 1.5rem;">&copy; 2025 Northern Variables. All rights reserved.</p>
+      
+      <a 
+        href="https://axorc.substack.com" 
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 transition-opacity hover:opacity-80"
+        style="color: #FF6719; margin-bottom: 1.5rem; display: inline-flex; font-size: 1.1rem;"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
+        </svg>
+        <span style="font-weight: 500;">Visit us on Substack</span>
+      </a>
+      
+      <div style="margin-top: 0.75rem;">
+        <a 
+          href="https://northernvariables.ca" 
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-2 text-blue-200 hover:text-white transition-colors"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+          </svg>
+          <span>Visit our website</span>
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <script type="text/babel">
+    // ========================================================================
+    // PASTE YOUR CLAUDE ARTIFACT CODE BELOW THIS LINE
+    // ========================================================================
+    // Instructions:
+    // 1. Copy the entire React component code from Claude
+    // 2. Paste it here, replacing the Demo component below
+    // 3. Make sure the component is exported/rendered at the bottom
+    // ========================================================================
+    
+    const { useState, useEffect, useCallback, useMemo } = React;
+    
+    // Your artifact component goes here
+    function Demo() {
+      const [exampleState, setExampleState] = useState(0);
+      
+      return (
+        <div className="min-h-screen bg-gray-50 p-8">
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-white rounded-lg shadow-lg p-8">
+              
+              {/* Demo Content */}
+              <div className="text-center">
+                <h1 className="text-4xl font-bold text-blue-900 mb-4">
+                  Northern Variables Demo
+                </h1>
+                <p className="text-gray-600 mb-8">
+                  Replace this component with your Claude artifact
+                </p>
+                
+                <div className="py-12">
+                  <div className="text-6xl font-bold text-blue-600 mb-6">
+                    {exampleState}
+                  </div>
+                  <button
+                    onClick={() => setExampleState(exampleState + 1)}
+                    className="bg-blue-700 hover:bg-blue-800 text-white font-semibold px-8 py-3 rounded-lg transition-colors duration-200"
+                  >
+                    Test Button
+                  </button>
+                </div>
+                
+                <div className="mt-8 p-4 bg-blue-50 rounded-lg text-left">
+                  <h3 className="font-semibold text-blue-900 mb-2">Quick Start:</h3>
+                  <ol className="text-sm text-gray-700 space-y-1 list-decimal list-inside">
+                    <li>Get your React artifact from Claude</li>
+                    <li>Copy the entire component code</li>
+                    <li>Paste it in place of this Demo component</li>
+                    <li>Save and push to GitHub</li>
+                    <li>Embed in WordPress with an iframe</li>
+                  </ol>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      );
+    }
+    
+    // ========================================================================
+    // RENDER COMPONENT (Keep this line - it renders your artifact)
+    // ========================================================================
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<Demo />);
+  </script>
+  
+</body>
+</html>
