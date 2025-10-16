@@ -3,7 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Canadian Federal Politics Survey - Northern Variables</title>
+  <!-- Primary Meta Tags -->
+  <title>Canadian Federal Politics Survey 2025 | Northern Variables</title>
+  <meta name="title" content="Canadian Federal Politics Survey 2025 | Northern Variables">
+  <meta name="description" content="Test your knowledge of current Canadian federal bills and learn official party positions. Interactive survey covering C-2, C-10, C-11, C-12 and major policy issues from the 45th Parliament, 1st Session.">
+  <meta name="keywords" content="Canadian politics, federal bills, Parliament, C-2, Strong Borders Act, political education, party positions, 45th Parliament, Northern Variables">
+  <meta name="author" content="Northern Variables">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://northernvariables.ca/canpoliticssurvey-45-1-16-10-25">
+  <meta property="og:title" content="Canadian Federal Politics Survey 2025 | Northern Variables">
+  <meta property="og:description" content="Test your knowledge of current Canadian federal bills and learn official party positions. Interactive survey covering C-2, C-10, C-11, C-12 and major policy issues.">
+  <meta property="og:image" content="https://northernvariables.ca/northern-variables-2/">
+  <meta property="og:image:width" content="235">
+  <meta property="og:image:height" content="300">
+  <meta property="og:image:alt" content="Northern Variables Logo">
+  <meta property="og:site_name" content="Northern Variables">
+  <meta property="og:locale" content="en_CA">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://northernvariables.ca/canpoliticssurvey-45-1-16-10-25">
+  <meta name="twitter:title" content="Canadian Federal Politics Survey 2025 | Northern Variables">
+  <meta name="twitter:description" content="Test your knowledge of current Canadian federal bills and learn official party positions. Interactive survey covering C-2, C-10, C-11, C-12 and major policy issues.">
+  <meta name="twitter:image" content="https://northernvariables.ca/northern-variables-2/">
+  <meta name="twitter:image:alt" content="Northern Variables Logo">
+  <meta name="twitter:creator" content="@northernvar">
+  <meta name="twitter:site" content="@northernvar">
+
+  <!-- Threads -->
+  <meta property="threads:card" content="summary_large_image">
+
+  <!-- Additional SEO -->
+  <link rel="canonical" href="https://northernvariables.ca/canpoliticssurvey-45-1-16-10-25">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content="7 days">
+
+  <!-- Favicon (optional - add your own) -->
+  <link rel="icon" type="image/png" href="https://northernvariables.ca/wp-content/uploads/2024/07/cropped-Logo-Northern-Variables-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="https://northernvariables.ca/wp-content/uploads/2024/07/cropped-Logo-Northern-Variables-192x192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="https://northernvariables.ca/wp-content/uploads/2024/07/cropped-Logo-Northern-Variables-180x180.png">
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Canadian Federal Politics Survey 2025",
+      "description": "Interactive educational survey covering current Canadian federal bills and official party positions from the 45th Parliament, 1st Session.",
+      "url": "https://northernvariables.ca/canpoliticssurvey-45-1-16-10-25",
+      "author": {
+        "@type": "Organization",
+        "name": "Northern Variables",
+        "url": "https://northernvariables.ca",
+        "logo": "https://northernvariables.ca/northern-variables-2/"
+      },
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CAD"
+      },
+      "inLanguage": "en-CA",
+      "datePublished": "2025-10-16",
+      "keywords": "Canadian politics, federal bills, Parliament, political education, C-2, C-10, C-11, C-12"
+    }
+  </script>
   
   <!-- React -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -13,47 +81,99 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  
   <style>
     :root {
-      --nv-primary: #1e40af;
-      --nv-primary-dark: #1e3a8a;
-      --nv-accent: #3b82f6;
-      --nv-text: #1f2937;
+      --nv-primary: #0f2747;
+      --nv-primary-dark: #091a30;
+      --nv-primary-mid: #163b6b;
+      --nv-accent: #ff6719;
+      --nv-accent-dark: #d85612;
+      --nv-text: #0f172a;
+      --nv-soft: #f1f5f9;
     }
-    
-    body { 
-      margin: 0; 
+
+    body {
+      margin: 0;
       padding: 0;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 103, 25, 0.08), transparent 55%),
+        linear-gradient(180deg, rgba(15, 39, 71, 0.22) 0%, rgba(15, 39, 71, 0.12) 240px, #f4f6fb 100%);
+      background-color: #0f2747;
+      color: var(--nv-text);
     }
-    
+
     .nv-header {
-      background: white;
-      border-bottom: 2px solid #e5e7eb;
-      padding: 1rem 2rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      background: linear-gradient(135deg, var(--nv-primary-dark) 0%, var(--nv-primary-mid) 55%, var(--nv-accent) 100%);
+      border-bottom: 4px solid rgba(255, 255, 255, 0.25);
+      padding: 2.25rem 1.5rem;
+      box-shadow: 0 10px 30px rgba(9, 26, 48, 0.25);
     }
-    
+
+    .nv-header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 3px;
+      background: rgba(255, 255, 255, 0.86);
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(9, 26, 48, 0.15);
+      backdrop-filter: blur(6px);
+    }
+
+    .nv-header-inner img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: inherit;
+    }
+
     .nv-footer {
-      background: var(--nv-primary-dark);
-      color: white;
-      padding: 1.5rem 2rem;
+      background: linear-gradient(120deg, var(--nv-primary-dark) 0%, var(--nv-primary) 60%, var(--nv-accent-dark) 100%);
+      color: #f8fafc;
+      padding: 2.5rem 1.5rem;
       text-align: center;
-      font-size: 0.875rem;
+      font-size: 0.9rem;
+      box-shadow: 0 -12px 24px rgba(15, 39, 71, 0.3);
     }
+
+    .nv-footer a {
+      color: #ffd7c2;
+      text-decoration: none;
+    }
+
+    .nv-footer a:hover {
+      color: #ffffff;
+    }
+
+    .nv-footer-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 0.85rem 1.5rem;
+      border-radius: 9999px;
+      transition: background 0.2s ease, transform 0.2s ease;
+      margin-bottom: 1.75rem;
+    }
+
+    .nv-footer-cta:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-2px);
+    }
+
   </style>
 </head>
 <body>
   
   <div class="nv-header">
-    <div class="flex items-center justify-center">
-      <img 
-        src="https://northernvariables.ca/northern-variables-email-banner-2/" 
+    <div class="nv-header-inner">
+      <img
+        src="https://northernvariables.ca/northern-variables-email-banner-2/"
         alt="Northern Variables"
-        style="height: 60px; object-fit: contain;"
+        class="w-full h-auto"
       />
     </div>
   </div>
@@ -62,50 +182,71 @@
   
   <div class="nv-footer">
     <div class="max-w-4xl mx-auto text-center">
-      <p style="font-size: 0.8rem; margin-bottom: 1.5rem;">&copy; 2025 Northern Variables. All rights reserved.</p>
-      
-      <a 
-        href="https://axorc.substack.com" 
+      <p style="font-size: 0.85rem; margin-bottom: 1.75rem; letter-spacing: 0.01em;">&copy; 2025 Northern Variables. All rights reserved.</p>
+
+      <a
+        href="https://axorc.substack.com"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 transition-opacity hover:opacity-80"
-        style="color: #FF6719; margin-bottom: 1.5rem; display: inline-flex; font-size: 1.1rem;"
+        class="nv-footer-cta"
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
         </svg>
-        <span style="font-weight: 500;">Visit us on Substack</span>
+        <span>Visit us on Substack</span>
       </a>
-      
-      <div style="margin-top: 0.75rem;">
-        <a 
-          href="https://northernvariables.ca" 
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 text-blue-200 hover:text-white transition-colors"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-          </svg>
-          <span>Visit our website</span>
-        </a>
-      </div>
     </div>
   </div>
   
   <script type="text/babel">
-    const { useState } = React;
-    
-    // Get Lucide icons from the global object
-const { useState } = React;
+    const { useState, useEffect } = React;
 
-// Icons will be text/emoji instead since Lucide setup is complex
-const ChevronRight = () => <span>→</span>;
-const ChevronLeft = () => <span>←</span>;
-const CheckCircle = () => <span style={{color: 'green'}}>✓</span>;
-const XCircle = () => <span style={{color: 'red'}}>✗</span>;
-const ExternalLink = () => <span>↗</span>;
-const Share2 = () => <span>📤</span>;
+    // Emoji-based icon helpers keep styling simple while staying framework-agnostic
+    const createIconComponent = (symbol) => ({ className, style, ...props }) => (
+      <span
+        aria-hidden="true"
+        className={className}
+        style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', lineHeight: 1, ...style }}
+        {...props}
+      >
+        {symbol}
+      </span>
+    );
+
+    const ChevronRight = createIconComponent('→');
+    const ChevronLeft = createIconComponent('←');
+    const CheckCircle = createIconComponent('✓');
+    const XCircle = createIconComponent('✗');
+    const ExternalLink = createIconComponent('↗');
+    const Share2 = createIconComponent('📤');
+
+    const partyBranding = {
+      LPC: {
+        abbreviation: 'LPC',
+        gradient: 'linear-gradient(135deg, #dc2626, #b91c1c)',
+        textColor: '#ffffff',
+      },
+      CPC: {
+        abbreviation: 'CPC',
+        gradient: 'linear-gradient(135deg, #1d4ed8, #1e3a8a)',
+        textColor: '#ffffff',
+      },
+      NDP: {
+        abbreviation: 'NDP',
+        gradient: 'linear-gradient(135deg, #ea580c, #c2410c)',
+        textColor: '#ffffff',
+      },
+      BQ: {
+        abbreviation: 'BQ',
+        gradient: 'linear-gradient(135deg, #0ea5e9, #0284c7)',
+        textColor: '#ffffff',
+      },
+      GPC: {
+        abbreviation: 'GPC',
+        gradient: 'linear-gradient(135deg, #059669, #047857)',
+        textColor: '#ffffff',
+      },
+    };
 const surveyData = {
   "schema_version": "1.0",
   "generated_at_utc": "2025-10-16T00:00:00Z",
@@ -210,29 +351,29 @@ const surveyData = {
   ],
   "parties": [
     {
-      "code": "LPC", 
+      "code": "LPC",
       "name": "Liberal Party of Canada",
-      "logo": "https://liberal.ca/wp-content/themes/liberal-platform-2021/assets/images/lpc-logo.svg"
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/4/4b/Liberal_Party_of_Canada_logo_2011.svg"
     },
     {
-      "code": "CPC", 
+      "code": "CPC",
       "name": "Conservative Party of Canada",
-      "logo": "https://www.conservative.ca/wp-content/themes/conservative-2023/assets/images/cpc-logo-en.svg"
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/6/60/Conservative_Party_of_Canada_logo_2020.svg"
     },
     {
-      "code": "NDP", 
+      "code": "NDP",
       "name": "New Democratic Party",
-      "logo": "https://www.ndp.ca/sites/default/files/ndp-logo.svg"
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/6/69/NDP-Logo-2022.svg"
     },
     {
-      "code": "BQ",  
+      "code": "BQ",
       "name": "Bloc Québécois",
-      "logo": "https://www.blocquebecois.org/wp-content/themes/enfold-child/images/logo.png"
+      "logo": "https://upload.wikimedia.org/wikipedia/commons/4/40/Bloc_Quebecois_logo_2023.svg"
     },
     {
-      "code": "GPC", 
+      "code": "GPC",
       "name": "Green Party of Canada",
-      "logo": "https://www.greenparty.ca/themes/custom/gptheme/logo.svg"
+      "logo": "https://upload.wikimedia.org/wikipedia/en/1/1e/Green_Party_of_Canada_logo_2016.svg"
     }
   ],
   "survey": {
@@ -241,7 +382,7 @@ const surveyData = {
         "bill_number": "C-2",
         "short_title": "Strong Borders Act",
         "title": "An Act respecting certain measures relating to the security of the border between Canada and the United States and respecting other related security measures",
-        "stage": "House – Second Reading (in progress)",
+        "stage": "House — Second Reading (in progress)",
         "url": "https://www.parl.ca/LegisInfo/en/bill/45-1/C-2",
         "summary": "Omnibus border-security package intended to modernize enforcement and disrupt transnational crime (e.g., fentanyl, money laundering). Amends multiple statutes to expand/cohere border authorities, strengthen information‑sharing, and align with Charter constraints per the government's Charter Statement.",
         "party_positions": {
@@ -293,7 +434,7 @@ const surveyData = {
         "bill_number": "C-10",
         "short_title": "Commissioner for Modern Treaty Implementation Act",
         "title": "An Act respecting the Commissioner for Modern Treaty Implementation",
-        "stage": "House – Second Reading (in progress)",
+        "stage": "House — Second Reading (in progress)",
         "url": "https://www.parl.ca/LegisInfo/en/bill/45-1/C-10",
         "summary": "Creates an independent Commissioner to monitor and report on the implementation of modern treaties and self‑government agreements, aiming to improve accountability and outcomes under these agreements.",
         "party_positions": {
@@ -345,36 +486,36 @@ const surveyData = {
         "bill_number": "C-11",
         "short_title": "Military Justice System Modernization Act",
         "title": "An Act to amend the National Defence Act and other Acts",
-        "stage": "House – Referred to Committee (NDDN)",
-        "url": "https://www.parl.ca/legisinfo/en/bill/44-1/c-11",
+        "stage": "House — Referred to Committee (Standing Committee on National Defence — NDDN)",
+        "url": "https://www.parl.ca/LegisInfo/en/bill/45-1/C-11",
         "summary": "Updates the military justice system and related statutes to address recommendations from prior reviews, streamline processes, and enhance accountability and culture change within the Canadian Armed Forces.",
         "party_positions": {
           "LPC": {
-            "stance": "Support (sponsor)", 
-            "notes": "Government's DND release frames C‑11 as a modernization step.",
-            "source": "Minister of National Defence described the bill as 'essential reforms to address systemic issues and modernize military justice.'",
-            "sourceIds": []
+            "stance": "Support (sponsor)",
+            "notes": "Government frames C‑11 as delivering key military justice reforms recommended by Arbour and Fish.",
+            "source": "Canada’s military justice system must reflect the values of fairness, accountability, and respect that Canadians expect… we are delivering on recommendations made by former Supreme Court of Canada Justices Arbour and Fish. – Hon. David J. McGuinty, Minister of National Defence, news release, September 26, 2025",
+            "sourceIds": [7]
           },
           "CPC": {
-            "stance": "No formal caucus position on record as of 2024-10-15", 
-            "notes": "Opposition critic spoke at second reading; awaiting committee study.",
-            "source": "",
-            "sourceIds": []
+            "stance": "Raises serious concerns",
+            "notes": "Conservatives warn the bill risks undermining justice for the Canadian Armed Forces without changes.",
+            "source": "This legislation… raises serious concerns about the future of justice for our Canadian Armed Forces and the government’s ability to protect both the victims and the integrity of our military institutions. – James Bezan, MP (CPC), second-reading debate, October 6, 2025",
+            "sourceIds": [8]
           },
           "NDP": {
-            "stance": "No formal caucus position on record as of 2024-10-15", 
-            "notes": "Awaiting committee evidence.",
-            "source": "",
-            "sourceIds": []
+            "stance": "Supports reform but seeks safeguards",
+            "notes": "NDP urges the victim liaison appointment to be independent of the chain of command.",
+            "source": "We know the legislation is sorely needed, and we have noted that the victim liaison officer’s position would be appointed through the chain of command. I wonder if the minister would be amenable to making sure this appointment is outside the chain of command so that victims can truly be heard. – Lori Idlout, MP (NDP), second-reading debate, October 6, 2025",
+            "sourceIds": [8]
           },
           "BQ":  {
-            "stance": "No formal caucus position on record as of 2024-10-15", 
-            "notes": "",
-            "source": "",
-            "sourceIds": []
+            "stance": "Supports referral to committee",
+            "notes": "Bloc backs moving C‑11 forward so committee can study the reforms in detail.",
+            "source": "Le Bloc Québécois appuiera le projet de loi à cette étape pour qu’il soit étudié en comité. – Simon-Pierre Savard-Tremblay, député (BQ), deuxième lecture, 6 octobre 2025",
+            "sourceIds": [8]
           },
           "GPC": {
-            "stance": "No formal caucus position on record as of 2024-10-15", 
+            "stance": "No formal caucus position on record as of 2025-10-16",
             "notes": "",
             "source": "",
             "sourceIds": []
@@ -383,8 +524,8 @@ const surveyData = {
         "knowledge_checks": [
           {
             "question": "Which committee is studying C‑11 after second reading?",
-            "options": ["FINA", "NDDN", "SECU", "INDU"],
-            "correct_answer": "NDDN"
+            "options": ["FINA", "NDDN (Standing Committee on National Defence)", "SECU", "INDU"],
+            "correct_answer": "NDDN (Standing Committee on National Defence)"
           },
           {
             "question": "C‑11's intent includes:",
@@ -397,7 +538,7 @@ const surveyData = {
         "bill_number": "C-12",
         "short_title": "Strengthening Canada's Immigration System and Borders Act",
         "title": "An Act respecting certain measures relating to the security of Canada's borders and the integrity of the Canadian immigration system and respecting other related security measures",
-        "stage": "House – Second Reading (intro completed; 1st reading on 2025-10-08)",
+        "stage": "House — Second Reading (intro completed; 1st reading on 2025-10-08)",
         "url": "https://www.parl.ca/LegisInfo/en/bill/45-1/C-12",
         "summary": "A streamlined border-and-immigration integrity bill introduced after C‑2 to move priority measures faster. Government says it targets transnational organized crime, illegal fentanyl trafficking, and immigration fraud while protecting rights.",
         "party_positions": {
@@ -645,12 +786,79 @@ function CanadianPoliticsSurvey() {
   const [completedKnowledge, setCompletedKnowledge] = useState(new Set());
   const [showSourcesModal, setShowSourcesModal] = useState(false);
 
-  // Initialize icons when component mounts or updates
-  React.useEffect(() => {
-    if (window.lucide) {
-      window.lucide.createIcons();
+  const PartyLogo = ({ code, name, size = 'md', className = '' }) => {
+    const [errored, setErrored] = useState(false);
+
+    const party = surveyData.parties.find((p) => p.code === code);
+    const partyName = name || party?.name || code;
+    const branding = partyBranding[code] || {
+      abbreviation: code,
+      gradient: 'linear-gradient(135deg, #d1d5db, #9ca3af)',
+      textColor: '#1f2937',
+    };
+
+    const sizeMap = {
+      sm: 32,
+      md: 40,
+      lg: 56,
+    };
+
+    const dimension = sizeMap[size] || sizeMap.md;
+
+    useEffect(() => {
+      setErrored(false);
+    }, [code, party?.logo]);
+
+    const containerBaseClass = `flex-shrink-0 inline-flex items-center justify-center rounded-full shadow-sm ${className}`.trim();
+    const containerBaseStyle = {
+      width: dimension,
+      height: dimension,
+      boxShadow: '0 1px 3px rgba(15, 23, 42, 0.15)',
+    };
+
+    if (party?.logo && !errored) {
+      return (
+        <div
+          className={containerBaseClass}
+          style={{
+            ...containerBaseStyle,
+            background: '#ffffff',
+          }}
+        >
+          <img
+            src={party.logo}
+            alt={`${partyName} logo`}
+            loading="lazy"
+            style={{
+              maxWidth: '80%',
+              maxHeight: '80%',
+              objectFit: 'contain',
+              display: 'block',
+            }}
+            onError={() => setErrored(true)}
+          />
+        </div>
+      );
     }
-  });
+
+    return (
+      <div
+        role="img"
+        aria-label={`${partyName} logo`}
+        className={`${containerBaseClass} font-semibold uppercase`}
+        style={{
+          ...containerBaseStyle,
+          background: branding.gradient,
+          color: branding.textColor,
+          fontSize: `${Math.max(12, dimension / 2.6)}px`,
+          letterSpacing: '0.05em',
+        }}
+        title={`${partyName} logo`}
+      >
+        {branding.abbreviation}
+      </div>
+    );
+  };
 
   const allItems = [
     ...surveyData.survey.bills.map(b => ({...b, type: 'bill'})),
@@ -665,11 +873,6 @@ function CanadianPoliticsSurvey() {
     return party ? party.name : code;
   };
 
-  const getPartyLogo = (code) => {
-    const party = surveyData.parties.find(p => p.code === code);
-    return party ? party.logo : null;
-  };
-
   const handleKnowledgeAnswer = (answer) => {
     setSelectedAnswer(answer);
     setShowFeedback(true);
@@ -677,26 +880,30 @@ function CanadianPoliticsSurvey() {
     const itemId = currentItem.type === 'bill' ? currentItem.bill_number : currentItem.issue_id;
     const checkId = `${itemId}_check${currentKnowledgeCheck}`;
     
-    setKnowledgeAnswers({
-      ...knowledgeAnswers,
+    setKnowledgeAnswers((prevAnswers) => ({
+      ...prevAnswers,
       [checkId]: {
         answer,
         correct: answer === currentItem.knowledge_checks[currentKnowledgeCheck].correct_answer
       }
-    });
+    }));
   };
 
   const handleNextKnowledge = () => {
     if (currentKnowledgeCheck < currentItem.knowledge_checks.length - 1) {
-      setCurrentKnowledgeCheck(currentKnowledgeCheck + 1);
+      setCurrentKnowledgeCheck((prev) => prev + 1);
       setShowFeedback(false);
       setSelectedAnswer(null);
     } else {
       const itemId = currentItem.type === 'bill' ? currentItem.bill_number : currentItem.issue_id;
-      setCompletedKnowledge(new Set([...completedKnowledge, itemId]));
-      
+      setCompletedKnowledge((prevCompleted) => {
+        const updated = new Set(prevCompleted);
+        updated.add(itemId);
+        return updated;
+      });
+
       if (currentSection < totalSections - 1) {
-        setCurrentSection(currentSection + 1);
+        setCurrentSection((prev) => prev + 1);
         setCurrentKnowledgeCheck(0);
         setStage('info');
       } else {
@@ -711,7 +918,7 @@ function CanadianPoliticsSurvey() {
   const handlePrevious = () => {
     if (stage === 'knowledge') {
       if (currentKnowledgeCheck > 0) {
-        setCurrentKnowledgeCheck(currentKnowledgeCheck - 1);
+        setCurrentKnowledgeCheck((prev) => prev - 1);
         setShowFeedback(false);
         setSelectedAnswer(null);
       } else {
@@ -719,7 +926,7 @@ function CanadianPoliticsSurvey() {
       }
     } else if (stage === 'info') {
       if (currentSection > 0) {
-        setCurrentSection(currentSection - 1);
+        setCurrentSection((prev) => prev - 1);
         setStage('info');
       } else {
         setStage('intro');
@@ -730,8 +937,10 @@ function CanadianPoliticsSurvey() {
   const handleShare = (platform) => {
     const knowledgeScore = Object.values(knowledgeAnswers).filter(a => a.correct).length;
     const totalKnowledge = Object.keys(knowledgeAnswers).length;
-    const percentage = Math.round((knowledgeScore / totalKnowledge) * 100);
-    const surveyUrl = 'https://artifacts.northernvariables.ca/canadian-politics-survey.html';
+    const percentage = totalKnowledge > 0
+      ? Math.round((knowledgeScore / totalKnowledge) * 100)
+      : 0;
+    const surveyUrl = 'https://northernvariables.ca/canpoliticssurvey-45-1-16-10-25';
     
     let shareText = '';
     let shareUrl = '';
@@ -745,13 +954,29 @@ function CanadianPoliticsSurvey() {
     } else if (platform === 'threads') {
       shareText = `I scored ${percentage}% on the Canadian Federal Politics Survey! Test your knowledge of current bills and party positions. @northernvariables\n\n${surveyUrl}`;
       shareUrl = `https://threads.net/intent/post?text=${encodeURIComponent(shareText)}`;
+    } else if (platform === 'linkedin') {
+      shareText = `I scored ${percentage}% on the Canadian Federal Politics Survey! Test your knowledge of current bills and party positions.`;
+      const linkedInTitle = 'Canadian Federal Politics Survey 2025 Results';
+      shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(surveyUrl)}&title=${encodeURIComponent(linkedInTitle)}&summary=${encodeURIComponent(shareText)}`;
+    } else if (platform === 'instagram') {
+      shareText = `I scored ${percentage}% on the Canadian Federal Politics Survey! Test your knowledge of current bills and party positions.`;
+      shareUrl = `https://www.instagram.com/?url=${encodeURIComponent(surveyUrl)}&caption=${encodeURIComponent(shareText)}`;
+    } else if (platform === 'reddit') {
+      shareText = `I scored ${percentage}% on the Canadian Federal Politics Survey! Test your knowledge of current bills and party positions.`;
+      shareUrl = `https://www.reddit.com/submit?url=${encodeURIComponent(surveyUrl)}&title=${encodeURIComponent(shareText)}`;
     }
-    
+
+    if (!shareUrl) {
+      return;
+    }
+
     window.open(shareUrl, '_blank', 'width=600,height=400');
   };
 
+  let content = null;
+
   if (stage === 'intro') {
-    return (
+    content = (
       <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-red-50 p-6">
         <div className="max-w-3xl mx-auto">
           <div className="bg-white rounded-lg shadow-lg p-8">
@@ -792,13 +1017,10 @@ function CanadianPoliticsSurvey() {
                 <div className="flex flex-wrap items-center justify-center gap-6 p-4 bg-gray-50 rounded-lg">
                   {surveyData.parties.map(party => (
                     <div key={party.code} className="flex flex-col items-center gap-2">
-                      <img 
-                        src={party.logo} 
-                        alt={`${party.name} logo`}
-                        className="h-12 w-auto object-contain"
-                        onError={(e) => {e.target.style.display = 'none'}}
-                      />
-                      <span className="text-xs text-gray-600 text-center max-w-[100px]">{party.name}</span>
+                      <PartyLogo code={party.code} name={party.name} size="lg" />
+                      <span className="text-xs text-gray-600 text-center max-w-[110px] leading-tight min-h-[2.5rem] flex items-center justify-center">
+                        {party.name}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -824,17 +1046,15 @@ function CanadianPoliticsSurvey() {
         </div>
       </div>
     );
-  }
-
-  // ... rest of the component code continues with all other stages (results, info, knowledge) ...
-  // [Due to length limits, I'm showing the pattern - the full code would include all stages]
-
-  if (stage === 'results') {
+  } else if (stage === 'results') {
     const knowledgeScore = Object.values(knowledgeAnswers).filter(a => a.correct).length;
     const totalKnowledge = Object.keys(knowledgeAnswers).length;
+    const knowledgePercentage = totalKnowledge > 0
+      ? Math.round((knowledgeScore / totalKnowledge) * 100)
+      : 0;
     const sectionsCompleted = completedKnowledge.size;
-    
-    return (
+
+    content = (
       <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-red-50 p-6">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-lg shadow-lg p-8">
@@ -845,7 +1065,7 @@ function CanadianPoliticsSurvey() {
                 <h3 className="text-lg font-semibold text-blue-900 mb-2">Knowledge Score</h3>
                 <p className="text-4xl font-bold text-blue-700">{knowledgeScore}/{totalKnowledge}</p>
                 <p className="text-sm text-blue-600 mt-2">
-                  {Math.round((knowledgeScore / totalKnowledge) * 100)}% correct
+                  {knowledgePercentage}% correct
                 </p>
               </div>
               
@@ -883,6 +1103,54 @@ function CanadianPoliticsSurvey() {
                   </svg>
                   Share on Facebook
                 </button>
+                <button
+                  onClick={() => handleShare('threads')}
+                  className="flex-1 min-w-[140px] bg-gradient-to-r from-[#262626] via-[#1d1d1d] to-[#000000] hover:from-[#3a3a3a] hover:via-[#2b2b2b] hover:to-[#111111] text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+                >
+                  <svg
+                    className="w-5 h-5"
+                    viewBox="0 0 512 512"
+                    fill="currentColor"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      clipRule="evenodd"
+                      d="M256 32C132.3 32 32 132.3 32 256s100.3 224 224 224 224-100.3 224-224S379.7 32 256 32Zm142.8 208.5c-8.8-39-33.7-69-70-84.7-12.7-5.4-26.4-8.8-40.8-10.4a566 566 0 0 0-5-32.2A16 16 0 0 0 267 99c-8.2-.3-35.3-.4-68.6 14.9-38.7 17.5-84.7 54.4-88.1 133.2-2 47.4 15 90.6 47.6 121.3 29.4 27.6 70.5 42.5 115.2 42.5h4.5c40.5-1.1 73.4-13.6 96.8-37.2 20.3-20.8 32-48.7 33.6-82.9 18.3 20.8 26.9 48.5 25.5 82.7-1.4 33-12.6 59.7-33.3 79.3-20.1 18.9-48.4 30.1-83.6 32.3-46.6 3-85.7-6.3-116-27.9-33.7-23.9-54.7-62.4-58-107.5-2.3-31.9 4.2-60.1 19.2-83 12.4-19.2 30-34 52.4-43.9a354 354 0 0 0-1.4 33.7c-17.5 7.7-25.8 23.5-24.7 46.8.7 15.5 6.2 27.8 16.5 36.7 9.6 8.2 23 12.3 39.8 12.3 15.8 0 28.3-3.3 37.2-9.8 8.5-6.1 13.2-14.6 13.7-25.4.5-9.2-1.9-16.6-7.4-22.1-5.9-5.8-15.4-9.9-28.4-12a783 783 0 0 0-2-45c19.1 3.1 35.2 9.2 47.8 18.2 14 10 32.4 29.4 30 63.8-1.7 25.3-11 45.6-27.6 58.3-15.2 11.7-35.8 17.7-61 17.7-28 0-50.4-7.4-66.4-22-16.7-15.3-25.5-36.8-26.6-64.2-1.4-32.3 9.6-58.4 31.6-77.5 12.2-10.7 27-18.4 44.1-22.9-.6-17.7-1.7-32.6-3.5-45-25.4 8.4-45.7 22.4-60.7 41.5-17.4 22.3-25.6 51.8-23.6 86.8 2.7 46.2 21.3 81.4 54.8 106.2 30.5 22.6 70.6 33.1 119 31.3 38.5-1.4 68.5-13 90-34.5 23.7-23.6 36.2-55.4 37.8-94.6 1.5-36.4-7-67.5-25.4-91.4Z"
+                    />
+                  </svg>
+                  Share on Threads
+                </button>
+                <button
+                  onClick={() => handleShare('linkedin')}
+                  className="flex-1 min-w-[140px] bg-[#0a66c2] hover:bg-[#0d4f92] text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+                >
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M20.452 20.452h-3.554v-5.569c0-1.328-.024-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.356V9h3.413v1.561h.047c.476-.9 1.637-1.852 3.37-1.852 3.603 0 4.268 2.373 4.268 5.457v6.286zM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124zM7.114 20.452H3.56V9h3.554v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.226.792 24 1.771 24h20.451C23.2 24 24 23.226 24 22.271V1.729C24 .774 23.2 0 22.225 0z" />
+                  </svg>
+                  Share on LinkedIn
+                </button>
+                <button
+                  onClick={() => handleShare('instagram')}
+                  className="flex-1 min-w-[140px] bg-gradient-to-r from-[#f58529] via-[#dd2a7b] to-[#515bd4] hover:from-[#f8a25d] hover:via-[#e34c8a] hover:to-[#5f6bdc] text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+                >
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M7 2C4.243 2 2 4.243 2 7v10c0 2.757 2.243 5 5 5h10c2.757 0 5-2.243 5-5V7c0-2.757-2.243-5-5-5H7zm0 2h10c1.654 0 3 1.346 3 3v10c0 1.654-1.346 3-3 3H7c-1.654 0-3-1.346-3-3V7c0-1.654 1.346-3 3-3zm5 2.5a5.5 5.5 0 1 0 0 11 5.5 5.5 0 0 0 0-11zm0 2a3.5 3.5 0 1 1 0 7 3.5 3.5 0 0 1 0-7zm6.25-.75a1.25 1.25 0 1 1-2.5 0 1.25 1.25 0 0 1 2.5 0z" />
+                  </svg>
+                  Share on Instagram
+                </button>
+                <button
+                  onClick={() => handleShare('reddit')}
+                  className="flex-1 min-w-[140px] bg-[#ff4500] hover:bg-[#e03d00] text-white font-semibold py-3 px-4 rounded-lg transition-colors flex items-center justify-center gap-2"
+                >
+                  <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M24 12c0-1.657-1.343-3-3-3-.795 0-1.515.31-2.047.813-1.996-1.22-4.654-2-7.603-2-2.95 0-5.608.78-7.603 2A2.993 2.993 0 0 0 1 9c-1.657 0-3 1.343-3 3 0 1.318.858 2.433 2.046 2.833-.02.188-.046.373-.046.567 0 3.771 4.48 6.8 10 6.8s10-3.029 10-6.8c0-.194-.026-.379-.046-.567A2.997 2.997 0 0 0 24 12Zm-17 1a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3Zm10 5.6c-1.316.89-3.191 1.4-5 1.4s-3.684-.51-5-1.4a.75.75 0 0 1 .85-1.24c1.016.695 2.594 1.14 4.15 1.14s3.134-.445 4.15-1.14a.75.75 0 0 1 .85 1.24Zm.5-2.6a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3Z" />
+                    <path d="M17.5 6a1.5 1.5 0 1 0 0 3 1.5 1.5 0 0 0 0-3Z" />
+                    <path d="M12 0a2 2 0 0 0-1.985 1.77l-.145 1.156c-2.06.094-3.955.458-5.502 1.052a.75.75 0 1 0 .534 1.404c1.417-.539 3.173-.874 5.077-.964A2 2 0 0 0 12 6a2 2 0 0 0 2-2c0-.124-.012-.244-.035-.361 2.024.102 3.86.476 5.274 1.069a.75.75 0 1 0 .534-1.404c-1.567-.598-3.493-.97-5.582-1.062L13.986 1.77A2 2 0 0 0 12 0Z" />
+                  </svg>
+                  Share on Reddit
+                </button>
               </div>
             </div>
             
@@ -899,7 +1167,7 @@ function CanadianPoliticsSurvey() {
                   setCurrentSection(0);
                   setCurrentKnowledgeCheck(0);
                   setKnowledgeAnswers({});
-                  setCompletedKnowledge(new Set());
+                  setCompletedKnowledge(() => new Set());
                 }}
                 className="flex-1 bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
               >
@@ -910,10 +1178,8 @@ function CanadianPoliticsSurvey() {
         </div>
       </div>
     );
-  }
-
-  if (stage === 'info') {
-    return (
+  } else if (stage === 'info') {
+    content = (
       <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-red-50 p-6">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-lg shadow-lg p-8">
@@ -972,14 +1238,7 @@ function CanadianPoliticsSurvey() {
                       <div key={code} className="bg-gray-50 rounded-lg p-4">
                         <div className="flex justify-between items-start mb-2">
                           <div className="flex items-center gap-3">
-                            {getPartyLogo(code) && (
-                              <img 
-                                src={getPartyLogo(code)} 
-                                alt={`${getPartyName(code)} logo`}
-                                className="h-8 w-8 object-contain"
-                                onError={(e) => {e.target.style.display = 'none'}}
-                              />
-                            )}
+                            <PartyLogo code={code} name={getPartyName(code)} size="sm" />
                             <span className="font-semibold text-gray-800">{getPartyName(code)}</span>
                           </div>
                           <span className="text-sm px-2 py-1 bg-red-100 text-red-700 rounded">
@@ -1024,14 +1283,7 @@ function CanadianPoliticsSurvey() {
                   <div className="flex-1 bg-purple-50 rounded-lg p-4">
                     <p className="text-sm font-semibold text-purple-900 mb-2">Raised by:</p>
                     <div className="flex items-center gap-3">
-                      {getPartyLogo(currentItem.party_raising) && (
-                        <img 
-                          src={getPartyLogo(currentItem.party_raising)} 
-                          alt={`${getPartyName(currentItem.party_raising)} logo`}
-                          className="h-8 w-8 object-contain"
-                          onError={(e) => {e.target.style.display = 'none'}}
-                        />
-                      )}
+                      <PartyLogo code={currentItem.party_raising} name={getPartyName(currentItem.party_raising)} size="sm" />
                       <p className="text-purple-800 font-semibold">{getPartyName(currentItem.party_raising)}</p>
                     </div>
                   </div>
@@ -1059,14 +1311,7 @@ function CanadianPoliticsSurvey() {
                     {Object.entries(currentItem.positions_by_party).map(([code, pos]) => (
                       <div key={code} className="bg-gray-50 rounded-lg p-4">
                         <div className="flex items-center gap-3 mb-2">
-                          {getPartyLogo(code) && (
-                            <img 
-                              src={getPartyLogo(code)} 
-                              alt={`${getPartyName(code)} logo`}
-                              className="h-8 w-8 object-contain"
-                              onError={(e) => {e.target.style.display = 'none'}}
-                            />
-                          )}
+                          <PartyLogo code={code} name={getPartyName(code)} size="sm" />
                           <span className="font-semibold text-gray-800">{getPartyName(code)}</span>
                         </div>
                         <p className="text-sm text-gray-600 mb-2">{pos.position}</p>
@@ -1123,7 +1368,7 @@ function CanadianPoliticsSurvey() {
                   const itemId = currentItem.type === 'bill' ? currentItem.bill_number : currentItem.issue_id;
                   if (completedKnowledge.has(itemId)) {
                     if (currentSection < totalSections - 1) {
-                      setCurrentSection(currentSection + 1);
+                      setCurrentSection((prev) => prev + 1);
                       setStage('info');
                     } else {
                       setStage('results');
@@ -1148,13 +1393,11 @@ function CanadianPoliticsSurvey() {
         </div>
       </div>
     );
-  }
-
-  if (stage === 'knowledge') {
+  } else if (stage === 'knowledge') {
     const check = currentItem.knowledge_checks[currentKnowledgeCheck];
     const isCorrect = selectedAnswer === check.correct_answer;
 
-    return (
+    content = (
       <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-red-50 p-6">
         <div className="max-w-3xl mx-auto">
           <div className="bg-white rounded-lg shadow-lg p-8">
@@ -1251,14 +1494,15 @@ function CanadianPoliticsSurvey() {
       </div>
     );
   }
-  
+
   return (
     <>
+      {content}
       {showSourcesModal && (
-        <SourcesModal 
-          isOpen={showSourcesModal} 
-          onClose={() => setShowSourcesModal(false)} 
-          sources={surveyData.sources} 
+        <SourcesModal
+          isOpen={showSourcesModal}
+          onClose={() => setShowSourcesModal(false)}
+          sources={surveyData.sources}
         />
       )}
     </>
