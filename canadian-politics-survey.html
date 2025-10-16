@@ -83,38 +83,97 @@
   
   <style>
     :root {
-      --nv-primary: #1e40af;
-      --nv-primary-dark: #1e3a8a;
-      --nv-accent: #3b82f6;
-      --nv-text: #1f2937;
+      --nv-primary: #0f2747;
+      --nv-primary-dark: #091a30;
+      --nv-primary-mid: #163b6b;
+      --nv-accent: #ff6719;
+      --nv-accent-dark: #d85612;
+      --nv-text: #0f172a;
+      --nv-soft: #f1f5f9;
     }
-    
-    body { 
-      margin: 0; 
+
+    body {
+      margin: 0;
       padding: 0;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255, 103, 25, 0.08), transparent 55%),
+        linear-gradient(180deg, rgba(15, 39, 71, 0.22) 0%, rgba(15, 39, 71, 0.12) 240px, #f4f6fb 100%);
+      background-color: #0f2747;
+      color: var(--nv-text);
     }
-    
+
     .nv-header {
-      background: white;
-      border-bottom: 2px solid #e5e7eb;
-      padding: 1rem 2rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      background: linear-gradient(135deg, var(--nv-primary-dark) 0%, var(--nv-primary-mid) 55%, var(--nv-accent) 100%);
+      border-bottom: 4px solid rgba(255, 255, 255, 0.25);
+      padding: 2.25rem 1.5rem;
+      box-shadow: 0 10px 30px rgba(9, 26, 48, 0.25);
     }
-    
+
+    .nv-header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0.75rem 1.25rem;
+      background: rgba(255, 255, 255, 0.86);
+      border-radius: 1rem;
+      box-shadow: 0 12px 30px rgba(9, 26, 48, 0.15);
+      backdrop-filter: blur(6px);
+    }
+
+    .nv-header-inner img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
     .nv-footer {
-      background: var(--nv-primary-dark);
-      color: white;
-      padding: 1.5rem 2rem;
+      background: linear-gradient(120deg, var(--nv-primary-dark) 0%, var(--nv-primary) 60%, var(--nv-accent-dark) 100%);
+      color: #f8fafc;
+      padding: 2.5rem 1.5rem;
       text-align: center;
-      font-size: 0.875rem;
+      font-size: 0.9rem;
+      box-shadow: 0 -12px 24px rgba(15, 39, 71, 0.3);
+    }
+
+    .nv-footer a {
+      color: #ffd7c2;
+      text-decoration: none;
+    }
+
+    .nv-footer a:hover {
+      color: #ffffff;
+    }
+
+    .nv-footer-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 0.85rem 1.5rem;
+      border-radius: 9999px;
+      transition: background 0.2s ease, transform 0.2s ease;
+      margin-bottom: 1.75rem;
+    }
+
+    .nv-footer-cta:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-2px);
+    }
+
+    .nv-footer-links {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.75rem;
     }
   </style>
 </head>
 <body>
   
   <div class="nv-header">
-    <div class="max-w-3xl mx-auto">
+    <div class="nv-header-inner">
       <img
         src="https://northernvariables.ca/northern-variables-email-banner-2/"
         alt="Northern Variables"
@@ -127,27 +186,26 @@
   
   <div class="nv-footer">
     <div class="max-w-4xl mx-auto text-center">
-      <p style="font-size: 0.8rem; margin-bottom: 1.5rem;">&copy; 2025 Northern Variables. All rights reserved.</p>
-      
-      <a 
-        href="https://axorc.substack.com" 
+      <p style="font-size: 0.85rem; margin-bottom: 1.75rem; letter-spacing: 0.01em;">&copy; 2025 Northern Variables. All rights reserved.</p>
+
+      <a
+        href="https://axorc.substack.com"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 transition-opacity hover:opacity-80"
-        style="color: #FF6719; margin-bottom: 1.5rem; display: inline-flex; font-size: 1.1rem;"
+        class="nv-footer-cta"
       >
         <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
         </svg>
-        <span style="font-weight: 500;">Visit us on Substack</span>
+        <span>Visit us on Substack</span>
       </a>
-      
-      <div style="margin-top: 0.75rem;">
-        <a 
-          href="https://northernvariables.ca" 
+
+      <div class="nv-footer-links">
+        <a
+          href="https://northernvariables.ca"
           target="_blank"
           rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 text-blue-200 hover:text-white transition-colors"
+          class="inline-flex items-center gap-2 transition-colors"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
             <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
