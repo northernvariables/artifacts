@@ -3,7 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Canadian Federal Politics Survey - Northern Variables</title>
+  <!-- Primary Meta Tags -->
+  <title>Canadian Federal Politics Survey 2025 | Northern Variables</title>
+  <meta name="title" content="Canadian Federal Politics Survey 2025 | Northern Variables">
+  <meta name="description" content="Test your knowledge of current Canadian federal bills and learn official party positions. Interactive survey covering C-2, C-10, C-11, C-12 and major policy issues from the 45th Parliament.">
+  <meta name="keywords" content="Canadian politics, federal bills, Parliament, C-2, Strong Borders Act, political education, party positions, 45th Parliament, Northern Variables">
+  <meta name="author" content="Northern Variables">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://northernvariables.ca/canpoliticssurvey-45-1-16-10-25">
+  <meta property="og:title" content="Canadian Federal Politics Survey 2025 | Northern Variables">
+  <meta property="og:description" content="Test your knowledge of current Canadian federal bills and learn official party positions. Interactive survey covering C-2, C-10, C-11, C-12 and major policy issues.">
+  <meta property="og:image" content="https://northernvariables.ca/wp-content/uploads/2024/07/Logo-Northern-Variables-235x300.png">
+  <meta property="og:image:width" content="235">
+  <meta property="og:image:height" content="300">
+  <meta property="og:image:alt" content="Northern Variables Logo">
+  <meta property="og:site_name" content="Northern Variables">
+  <meta property="og:locale" content="en_CA">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://northernvariables.ca/canpoliticssurvey-45-1-16-10-25">
+  <meta name="twitter:title" content="Canadian Federal Politics Survey 2025 | Northern Variables">
+  <meta name="twitter:description" content="Test your knowledge of current Canadian federal bills and learn official party positions. Interactive survey covering C-2, C-10, C-11, C-12 and major policy issues.">
+  <meta name="twitter:image" content="https://northernvariables.ca/wp-content/uploads/2024/07/Logo-Northern-Variables-235x300.png">
+  <meta name="twitter:image:alt" content="Northern Variables Logo">
+  <meta name="twitter:creator" content="@northernvar">
+  <meta name="twitter:site" content="@northernvar">
+
+  <!-- Threads -->
+  <meta property="threads:card" content="summary_large_image">
+
+  <!-- Additional SEO -->
+  <link rel="canonical" href="https://northernvariables.ca/canpoliticssurvey-45-1-16-10-25">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content="7 days">
+
+  <!-- Favicon (optional - add your own) -->
+  <link rel="icon" type="image/png" href="https://northernvariables.ca/wp-content/uploads/2024/07/cropped-Logo-Northern-Variables-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="https://northernvariables.ca/wp-content/uploads/2024/07/cropped-Logo-Northern-Variables-192x192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="https://northernvariables.ca/wp-content/uploads/2024/07/cropped-Logo-Northern-Variables-180x180.png">
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Canadian Federal Politics Survey 2025",
+      "description": "Interactive educational survey covering current Canadian federal bills and official party positions from the 45th Parliament, 1st Session.",
+      "url": "https://northernvariables.ca/canpoliticssurvey-45-1-16-10-25",
+      "author": {
+        "@type": "Organization",
+        "name": "Northern Variables",
+        "url": "https://northernvariables.ca",
+        "logo": "https://northernvariables.ca/wp-content/uploads/2024/07/Logo-Northern-Variables-235x300.png"
+      },
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CAD"
+      },
+      "inLanguage": "en-CA",
+      "datePublished": "2025-10-16",
+      "keywords": "Canadian politics, federal bills, Parliament, political education, C-2, C-10, C-11, C-12"
+    }
+  </script>
   
   <!-- React -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -12,9 +80,6 @@
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
   
   <style>
     :root {
@@ -49,11 +114,11 @@
 <body>
   
   <div class="nv-header">
-    <div class="flex items-center justify-center">
-      <img 
-        src="https://northernvariables.ca/northern-variables-email-banner-2/" 
+    <div class="max-w-3xl mx-auto">
+      <img
+        src="https://northernvariables.ca/northern-variables-email-banner-2/"
         alt="Northern Variables"
-        style="height: 60px; object-fit: contain;"
+        class="w-full h-auto"
       />
     </div>
   </div>
@@ -95,17 +160,25 @@
   
   <script type="text/babel">
     const { useState } = React;
-    
-    // Get Lucide icons from the global object
-const { useState } = React;
 
-// Icons will be text/emoji instead since Lucide setup is complex
-const ChevronRight = () => <span>→</span>;
-const ChevronLeft = () => <span>←</span>;
-const CheckCircle = () => <span style={{color: 'green'}}>✓</span>;
-const XCircle = () => <span style={{color: 'red'}}>✗</span>;
-const ExternalLink = () => <span>↗</span>;
-const Share2 = () => <span>📤</span>;
+    // Emoji-based icon helpers keep styling simple while staying framework-agnostic
+    const createIconComponent = (symbol) => ({ className, style, ...props }) => (
+      <span
+        aria-hidden="true"
+        className={className}
+        style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', lineHeight: 1, ...style }}
+        {...props}
+      >
+        {symbol}
+      </span>
+    );
+
+    const ChevronRight = createIconComponent('→');
+    const ChevronLeft = createIconComponent('←');
+    const CheckCircle = createIconComponent('✓');
+    const XCircle = createIconComponent('✗');
+    const ExternalLink = createIconComponent('↗');
+    const Share2 = createIconComponent('📤');
 const surveyData = {
   "schema_version": "1.0",
   "generated_at_utc": "2025-10-16T00:00:00Z",
@@ -645,13 +718,6 @@ function CanadianPoliticsSurvey() {
   const [completedKnowledge, setCompletedKnowledge] = useState(new Set());
   const [showSourcesModal, setShowSourcesModal] = useState(false);
 
-  // Initialize icons when component mounts or updates
-  React.useEffect(() => {
-    if (window.lucide) {
-      window.lucide.createIcons();
-    }
-  });
-
   const allItems = [
     ...surveyData.survey.bills.map(b => ({...b, type: 'bill'})),
     ...surveyData.survey.party_surfaced_urgent_issues.map(i => ({...i, type: 'issue'}))
@@ -677,26 +743,30 @@ function CanadianPoliticsSurvey() {
     const itemId = currentItem.type === 'bill' ? currentItem.bill_number : currentItem.issue_id;
     const checkId = `${itemId}_check${currentKnowledgeCheck}`;
     
-    setKnowledgeAnswers({
-      ...knowledgeAnswers,
+    setKnowledgeAnswers((prevAnswers) => ({
+      ...prevAnswers,
       [checkId]: {
         answer,
         correct: answer === currentItem.knowledge_checks[currentKnowledgeCheck].correct_answer
       }
-    });
+    }));
   };
 
   const handleNextKnowledge = () => {
     if (currentKnowledgeCheck < currentItem.knowledge_checks.length - 1) {
-      setCurrentKnowledgeCheck(currentKnowledgeCheck + 1);
+      setCurrentKnowledgeCheck((prev) => prev + 1);
       setShowFeedback(false);
       setSelectedAnswer(null);
     } else {
       const itemId = currentItem.type === 'bill' ? currentItem.bill_number : currentItem.issue_id;
-      setCompletedKnowledge(new Set([...completedKnowledge, itemId]));
-      
+      setCompletedKnowledge((prevCompleted) => {
+        const updated = new Set(prevCompleted);
+        updated.add(itemId);
+        return updated;
+      });
+
       if (currentSection < totalSections - 1) {
-        setCurrentSection(currentSection + 1);
+        setCurrentSection((prev) => prev + 1);
         setCurrentKnowledgeCheck(0);
         setStage('info');
       } else {
@@ -711,7 +781,7 @@ function CanadianPoliticsSurvey() {
   const handlePrevious = () => {
     if (stage === 'knowledge') {
       if (currentKnowledgeCheck > 0) {
-        setCurrentKnowledgeCheck(currentKnowledgeCheck - 1);
+        setCurrentKnowledgeCheck((prev) => prev - 1);
         setShowFeedback(false);
         setSelectedAnswer(null);
       } else {
@@ -719,7 +789,7 @@ function CanadianPoliticsSurvey() {
       }
     } else if (stage === 'info') {
       if (currentSection > 0) {
-        setCurrentSection(currentSection - 1);
+        setCurrentSection((prev) => prev - 1);
         setStage('info');
       } else {
         setStage('intro');
@@ -730,8 +800,10 @@ function CanadianPoliticsSurvey() {
   const handleShare = (platform) => {
     const knowledgeScore = Object.values(knowledgeAnswers).filter(a => a.correct).length;
     const totalKnowledge = Object.keys(knowledgeAnswers).length;
-    const percentage = Math.round((knowledgeScore / totalKnowledge) * 100);
-    const surveyUrl = 'https://artifacts.northernvariables.ca/canadian-politics-survey.html';
+    const percentage = totalKnowledge > 0
+      ? Math.round((knowledgeScore / totalKnowledge) * 100)
+      : 0;
+    const surveyUrl = 'https://northernvariables.ca/canpoliticssurvey-45-1-16-10-25';
     
     let shareText = '';
     let shareUrl = '';
@@ -750,8 +822,10 @@ function CanadianPoliticsSurvey() {
     window.open(shareUrl, '_blank', 'width=600,height=400');
   };
 
+  let content = null;
+
   if (stage === 'intro') {
-    return (
+    content = (
       <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-red-50 p-6">
         <div className="max-w-3xl mx-auto">
           <div className="bg-white rounded-lg shadow-lg p-8">
@@ -824,17 +898,15 @@ function CanadianPoliticsSurvey() {
         </div>
       </div>
     );
-  }
-
-  // ... rest of the component code continues with all other stages (results, info, knowledge) ...
-  // [Due to length limits, I'm showing the pattern - the full code would include all stages]
-
-  if (stage === 'results') {
+  } else if (stage === 'results') {
     const knowledgeScore = Object.values(knowledgeAnswers).filter(a => a.correct).length;
     const totalKnowledge = Object.keys(knowledgeAnswers).length;
+    const knowledgePercentage = totalKnowledge > 0
+      ? Math.round((knowledgeScore / totalKnowledge) * 100)
+      : 0;
     const sectionsCompleted = completedKnowledge.size;
-    
-    return (
+
+    content = (
       <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-red-50 p-6">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-lg shadow-lg p-8">
@@ -845,7 +917,7 @@ function CanadianPoliticsSurvey() {
                 <h3 className="text-lg font-semibold text-blue-900 mb-2">Knowledge Score</h3>
                 <p className="text-4xl font-bold text-blue-700">{knowledgeScore}/{totalKnowledge}</p>
                 <p className="text-sm text-blue-600 mt-2">
-                  {Math.round((knowledgeScore / totalKnowledge) * 100)}% correct
+                  {knowledgePercentage}% correct
                 </p>
               </div>
               
@@ -899,7 +971,7 @@ function CanadianPoliticsSurvey() {
                   setCurrentSection(0);
                   setCurrentKnowledgeCheck(0);
                   setKnowledgeAnswers({});
-                  setCompletedKnowledge(new Set());
+                  setCompletedKnowledge(() => new Set());
                 }}
                 className="flex-1 bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
               >
@@ -910,10 +982,8 @@ function CanadianPoliticsSurvey() {
         </div>
       </div>
     );
-  }
-
-  if (stage === 'info') {
-    return (
+  } else if (stage === 'info') {
+    content = (
       <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-red-50 p-6">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-lg shadow-lg p-8">
@@ -1123,7 +1193,7 @@ function CanadianPoliticsSurvey() {
                   const itemId = currentItem.type === 'bill' ? currentItem.bill_number : currentItem.issue_id;
                   if (completedKnowledge.has(itemId)) {
                     if (currentSection < totalSections - 1) {
-                      setCurrentSection(currentSection + 1);
+                      setCurrentSection((prev) => prev + 1);
                       setStage('info');
                     } else {
                       setStage('results');
@@ -1148,13 +1218,11 @@ function CanadianPoliticsSurvey() {
         </div>
       </div>
     );
-  }
-
-  if (stage === 'knowledge') {
+  } else if (stage === 'knowledge') {
     const check = currentItem.knowledge_checks[currentKnowledgeCheck];
     const isCorrect = selectedAnswer === check.correct_answer;
 
-    return (
+    content = (
       <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-red-50 p-6">
         <div className="max-w-3xl mx-auto">
           <div className="bg-white rounded-lg shadow-lg p-8">
@@ -1251,14 +1319,15 @@ function CanadianPoliticsSurvey() {
       </div>
     );
   }
-  
+
   return (
     <>
+      {content}
       {showSourcesModal && (
-        <SourcesModal 
-          isOpen={showSourcesModal} 
-          onClose={() => setShowSourcesModal(false)} 
-          sources={surveyData.sources} 
+        <SourcesModal
+          isOpen={showSourcesModal}
+          onClose={() => setShowSourcesModal(false)}
+          sources={surveyData.sources}
         />
       )}
     </>
