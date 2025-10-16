@@ -823,8 +823,10 @@ function CanadianPoliticsSurvey() {
     window.open(shareUrl, '_blank', 'width=600,height=400');
   };
 
+  let content = null;
+
   if (stage === 'intro') {
-    return (
+    content = (
       <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-red-50 p-6">
         <div className="max-w-3xl mx-auto">
           <div className="bg-white rounded-lg shadow-lg p-8">
@@ -897,17 +899,15 @@ function CanadianPoliticsSurvey() {
         </div>
       </div>
     );
-  }
-
-  if (stage === 'results') {
+  } else if (stage === 'results') {
     const knowledgeScore = Object.values(knowledgeAnswers).filter(a => a.correct).length;
     const totalKnowledge = Object.keys(knowledgeAnswers).length;
     const knowledgePercentage = totalKnowledge > 0
       ? Math.round((knowledgeScore / totalKnowledge) * 100)
       : 0;
     const sectionsCompleted = completedKnowledge.size;
-    
-    return (
+
+    content = (
       <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-red-50 p-6">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-lg shadow-lg p-8">
@@ -983,10 +983,8 @@ function CanadianPoliticsSurvey() {
         </div>
       </div>
     );
-  }
-
-  if (stage === 'info') {
-    return (
+  } else if (stage === 'info') {
+    content = (
       <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-red-50 p-6">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-lg shadow-lg p-8">
@@ -1221,13 +1219,11 @@ function CanadianPoliticsSurvey() {
         </div>
       </div>
     );
-  }
-
-  if (stage === 'knowledge') {
+  } else if (stage === 'knowledge') {
     const check = currentItem.knowledge_checks[currentKnowledgeCheck];
     const isCorrect = selectedAnswer === check.correct_answer;
 
-    return (
+    content = (
       <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-red-50 p-6">
         <div className="max-w-3xl mx-auto">
           <div className="bg-white rounded-lg shadow-lg p-8">
@@ -1324,14 +1320,15 @@ function CanadianPoliticsSurvey() {
       </div>
     );
   }
-  
+
   return (
     <>
+      {content}
       {showSourcesModal && (
-        <SourcesModal 
-          isOpen={showSourcesModal} 
-          onClose={() => setShowSourcesModal(false)} 
-          sources={surveyData.sources} 
+        <SourcesModal
+          isOpen={showSourcesModal}
+          onClose={() => setShowSourcesModal(false)}
+          sources={surveyData.sources}
         />
       )}
     </>
