@@ -3,7 +3,75 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Canadian Federal Politics Survey - Northern Variables</title>
+  <!-- Primary Meta Tags -->
+  <title>Canadian Federal Politics Survey 2025 | Northern Variables</title>
+  <meta name="title" content="Canadian Federal Politics Survey 2025 | Northern Variables">
+  <meta name="description" content="Test your knowledge of current Canadian federal bills and learn official party positions. Interactive survey covering C-2, C-10, C-11, C-12 and major policy issues from the 45th Parliament.">
+  <meta name="keywords" content="Canadian politics, federal bills, Parliament, C-2, Strong Borders Act, political education, party positions, 45th Parliament, Northern Variables">
+  <meta name="author" content="Northern Variables">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://northernvariables.ca/canpoliticssurvey-45-1-16-10-25">
+  <meta property="og:title" content="Canadian Federal Politics Survey 2025 | Northern Variables">
+  <meta property="og:description" content="Test your knowledge of current Canadian federal bills and learn official party positions. Interactive survey covering C-2, C-10, C-11, C-12 and major policy issues.">
+  <meta property="og:image" content="https://northernvariables.ca/wp-content/uploads/2024/07/Logo-Northern-Variables-235x300.png">
+  <meta property="og:image:width" content="235">
+  <meta property="og:image:height" content="300">
+  <meta property="og:image:alt" content="Northern Variables Logo">
+  <meta property="og:site_name" content="Northern Variables">
+  <meta property="og:locale" content="en_CA">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://northernvariables.ca/canpoliticssurvey-45-1-16-10-25">
+  <meta name="twitter:title" content="Canadian Federal Politics Survey 2025 | Northern Variables">
+  <meta name="twitter:description" content="Test your knowledge of current Canadian federal bills and learn official party positions. Interactive survey covering C-2, C-10, C-11, C-12 and major policy issues.">
+  <meta name="twitter:image" content="https://northernvariables.ca/wp-content/uploads/2024/07/Logo-Northern-Variables-235x300.png">
+  <meta name="twitter:image:alt" content="Northern Variables Logo">
+  <meta name="twitter:creator" content="@northernvar">
+  <meta name="twitter:site" content="@northernvar">
+
+  <!-- Threads -->
+  <meta property="threads:card" content="summary_large_image">
+
+  <!-- Additional SEO -->
+  <link rel="canonical" href="https://northernvariables.ca/canpoliticssurvey-45-1-16-10-25">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+  <meta name="revisit-after" content="7 days">
+
+  <!-- Favicon (optional - add your own) -->
+  <link rel="icon" type="image/png" href="https://northernvariables.ca/wp-content/uploads/2024/07/cropped-Logo-Northern-Variables-32x32.png" sizes="32x32">
+  <link rel="icon" type="image/png" href="https://northernvariables.ca/wp-content/uploads/2024/07/cropped-Logo-Northern-Variables-192x192.png" sizes="192x192">
+  <link rel="apple-touch-icon" href="https://northernvariables.ca/wp-content/uploads/2024/07/cropped-Logo-Northern-Variables-180x180.png">
+
+  <!-- Structured Data / JSON-LD -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Canadian Federal Politics Survey 2025",
+      "description": "Interactive educational survey covering current Canadian federal bills and official party positions from the 45th Parliament, 1st Session.",
+      "url": "https://northernvariables.ca/canpoliticssurvey-45-1-16-10-25",
+      "author": {
+        "@type": "Organization",
+        "name": "Northern Variables",
+        "url": "https://northernvariables.ca",
+        "logo": "https://northernvariables.ca/wp-content/uploads/2024/07/Logo-Northern-Variables-235x300.png"
+      },
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CAD"
+      },
+      "inLanguage": "en-CA",
+      "datePublished": "2025-10-16",
+      "keywords": "Canadian politics, federal bills, Parliament, political education, C-2, C-10, C-11, C-12"
+    }
+  </script>
   
   <!-- React -->
   <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -46,11 +114,12 @@
 <body>
   
   <div class="nv-header">
-    <div class="flex items-center justify-center">
+    <div class="max-w-4xl mx-auto">
       <img
         src="https://northernvariables.ca/northern-variables-email-banner-2/"
         alt="Northern Variables"
-        style="width: 100%; height: auto; object-fit: contain;"
+        class="w-full h-auto"
+        style="max-height: 30px; object-fit: contain;"
       />
     </div>
   </div>
@@ -735,7 +804,7 @@ function CanadianPoliticsSurvey() {
     const percentage = totalKnowledge > 0
       ? Math.round((knowledgeScore / totalKnowledge) * 100)
       : 0;
-    const surveyUrl = 'https://artifacts.northernvariables.ca/canadian-politics-survey.html';
+    const surveyUrl = 'https://northernvariables.ca/canpoliticssurvey-45-1-16-10-25';
     
     let shareText = '';
     let shareUrl = '';
