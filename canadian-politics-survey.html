@@ -13,9 +13,6 @@
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  
   <style>
     :root {
       --nv-primary: #1e40af;
@@ -95,17 +92,25 @@
   
   <script type="text/babel">
     const { useState } = React;
-    
-    // Get Lucide icons from the global object
-const { useState } = React;
 
-// Icons will be text/emoji instead since Lucide setup is complex
-const ChevronRight = () => <span>→</span>;
-const ChevronLeft = () => <span>←</span>;
-const CheckCircle = () => <span style={{color: 'green'}}>✓</span>;
-const XCircle = () => <span style={{color: 'red'}}>✗</span>;
-const ExternalLink = () => <span>↗</span>;
-const Share2 = () => <span>📤</span>;
+    // Emoji-based icon helpers keep styling simple while staying framework-agnostic
+    const createIconComponent = (symbol) => ({ className, style, ...props }) => (
+      <span
+        aria-hidden="true"
+        className={className}
+        style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', lineHeight: 1, ...style }}
+        {...props}
+      >
+        {symbol}
+      </span>
+    );
+
+    const ChevronRight = createIconComponent('→');
+    const ChevronLeft = createIconComponent('←');
+    const CheckCircle = createIconComponent('✓');
+    const XCircle = createIconComponent('✗');
+    const ExternalLink = createIconComponent('↗');
+    const Share2 = createIconComponent('📤');
 const surveyData = {
   "schema_version": "1.0",
   "generated_at_utc": "2025-10-16T00:00:00Z",
@@ -645,13 +650,6 @@ function CanadianPoliticsSurvey() {
   const [completedKnowledge, setCompletedKnowledge] = useState(new Set());
   const [showSourcesModal, setShowSourcesModal] = useState(false);
 
-  // Initialize icons when component mounts or updates
-  React.useEffect(() => {
-    if (window.lucide) {
-      window.lucide.createIcons();
-    }
-  });
-
   const allItems = [
     ...surveyData.survey.bills.map(b => ({...b, type: 'bill'})),
     ...surveyData.survey.party_surfaced_urgent_issues.map(i => ({...i, type: 'issue'}))
@@ -677,26 +675,30 @@ function CanadianPoliticsSurvey() {
     const itemId = currentItem.type === 'bill' ? currentItem.bill_number : currentItem.issue_id;
     const checkId = `${itemId}_check${currentKnowledgeCheck}`;
     
-    setKnowledgeAnswers({
-      ...knowledgeAnswers,
+    setKnowledgeAnswers((prevAnswers) => ({
+      ...prevAnswers,
       [checkId]: {
         answer,
         correct: answer === currentItem.knowledge_checks[currentKnowledgeCheck].correct_answer
       }
-    });
+    }));
   };
 
   const handleNextKnowledge = () => {
     if (currentKnowledgeCheck < currentItem.knowledge_checks.length - 1) {
-      setCurrentKnowledgeCheck(currentKnowledgeCheck + 1);
+      setCurrentKnowledgeCheck((prev) => prev + 1);
       setShowFeedback(false);
       setSelectedAnswer(null);
     } else {
       const itemId = currentItem.type === 'bill' ? currentItem.bill_number : currentItem.issue_id;
-      setCompletedKnowledge(new Set([...completedKnowledge, itemId]));
-      
+      setCompletedKnowledge((prevCompleted) => {
+        const updated = new Set(prevCompleted);
+        updated.add(itemId);
+        return updated;
+      });
+
       if (currentSection < totalSections - 1) {
-        setCurrentSection(currentSection + 1);
+        setCurrentSection((prev) => prev + 1);
         setCurrentKnowledgeCheck(0);
         setStage('info');
       } else {
@@ -711,7 +713,7 @@ function CanadianPoliticsSurvey() {
   const handlePrevious = () => {
     if (stage === 'knowledge') {
       if (currentKnowledgeCheck > 0) {
-        setCurrentKnowledgeCheck(currentKnowledgeCheck - 1);
+        setCurrentKnowledgeCheck((prev) => prev - 1);
         setShowFeedback(false);
         setSelectedAnswer(null);
       } else {
@@ -719,7 +721,7 @@ function CanadianPoliticsSurvey() {
       }
     } else if (stage === 'info') {
       if (currentSection > 0) {
-        setCurrentSection(currentSection - 1);
+        setCurrentSection((prev) => prev - 1);
         setStage('info');
       } else {
         setStage('intro');
@@ -730,7 +732,9 @@ function CanadianPoliticsSurvey() {
   const handleShare = (platform) => {
     const knowledgeScore = Object.values(knowledgeAnswers).filter(a => a.correct).length;
     const totalKnowledge = Object.keys(knowledgeAnswers).length;
-    const percentage = Math.round((knowledgeScore / totalKnowledge) * 100);
+    const percentage = totalKnowledge > 0
+      ? Math.round((knowledgeScore / totalKnowledge) * 100)
+      : 0;
     const surveyUrl = 'https://artifacts.northernvariables.ca/canadian-politics-survey.html';
     
     let shareText = '';
@@ -826,12 +830,12 @@ function CanadianPoliticsSurvey() {
     );
   }
 
-  // ... rest of the component code continues with all other stages (results, info, knowledge) ...
-  // [Due to length limits, I'm showing the pattern - the full code would include all stages]
-
   if (stage === 'results') {
     const knowledgeScore = Object.values(knowledgeAnswers).filter(a => a.correct).length;
     const totalKnowledge = Object.keys(knowledgeAnswers).length;
+    const knowledgePercentage = totalKnowledge > 0
+      ? Math.round((knowledgeScore / totalKnowledge) * 100)
+      : 0;
     const sectionsCompleted = completedKnowledge.size;
     
     return (
@@ -845,7 +849,7 @@ function CanadianPoliticsSurvey() {
                 <h3 className="text-lg font-semibold text-blue-900 mb-2">Knowledge Score</h3>
                 <p className="text-4xl font-bold text-blue-700">{knowledgeScore}/{totalKnowledge}</p>
                 <p className="text-sm text-blue-600 mt-2">
-                  {Math.round((knowledgeScore / totalKnowledge) * 100)}% correct
+                  {knowledgePercentage}% correct
                 </p>
               </div>
               
@@ -899,7 +903,7 @@ function CanadianPoliticsSurvey() {
                   setCurrentSection(0);
                   setCurrentKnowledgeCheck(0);
                   setKnowledgeAnswers({});
-                  setCompletedKnowledge(new Set());
+                  setCompletedKnowledge(() => new Set());
                 }}
                 className="flex-1 bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
               >
@@ -1123,7 +1127,7 @@ function CanadianPoliticsSurvey() {
                   const itemId = currentItem.type === 'bill' ? currentItem.bill_number : currentItem.issue_id;
                   if (completedKnowledge.has(itemId)) {
                     if (currentSection < totalSections - 1) {
-                      setCurrentSection(currentSection + 1);
+                      setCurrentSection((prev) => prev + 1);
                       setStage('info');
                     } else {
                       setStage('results');
