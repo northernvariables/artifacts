@@ -97,20 +97,15 @@
     const { useState } = React;
     
     // Get Lucide icons from the global object
-    const ChevronRight = (props) => <i data-lucide="chevron-right" {...props}></i>;
-    const ChevronLeft = (props) => <i data-lucide="chevron-left" {...props}></i>;
-    const CheckCircle = (props) => <i data-lucide="check-circle" {...props}></i>;
-    const XCircle = (props) => <i data-lucide="x-circle" {...props}></i>;
-    const ExternalLink = (props) => <i data-lucide="external-link" {...props}></i>;
-    const Share2 = (props) => <i data-lucide="share-2" {...props}></i>;
-    
-    // Initialize Lucide icons after render
-    React.useEffect(() => {
-      if (window.lucide) {
-        window.lucide.createIcons();
-      }
-    });
+const { useState } = React;
 
+// Icons will be text/emoji instead since Lucide setup is complex
+const ChevronRight = () => <span>→</span>;
+const ChevronLeft = () => <span>←</span>;
+const CheckCircle = () => <span style={{color: 'green'}}>✓</span>;
+const XCircle = () => <span style={{color: 'red'}}>✗</span>;
+const ExternalLink = () => <span>↗</span>;
+const Share2 = () => <span>📤</span>;
 const surveyData = {
   "schema_version": "1.0",
   "generated_at_utc": "2025-10-16T00:00:00Z",
