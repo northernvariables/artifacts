@@ -769,16 +769,35 @@ function CanadianPoliticsSurvey() {
       setErrored(false);
     }, [code, party?.logo]);
 
+    const containerBaseClass = `flex-shrink-0 inline-flex items-center justify-center rounded-full shadow-sm ${className}`.trim();
+    const containerBaseStyle = {
+      width: dimension,
+      height: dimension,
+      boxShadow: '0 1px 3px rgba(15, 23, 42, 0.15)',
+    };
+
     if (party?.logo && !errored) {
       return (
-        <img
-          src={party.logo}
-          alt={`${partyName} logo`}
-          loading="lazy"
-          className={`flex-shrink-0 ${className}`.trim()}
-          style={{ width: dimension, height: dimension, objectFit: 'contain' }}
-          onError={() => setErrored(true)}
-        />
+        <div
+          className={containerBaseClass}
+          style={{
+            ...containerBaseStyle,
+            background: '#ffffff',
+          }}
+        >
+          <img
+            src={party.logo}
+            alt={`${partyName} logo`}
+            loading="lazy"
+            style={{
+              maxWidth: '80%',
+              maxHeight: '80%',
+              objectFit: 'contain',
+              display: 'block',
+            }}
+            onError={() => setErrored(true)}
+          />
+        </div>
       );
     }
 
@@ -786,14 +805,13 @@ function CanadianPoliticsSurvey() {
       <div
         role="img"
         aria-label={`${partyName} logo`}
-        className={`flex-shrink-0 inline-flex items-center justify-center rounded-full font-semibold uppercase tracking-wide ${className}`.trim()}
+        className={`${containerBaseClass} font-semibold uppercase`}
         style={{
-          width: dimension,
-          height: dimension,
+          ...containerBaseStyle,
           background: branding.gradient,
           color: branding.textColor,
           fontSize: `${Math.max(12, dimension / 2.6)}px`,
-          boxShadow: '0 1px 3px rgba(15, 23, 42, 0.15)',
+          letterSpacing: '0.05em',
         }}
         title={`${partyName} logo`}
       >
@@ -946,7 +964,9 @@ function CanadianPoliticsSurvey() {
                   {surveyData.parties.map(party => (
                     <div key={party.code} className="flex flex-col items-center gap-2">
                       <PartyLogo code={party.code} name={party.name} size="lg" />
-                      <span className="text-xs text-gray-600 text-center max-w-[100px]">{party.name}</span>
+                      <span className="text-xs text-gray-600 text-center max-w-[110px] leading-tight min-h-[2.5rem] flex items-center justify-center">
+                        {party.name}
+                      </span>
                     </div>
                   ))}
                 </div>
