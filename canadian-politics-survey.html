@@ -95,9 +95,8 @@
   
   <script type="text/babel">
     const { useState } = React;
-    
+
     // Get Lucide icons from the global object
-const { useState } = React;
 
 // Icons will be text/emoji instead since Lucide setup is complex
 const ChevronRight = () => <span>→</span>;
@@ -730,7 +729,9 @@ function CanadianPoliticsSurvey() {
   const handleShare = (platform) => {
     const knowledgeScore = Object.values(knowledgeAnswers).filter(a => a.correct).length;
     const totalKnowledge = Object.keys(knowledgeAnswers).length;
-    const percentage = Math.round((knowledgeScore / totalKnowledge) * 100);
+    const percentage = totalKnowledge > 0
+      ? Math.round((knowledgeScore / totalKnowledge) * 100)
+      : 0;
     const surveyUrl = 'https://artifacts.northernvariables.ca/canadian-politics-survey.html';
     
     let shareText = '';
@@ -832,6 +833,9 @@ function CanadianPoliticsSurvey() {
   if (stage === 'results') {
     const knowledgeScore = Object.values(knowledgeAnswers).filter(a => a.correct).length;
     const totalKnowledge = Object.keys(knowledgeAnswers).length;
+    const knowledgePercentage = totalKnowledge > 0
+      ? Math.round((knowledgeScore / totalKnowledge) * 100)
+      : 0;
     const sectionsCompleted = completedKnowledge.size;
     
     return (
@@ -845,7 +849,7 @@ function CanadianPoliticsSurvey() {
                 <h3 className="text-lg font-semibold text-blue-900 mb-2">Knowledge Score</h3>
                 <p className="text-4xl font-bold text-blue-700">{knowledgeScore}/{totalKnowledge}</p>
                 <p className="text-sm text-blue-600 mt-2">
-                  {Math.round((knowledgeScore / totalKnowledge) * 100)}% correct
+                  {knowledgePercentage}% correct
                 </p>
               </div>
               
