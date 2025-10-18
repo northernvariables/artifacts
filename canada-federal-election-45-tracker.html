@@ -1,0 +1,1328 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canada Federal Election 45 - Liberal Government Accountability Tracker</title>
+    <meta
+      name="title"
+      content="Canada Federal Election 45 - Liberal Government Accountability Tracker"
+    />
+    <meta
+      name="description"
+      content="Track the Mark Carney Liberal Government's progress on campaign promises from the 2025 federal election. Monitor legislation, policy implementation, and accountability in real-time."
+    />
+
+    <link
+      rel="canonical"
+      href="https://artifacts.northernvariables.ca/canada-federal-election-45-tracker.html"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content="https://artifacts.northernvariables.ca/canada-federal-election-45-tracker.html"
+    />
+    <meta
+      property="og:title"
+      content="Canada Federal Election 45 - Liberal Government Accountability Tracker"
+    />
+    <meta
+      property="og:description"
+      content="Track the Mark Carney Liberal Government's progress on campaign promises from the 2025 federal election. Monitor legislation, policy implementation, and accountability in real-time."
+    />
+    <meta
+      property="og:image"
+      content="https://northernvariables.ca/wp-content/uploads/2025/10/680fe4f3c6ad288d147f5e09.webp"
+    />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+      property="twitter:url"
+      content="https://artifacts.northernvariables.ca/canada-federal-election-45-tracker.html"
+    />
+    <meta
+      property="twitter:title"
+      content="Canada Federal Election 45 - Liberal Government Accountability Tracker"
+    />
+    <meta
+      property="twitter:description"
+      content="Track the Mark Carney Liberal Government's progress on campaign promises from the 2025 federal election. Monitor legislation, policy implementation, and accountability in real-time."
+    />
+    <meta
+      property="twitter:image"
+      content="https://northernvariables.ca/wp-content/uploads/2025/10/680fe4f3c6ad288d147f5e09.webp"
+    />
+
+    <!-- React -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide-react@latest/dist/lucide-react.umd.js"></script>
+
+    <style>
+      :root {
+        --nv-primary: #0f2747;
+        --nv-primary-dark: #091a30;
+        --nv-primary-mid: #163b6b;
+        --nv-accent: #ff6719;
+        --nv-accent-dark: #d85612;
+        --nv-text: #0f172a;
+        --nv-soft: #f1f5f9;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+        background-color: #f8fafc;
+        color: var(--nv-text);
+      }
+
+      .nv-header {
+        background: linear-gradient(
+          135deg,
+          var(--nv-primary-dark) 0%,
+          var(--nv-primary-mid) 55%,
+          var(--nv-accent) 100%
+        );
+        border-bottom: 4px solid rgba(255, 255, 255, 0.25);
+        padding: 2.25rem 1.5rem;
+        box-shadow: 0 10px 30px rgba(9, 26, 48, 0.25);
+      }
+
+      .nv-header-inner {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 3px;
+        background: rgba(255, 255, 255, 0.86);
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 12px 30px rgba(9, 26, 48, 0.15);
+        backdrop-filter: blur(6px);
+      }
+
+      .nv-header-inner a {
+        display: block;
+        border-radius: inherit;
+      }
+
+      .nv-header-inner a:focus-visible {
+        outline: 3px solid rgba(15, 39, 71, 0.6);
+        outline-offset: 4px;
+      }
+
+      .nv-header-inner img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: inherit;
+      }
+
+      .nv-main {
+        max-width: 1200px;
+        margin: 56px auto;
+        padding: 0 clamp(1.5rem, 5vw, 3.5rem);
+      }
+
+      @media (max-width: 768px) {
+        .nv-main {
+          margin: 32px auto;
+          padding: 0 1.25rem;
+        }
+      }
+
+      .nv-footer {
+        background: linear-gradient(
+          120deg,
+          var(--nv-primary-dark) 0%,
+          var(--nv-primary) 60%,
+          var(--nv-accent-dark) 100%
+        );
+        color: #f8fafc;
+        padding: 2.5rem 1.5rem;
+        text-align: center;
+        font-size: 0.9rem;
+        box-shadow: 0 -12px 24px rgba(15, 39, 71, 0.3);
+      }
+
+      .nv-footer a {
+        color: #ffd7c2;
+        text-decoration: none;
+      }
+
+      .nv-footer a:hover {
+        color: #ffffff;
+      }
+
+      .nv-footer-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.125rem;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.12);
+        padding: 0.85rem 1.5rem;
+        border-radius: 9999px;
+        transition: background 0.2s ease, transform 0.2s ease;
+        margin-bottom: 1.75rem;
+      }
+
+      .nv-footer-cta:hover {
+        background: rgba(255, 255, 255, 0.18);
+        transform: translateY(-2px);
+      }
+
+      .lucide-fallback-icon {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="nv-header">
+      <div class="nv-header-inner">
+        <a
+          href="https://artifacts.northernvariables.ca/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit the Northern Variables homepage"
+        >
+          <img
+            src="https://northernvariables.ca/wp-content/uploads/2025/10/680fe4f3c6ad288d147f5e09.webp"
+            alt="Northern Variables"
+          />
+        </a>
+      </div>
+    </div>
+
+    <main class="nv-main">
+      <div id="root"></div>
+    </main>
+
+    <div class="nv-footer">
+      <div class="max-w-4xl mx-auto text-center">
+        <p style="font-size: 0.85rem; margin-bottom: 1.75rem; letter-spacing: 0.01em;">
+          &copy; 2025 Northern Variables. All rights reserved.
+        </p>
+
+        <a
+          href="https://axorc.substack.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nv-footer-cta"
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z" />
+          </svg>
+          <span>Visit us on Substack</span>
+        </a>
+      </div>
+    </div>
+
+    <script type="text/babel">
+      const { useState, useMemo } = React;
+
+      const lucideExports = window.LucideReact || window.lucideReact || {};
+      const createEmojiIcon = (symbol) => {
+        const Icon = ({ className = '', ...rest }) => (
+          <span role="img" aria-hidden="true" className={`lucide-fallback-icon ${className}`} {...rest}>
+            {symbol}
+          </span>
+        );
+        return Icon;
+      };
+
+      const getIcon = (name, fallbackSymbol) => {
+        if (lucideExports && lucideExports[name]) {
+          return lucideExports[name];
+        }
+        return createEmojiIcon(fallbackSymbol);
+      };
+
+      const Search = getIcon('Search', '🔍');
+      const CheckCircle = getIcon('CheckCircle', '✅');
+      const Clock = getIcon('Clock', '🕒');
+      const AlertCircle = getIcon('AlertCircle', '⚠️');
+      const FileText = getIcon('FileText', '📄');
+      const ExternalLink = getIcon('ExternalLink', '🔗');
+      const Calendar = getIcon('Calendar', '📅');
+      const TrendingUp = getIcon('TrendingUp', '📈');
+      const Plus = getIcon('Plus', '+');
+      const Minus = getIcon('Minus', '−');
+      const Share2 = getIcon('Share2', '🔗');
+      const CopyIcon = getIcon('Copy', '📋');
+      const MailIcon = getIcon('Mail', '✉️');
+      const Check = getIcon('Check', '✔️');
+
+      const promiseData = {
+        as_of_date: '2025-10-18',
+        parliament_session: {
+          official: '45-1',
+          user_label: '25-1',
+          session_window: '2025-05-26 to present',
+        },
+        planks: [
+          {
+            plank_id: 'internal_free_trade_and_labour_mobility',
+            title:
+              'Remove interprovincial trade barriers; enable free movement of workers, goods, services',
+            promise_summary:
+              'Enact a federal framework to accelerate elimination of internal trade barriers and facilitate labour mobility across provinces/territories.',
+            overall_status: 'royal_assent',
+            government_activity: [
+              {
+                type: 'legislation',
+                bill_number: 'C-5',
+                short_title:
+                  'One Canadian Economy Act (enacts the Free Trade and Labour Mobility in Canada Act & the Building Canada Act)',
+                current_stage: 'royal_assent',
+                last_activity_date: '2025-06-26',
+                legisinfo_url: 'https://www.parl.ca/LegisInfo/en/bill/45-1/c-5',
+              },
+            ],
+            hansard: [
+              {
+                date: '2025-06-20',
+                sitting: 'House, report & 3rd reading votes',
+                quote_snippet:
+                  'Bill C-5 ... Free Trade and Labour Mobility in Canada Act and the Building Canada Act.',
+                url: 'https://www.parl.ca/LegisInfo/en/bill/45-1/c-5#hansard',
+              },
+            ],
+            news: [
+              {
+                source: 'Library of Parliament – Legislative Summary',
+                date: '2025-06-06',
+                title: 'Bill C-5: Free Trade & Labour Mobility + Building Canada Act',
+                url: 'https://lop.parl.ca/sites/PublicWebsite/default/en_CA/ResearchPublications/LegislativeSummaries/451C5E',
+              },
+            ],
+            status_notes:
+              'Framework enacted; implementation now proceeding via regulations/agreements with provinces and the new Major Projects Office under the Building Canada Act.',
+          },
+          {
+            plank_id: 'major_projects_faster_approvals_one_project_one_review',
+            title: 'Create a one-window federal process to approve nation-building projects faster',
+            promise_summary:
+              'Stand up a Major Projects Office and a legal pathway to designate projects of national interest with consolidated federal authorizations.',
+            overall_status: 'operational',
+            government_activity: [
+              {
+                type: 'legislation',
+                bill_number: 'C-5 (Part 2)',
+                short_title: 'Building Canada Act',
+                current_stage: 'royal_assent',
+                last_activity_date: '2025-06-26',
+                legisinfo_url: 'https://www.parl.ca/LegisInfo/en/bill/45-1/c-5',
+              },
+              {
+                type: 'program_launch',
+                name: 'Major Projects Office (MPO)',
+                current_stage: 'operational',
+                last_activity_date: '2025-08-29',
+                url: 'https://www.mltaikins.com/insights/canada-launches-major-projects-office-under-the-building-canada-act/',
+              },
+            ],
+            hansard: [
+              {
+                date: '2025-06-20',
+                sitting: 'House',
+                quote_snippet:
+                  'Through the Building Canada Act, this bill will simplify federal review and approval processes for major infrastructure projects.',
+                url: 'https://www.ourcommons.ca/DocumentViewer/en/13576163',
+              },
+            ],
+            news: [
+              {
+                source: 'Reuters',
+                date: '2025-09-11',
+                title: 'Canada names gas plant, port, mines as major projects to be sped up',
+                url: 'https://www.reuters.com/business/energy/canada-names-gas-plant-port-mines-major-projects-be-sped-up-2025-09-11/',
+              },
+            ],
+            status_notes:
+              'MPO stood up; BCA in force; initial project list publicly signaled; designations proceed by Governor in Council orders with conditions disclosed in MPO registry.',
+          },
+          {
+            plank_id: 'nation_building_infrastructure',
+            title:
+              'Build/accelerate nation-building projects (HSR, ports, LNG, SMRs, trade corridors)',
+            promise_summary:
+              'Catalyze and fast-track large, strategic infrastructure projects across energy, transport and trade corridors.',
+            overall_status: 'in_progress',
+            government_activity: [
+              {
+                type: 'project_development',
+                name: 'Toronto-Quebec City High-Speed Rail (Alto/Cadence)',
+                current_stage: 'pre-development contract signed; planning funded',
+                last_activity_date: '2025-02-19',
+                url: 'https://www.reuters.com/business/international-consortium-wins-c39-billion-canada-high-speed-train-contract-2025-02-19/',
+              },
+              {
+                type: 'project_signal',
+                name: 'Grays Bay Road & Port (Nunavut) as national project',
+                current_stage: 'prioritized by PM; accelerator funding via CIB MOU',
+                last_activity_date: '2025-06-03',
+                url: 'https://nunatsiaq.com/stories/article/carney-points-to-grays-bay-as-key-nation-building-project/',
+              },
+            ],
+            hansard: [],
+            news: [
+              {
+                source: 'AP',
+                date: '2025-02-19',
+                title: 'Canada pledges billions for HSR between Quebec City and Toronto',
+                url: 'https://apnews.com/article/4c50007bc8e9bf5bbec9a4add9ac88fe',
+              },
+              {
+                source: 'Reuters',
+                date: '2025-09-11',
+                title:
+                  'Five projects to get expedited approvals (LNG Canada expansion, Red Chris, Foran copper, Port of Montreal expansion, SMR at Darlington)',
+                url: 'https://www.reuters.com/business/energy/canada-names-gas-plant-port-mines-major-projects-be-sped-up-2025-09-11/',
+              },
+            ],
+            status_notes:
+              'Multiple projects identified; formal designations under the Building Canada Act occur via Schedule 1 orders after consultations.',
+          },
+          {
+            plank_id: 'national_grid_clean_energy_critical_minerals_ai_digital',
+            title:
+              'Build an east-west national grid; scale clean energy & critical minerals; invest in AI/digital infrastructure',
+            promise_summary:
+              'Intertie/transmission build-out and permitting reform; expand critical minerals value chains; support sovereign AI compute/digital infrastructure.',
+            overall_status: 'in_progress',
+            government_activity: [
+              {
+                type: 'policy_framework',
+                name: 'Building Canada Act - mechanism to list transmission projects as national interest',
+                current_stage: 'operational',
+                last_activity_date: '2025-07',
+                url: 'https://www.canada.ca/en/one-canadian-economy/services/building-canada-act-projects-national-interest.html',
+              },
+              {
+                type: 'program_call',
+                name: 'Critical Minerals Infrastructure Fund - Indigenous Grants stream',
+                current_stage: 'open_call',
+                last_activity_date: '2025-10-06',
+                url: 'https://www.canada.ca/en/natural-resources-canada/news/2025/10/call-for-proposals-supporting-indigenous-engagement-and-participation-in-clean-energy-and-infrastructure-for-critical-minerals.html',
+              },
+            ],
+            hansard: [],
+            news: [
+              {
+                source: 'Canadian Climate Institute',
+                date: '2025-07',
+                title: 'Connecting regional electricity grids in Canada is a top nation-building project',
+                url: 'https://climateinstitute.ca/connecting-regional-electricity-grids-canada-top-nation-building-project/',
+              },
+            ],
+            status_notes:
+              'Transmission projects can now be designated under the BCA; CMIF Indigenous stream call is active; AI compute fund open to applicants.',
+          },
+          {
+            plank_id: 'middle_class_tax_cut',
+            title: 'Cut the lowest federal personal income-tax rate from 15% to 14%',
+            promise_summary:
+              'Deliver immediate relief to nearly 22M taxpayers; two-income families save up to ~$840 by 2026.',
+            overall_status: 'bill_in_commons_committee',
+            government_activity: [
+              {
+                type: 'legislation',
+                bill_number: 'C-4',
+                short_title: 'Making Life More Affordable for Canadians Act',
+                current_stage: 'At consideration in committee (FINA), House',
+                last_activity_date: '2025-06-12',
+                legisinfo_url: 'https://www.parl.ca/legisinfo/en/bill/45-1/c-4',
+              },
+            ],
+            hansard: [
+              {
+                date: '2025-06-03',
+                sitting: 'House Sitting 7',
+                quote_snippet:
+                  'Starting July 1, we plan to reduce the lowest personal income tax rate from 15% to 14%...',
+                url: 'https://www.ourcommons.ca/documentviewer/en/45-1/house/sitting-7/hansard',
+              },
+            ],
+            news: [
+              {
+                source: 'LEGISinfo (Bill text & status)',
+                date: '2025-06-12',
+                title: 'C-4 referred to Finance Committee',
+                url: 'https://www.parl.ca/legisinfo/en/bill/45-1/c-4',
+              },
+            ],
+            status_notes:
+              'Awaiting committee clause-by-clause and return to House for report stage/3rd reading.',
+          },
+          {
+            plank_id: 'housing_build_canada_homes',
+            title:
+              'Launch Build Canada Homes (federal developer/financier; use public land; scale affordable supply)',
+            promise_summary:
+              'Stand up a mission-driven federal entity to build affordable housing and catalyze private/home-builder supply.',
+            overall_status: 'operational',
+            government_activity: [
+              {
+                type: 'program_launch',
+                name: 'Build Canada Homes (BCH)',
+                current_stage: 'operational',
+                last_activity_date: '2025-09-14',
+                url: 'https://www.canada.ca/en/housing-infrastructure-communities/bch-mc/index-eng.html',
+              },
+            ],
+            hansard: [
+              {
+                date: '2025-05-30',
+                sitting: 'House Sitting 5',
+                quote_snippet:
+                  'Another new agency ... Build Canada Homes, will act as a developer ... on public land.',
+                url: 'https://www.ourcommons.ca/documentviewer/en/45-1/house/sitting-5/hansard',
+              },
+            ],
+            news: [
+              {
+                source: 'Reuters',
+                date: '2025-09-14',
+                title: 'Canada announces new federal agency to build affordable housing',
+                url: 'https://www.reuters.com/world/americas/canada-announces-new-federal-agency-build-affordable-housing-2025-09-14/',
+              },
+            ],
+            status_notes:
+              'Agency launched with initial capitalization; consultations complete for design; project intake/readiness work underway.',
+          },
+          {
+            plank_id: 'healthcare_dental_and_pharmacare',
+            title:
+              'Modernize healthcare with national pharmacare (first phase) and expanded dental care',
+            promise_summary:
+              'Complete rollout of Canadian Dental Care Plan (adults 18-64) and implement Pharmacare Act phase 1 (diabetes meds & contraception) via PT agreements.',
+            overall_status: 'ongoing_implementation',
+            government_activity: [
+              {
+                type: 'program_update',
+                name: 'Canadian Dental Care Plan - 18-64 expansion',
+                current_stage: 'coverage_live',
+                last_activity_date: '2025-06-01',
+                url: 'https://www.canada.ca/en/health-canada/news/2025/03/canadian-dental-care-plan-expands-to-include-millions-of-new-eligible-canadians.html',
+              },
+            ],
+            hansard: [
+              {
+                date: '2025-06-02',
+                sitting: 'House Sitting 6',
+                quote_snippet:
+                  'We are maintaining key programs, such as ... pharmacare and the new dental care plan...',
+                url: 'https://www.ourcommons.ca/documentviewer/en/45-1/house/sitting-6/hansard',
+              },
+            ],
+            news: [
+              {
+                source: "Global News",
+                date: '2024-10',
+                title: "Canada's pharmacare bill is now law—what this means",
+                url: 'https://globalnews.ca/news/10807237/canada-pharmacare-plan-what-to-know/',
+              },
+            ],
+            status_notes:
+              'CDCP adult coverage commenced June 1, 2025; Pharmacare Act in force; ongoing PT negotiations to deliver first-dollar coverage for contraception/diabetes meds.',
+          },
+          {
+            plank_id: 'mental_health_and_addictions',
+            title:
+              'Youth Mental Health Fund; strengthen crisis response (9-8-8); Emergency Treatment Fund for overdose/toxic drug crisis',
+            promise_summary:
+              'Scale youth mental-health services; sustain 9-8-8; inject new resources into Emergency Treatment Fund.',
+            overall_status: 'in_progress',
+            government_activity: [
+              {
+                type: 'program_call',
+                name: 'Emergency Treatment Fund (ETF) - 2025 Call for Proposals',
+                current_stage: 'open_call',
+                last_activity_date: '2025-10-14',
+                url: 'https://www.canada.ca/en/health-canada/news/2025/10/responding-to-urgent-needs-in-communities-most-impacted-by-the-toxic-drug-and-overdose-crisis.html',
+              },
+            ],
+            hansard: [
+              {
+                date: '2025-05-29',
+                sitting: 'House',
+                quote_snippet:
+                  'federal requirement for provinces/territories to include coverage of community-based supports in their health insurance plans.',
+                url: 'https://www.ourcommons.ca/DocumentViewer/en/13542358',
+              },
+            ],
+            news: [
+              {
+                source: 'Health Canada – ETF 2025 CFP',
+                date: '2025-10-14',
+                title: 'Responding to urgent needs in communities most impacted by the overdose crisis',
+                url: 'https://www.canada.ca/en/health-canada/news/2025/10/responding-to-urgent-needs-in-communities-most-impacted-by-the-toxic-drug-and-overdose-crisis.html',
+              },
+            ],
+            status_notes:
+              'ETF 2025 intake open to Nov 4; youth-mental-health grants underway; 9-8-8 in operation with prior federal funding; advocacy underway for sustained financing.',
+          },
+          {
+            plank_id: 'cbc_modernization_and_statutory_funding',
+            title: 'Modernize CBC/Radio-Canada and move to statutory per-capita funding',
+            promise_summary:
+              'Stabilize CBC/Radio-Canada funding and update the Broadcasting Act to protect public-service mandate.',
+            overall_status: 'no_bill_tabled',
+            government_activity: [
+              {
+                type: 'policy_paper',
+                name: "The Future of CBC/Radio-Canada (Minister's proposals)",
+                current_stage: 'policy_development',
+                last_activity_date: '2025-02-21',
+                url: 'https://www.canada.ca/en/canadian-heritage/news/2025/02/minister-st-onges-vision-for-a-better-cbcradio-canada-a-clear-choice-for-canadas-future.html',
+              },
+            ],
+            hansard: [],
+            news: [
+              {
+                source: 'Media in Canada',
+                date: '2025-02-21',
+                title: 'Heritage Minister proposes CBC ad policy changes, funding hike',
+                url: 'https://mediaincanada.com/2025/02/21/heritage-minister-proposes-cbc-ad-policy-changes-funding-hike/',
+              },
+            ],
+            status_notes:
+              'No amending bill tabled in 45-1 to make CBC funding statutory; consultations/policy design ongoing with expectation of future legislation/budget treatment.',
+          },
+          {
+            plank_id: 'defence_arctic_security_and_military_justice',
+            title:
+              'Strengthen defence & Arctic sovereignty; modernize CAF and military justice',
+            promise_summary:
+              'Increase capability/readiness and modernize justice system; move on priority procurements and northern infrastructure.',
+            overall_status: 'mixed_in_progress',
+            government_activity: [
+              {
+                type: 'legislation',
+                bill_number: 'C-11',
+                short_title: 'Military Justice System Modernization Act',
+                current_stage: 'bill_in_commons_committee',
+                last_activity_date: '2025-10-10',
+                legisinfo_url: 'https://www.parl.ca/legisinfo/en/bill/45-1/c-11',
+              },
+            ],
+            hansard: [
+              {
+                date: '2025-10-06',
+                sitting: 'House Sitting 34 (2nd reading speeches)',
+                quote_snippet:
+                  'Minister introduced legislation to modernize the military justice system.',
+                url: 'https://www.parl.ca/legisinfo/en/bill/45-1/c-11#hansard',
+              },
+            ],
+            news: [
+              {
+                source: 'LEGISinfo (C-11)',
+                date: '2025-10-10',
+                title: 'C-11 referred to National Defence Committee',
+                url: 'https://www.parl.ca/legisinfo/en/bill/45-1/c-11',
+              },
+            ],
+            status_notes:
+              'Justice modernization moving through House; broader defence spending/procurement policy progressing via cabinet decisions and appropriations outside a single omnibus bill.',
+          },
+          {
+            plank_id: 'stand_up_to_us_tariffs_and_diversify_trade',
+            title: 'Stand up to U.S. protectionism, pursue sectoral deals, and diversify trade',
+            promise_summary:
+              'Negotiate sectoral arrangements with U.S.; activate retaliatory tools as needed; accelerate Indo-Pacific/India engagement.',
+            overall_status: 'negotiations_underway',
+            government_activity: [
+              {
+                type: 'diplomacy',
+                name: 'Sectoral talks with U.S. (steel, aluminum, energy, etc.)',
+                current_stage: 'ongoing',
+                last_activity_date: '2025-10-13',
+                url: 'https://www.ft.com/content/522166a6-03ff-4aa5-b734-ff598cd2467f',
+              },
+            ],
+            hansard: [],
+            news: [
+              {
+                source: 'Financial Times',
+                date: '2025-10-13',
+                title: 'Canada eyes sectoral deals with U.S. amid tariff pressure',
+                url: 'https://www.ft.com/content/522166a6-03ff-4aa5-b734-ff598cd2467f',
+              },
+              {
+                source: 'Reuters',
+                date: '2025-10-17',
+                title: 'Canada-China discuss canola/EV disputes as Ottawa diversifies',
+                url: 'https://www.reuters.com/world/asia-pacific/canadian-foreign-minister-meets-chinese-counterpart-beijing-2025-10-17/',
+              },
+            ],
+            status_notes:
+              'Active talks; no specific sectoral agreements announced yet; retaliatory trade tools available via regulations/orders if required.',
+          },
+          {
+            plank_id: 'public_safety_borders_and_immigration_integrity',
+            title: 'Strengthen border/immigration integrity; more RCMP/CBSA capacity',
+            promise_summary:
+              'Legislate tougher tools against smugglers; streamline removals; modernize border security.',
+            overall_status: 'bill_at_second_reading_commons',
+            government_activity: [
+              {
+                type: 'legislation',
+                bill_number: 'C-12',
+                short_title: "Strengthening Canada's Immigration System and Borders Act",
+                current_stage: 'second_reading_commons',
+                last_activity_date: '2025-10-08',
+                legisinfo_url: 'https://www.parl.ca/legisinfo/en/bill/45-1/c-12',
+              },
+            ],
+            hansard: [
+              {
+                date: '2025-10-08',
+                sitting: 'House Sitting 36 (first reading)',
+                quote_snippet: 'Government introduces legislation to strengthen border security…',
+                url: 'https://www.parl.ca/legisinfo/en/bill/45-1/c-12#hansard',
+              },
+            ],
+            news: [
+              {
+                source: 'Public Safety Canada',
+                date: '2025-10-08',
+                title: "Gov't introduces new streamlined legislation to strengthen border security",
+                url: 'https://www.parl.ca/legisinfo/en/bill/45-1/c-12#press',
+              },
+            ],
+            status_notes:
+              'C-12 introduced; debate at second reading pending; operational staffing increases progress through appropriations and internal CBSA/RCMP recruitment.',
+          },
+          {
+            plank_id: 'indigenous_partnership_equity_and_loan_guarantees',
+            title:
+              'Enable Indigenous ownership/partnership in major projects (loan guarantees doubled to $10B)',
+            promise_summary:
+              'Scale federal loan guarantees to lower cost of capital for Indigenous equity in major projects; broaden eligibility beyond natural resources.',
+            overall_status: 'operational',
+            government_activity: [
+              {
+                type: 'enabling_legislation',
+                name: 'Budget Implementation Act, 2024, No. 1 - Division 25 (Indigenous Loan Guarantee Program)',
+                current_stage: 'royal_assent',
+                last_activity_date: '2024-06',
+                url: 'https://www.canlii.org/en/ca/laws/stat/sc-2024-c-17/latest/sc-2024-c-17.html',
+              },
+              {
+                type: 'program_scale_up',
+                name: 'Indigenous Loan Guarantee Program doubled to $10B',
+                current_stage: 'operational',
+                last_activity_date: '2025-03-21',
+                url: 'https://cdev.gc.ca/indigenous-loan-guarantee-program/',
+              },
+            ],
+            hansard: [],
+            news: [
+              {
+                source: 'Bennett Jones (legal update)',
+                date: '2025-05',
+                title: 'Government of Canada doubles funding for federal Indigenous Loan Guarantee Program',
+                url: 'https://www.bennettjones.com/Insights/Blogs/Government-of-Canada-Doubles-Funding-for-Federal-Indigenous-Loan-Guarantee-Program',
+              },
+            ],
+            status_notes:
+              'Legal authority established in 2024 BIA; program expanded to $10B and sector-agnostic in 2025; administered via Canada Indigenous Loan Guarantee Corporation (CDEV subsidiary).',
+          },
+        ],
+      };
+
+      const shareBaseUrl =
+        'https://artifacts.northernvariables.ca/canada-federal-election-45-tracker.html';
+      const shareTitle =
+        'Canada Federal Election 45 - Liberal Government Accountability Tracker';
+      const shareDescription =
+        "Track the Mark Carney Liberal Government's progress on campaign promises from the 2025 federal election.";
+
+      const EH_SOCIAL_SHARE_URL = null; // Placeholder: supply EH! Social share endpoint when available.
+
+      const PromiseTracker = () => {
+        const [selectedStatus, setSelectedStatus] = useState('all');
+        const [searchTerm, setSearchTerm] = useState('');
+        const [expandedPromise, setExpandedPromise] = useState(null);
+        const [showShareMenu, setShowShareMenu] = useState(false);
+        const [copySuccess, setCopySuccess] = useState(false);
+
+        const handleCopyLink = async () => {
+          try {
+            if (navigator?.clipboard?.writeText) {
+              await navigator.clipboard.writeText(shareBaseUrl);
+            } else {
+              const tempInput = document.createElement('input');
+              tempInput.value = shareBaseUrl;
+              document.body.appendChild(tempInput);
+              tempInput.select();
+              document.execCommand('copy');
+              document.body.removeChild(tempInput);
+            }
+            setCopySuccess(true);
+            setTimeout(() => setCopySuccess(false), 2000);
+          } catch (error) {
+            console.error('Failed to copy link', error);
+          }
+        };
+
+        const shareOptions = [
+          {
+            name: 'Copy Link',
+            icon: CopyIcon,
+            action: handleCopyLink,
+            color: 'text-slate-700',
+          },
+          {
+            name: 'Email',
+            icon: MailIcon,
+            action: () =>
+              window.open(
+                `mailto:?subject=${encodeURIComponent(shareTitle)}&body=${encodeURIComponent(
+                  shareDescription + '\n\n' + shareBaseUrl
+                )}`
+              ),
+            color: 'text-slate-700',
+          },
+          {
+            name: 'Substack',
+            icon: FileText,
+            action: () =>
+              window.open(
+                `https://substack.com/inbox/post?url=${encodeURIComponent(shareBaseUrl)}&title=${encodeURIComponent(
+                  shareTitle
+                )}`,
+                '_blank'
+              ),
+            color: 'text-orange-600',
+          },
+          {
+            name: 'Facebook',
+            icon: Share2,
+            action: () =>
+              window.open(
+                `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareBaseUrl)}`,
+                '_blank'
+              ),
+            color: 'text-blue-600',
+          },
+          {
+            name: 'LinkedIn',
+            icon: Share2,
+            action: () =>
+              window.open(
+                `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareBaseUrl)}`,
+                '_blank'
+              ),
+            color: 'text-blue-700',
+          },
+          {
+            name: 'Reddit',
+            icon: Share2,
+            action: () =>
+              window.open(
+                `https://reddit.com/submit?url=${encodeURIComponent(shareBaseUrl)}&title=${encodeURIComponent(
+                  shareTitle
+                )}`,
+                '_blank'
+              ),
+            color: 'text-orange-500',
+          },
+          {
+            name: 'X / Twitter',
+            icon: Share2,
+            action: () =>
+              window.open(
+                `https://twitter.com/intent/tweet?url=${encodeURIComponent(shareBaseUrl)}&text=${encodeURIComponent(
+                  shareTitle
+                )}`,
+                '_blank'
+              ),
+            color: 'text-slate-900',
+          },
+          EH_SOCIAL_SHARE_URL
+            ? {
+                name: 'EH! Social',
+                icon: Share2,
+                action: () =>
+                  window.open(
+                    `${EH_SOCIAL_SHARE_URL}?url=${encodeURIComponent(shareBaseUrl)}&title=${encodeURIComponent(
+                      shareTitle
+                    )}`,
+                    '_blank'
+                  ),
+                color: 'text-red-600',
+              }
+            : {
+                name: 'EH! Social (configure URL)',
+                icon: Share2,
+                action: () =>
+                  console.warn(
+                    'EH! Social share URL placeholder – set EH_SOCIAL_SHARE_URL with the production endpoint.'
+                  ),
+                color: 'text-red-600',
+              },
+        ];
+
+        const statusConfig = {
+          royal_assent: { label: 'Completed', color: 'bg-green-500', icon: CheckCircle, progress: 100 },
+          operational: { label: 'Operational', color: 'bg-green-500', icon: CheckCircle, progress: 100 },
+          in_progress: { label: 'In Progress', color: 'bg-blue-500', icon: Clock, progress: 60 },
+          ongoing_implementation: { label: 'Implementing', color: 'bg-blue-500', icon: TrendingUp, progress: 70 },
+          bill_in_commons_committee: {
+            label: 'Committee Stage',
+            color: 'bg-yellow-500',
+            icon: Clock,
+            progress: 50,
+          },
+          bill_at_second_reading_commons: {
+            label: '2nd Reading',
+            color: 'bg-yellow-500',
+            icon: Clock,
+            progress: 40,
+          },
+          negotiations_underway: {
+            label: 'Negotiating',
+            color: 'bg-yellow-500',
+            icon: Clock,
+            progress: 45,
+          },
+          mixed_in_progress: { label: 'Mixed Progress', color: 'bg-blue-500', icon: Clock, progress: 55 },
+          no_bill_tabled: { label: 'Planning', color: 'bg-gray-400', icon: AlertCircle, progress: 20 },
+        };
+
+        const filteredPromises = useMemo(() => {
+          return promiseData.planks.filter((promise) => {
+            let matchesStatus = false;
+            if (selectedStatus === 'all') {
+              matchesStatus = true;
+            } else if (selectedStatus === 'early') {
+              matchesStatus = [
+                'bill_in_commons_committee',
+                'bill_at_second_reading_commons',
+                'negotiations_underway',
+                'no_bill_tabled',
+              ].includes(promise.overall_status);
+            } else if (selectedStatus === 'completed') {
+              matchesStatus = ['royal_assent', 'operational'].includes(promise.overall_status);
+            } else if (selectedStatus === 'in_progress') {
+              matchesStatus = ['in_progress', 'ongoing_implementation', 'mixed_in_progress'].includes(
+                promise.overall_status
+              );
+            } else {
+              matchesStatus = promise.overall_status === selectedStatus;
+            }
+
+            const matchesSearch =
+              searchTerm === '' ||
+              promise.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+              promise.promise_summary.toLowerCase().includes(searchTerm.toLowerCase());
+
+            return matchesStatus && matchesSearch;
+          });
+        }, [selectedStatus, searchTerm]);
+
+        const stats = useMemo(() => {
+          const total = promiseData.planks.length;
+          const completed = promiseData.planks.filter((p) =>
+            ['royal_assent', 'operational'].includes(p.overall_status)
+          ).length;
+          const inProgress = promiseData.planks.filter((p) =>
+            ['in_progress', 'ongoing_implementation', 'mixed_in_progress'].includes(p.overall_status)
+          ).length;
+          const early = promiseData.planks.filter((p) =>
+            [
+              'bill_in_commons_committee',
+              'bill_at_second_reading_commons',
+              'negotiations_underway',
+              'no_bill_tabled',
+            ].includes(p.overall_status)
+          ).length;
+
+          return { total, completed, inProgress, early };
+        }, []);
+
+        const StatusBadge = ({ status }) => {
+          const config = statusConfig[status] || statusConfig.no_bill_tabled;
+          const IconComponent = config.icon || AlertCircle;
+          return (
+            <span className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-medium text-white ${config.color}`}>
+              <IconComponent className="w-3 h-3 mr-1" />
+              {config.label}
+            </span>
+          );
+        };
+
+        const ProgressBar = ({ status }) => {
+          const config = statusConfig[status] || statusConfig.no_bill_tabled;
+          return (
+            <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
+              <div
+                className={`h-2 rounded-full ${config.color} transition-all duration-500`}
+                style={{ width: `${config.progress}%` }}
+              />
+            </div>
+          );
+        };
+
+        return (
+          <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
+            <div className="max-w-7xl mx-auto">
+              <div className="mb-8">
+                <div className="bg-gradient-to-r from-red-600 to-red-700 text-white px-6 py-4 rounded-t-lg shadow-lg">
+                  <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="text-7xl" aria-hidden="true">🇨🇦</div>
+                      <div>
+                        <h1 className="text-4xl font-bold mb-1">Canada Federal Election 45</h1>
+                        <p className="text-red-100 text-lg">Liberal Government Accountability Tracker</p>
+                      </div>
+                    </div>
+                    <div className="text-left lg:text-right">
+                      <div className="text-sm opacity-90">Prime Minister</div>
+                      <div className="text-2xl font-bold">Mark Carney</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="bg-white px-6 py-3 rounded-b-lg shadow-md">
+                  <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                    <div className="flex flex-wrap items-center gap-4 text-sm text-slate-600">
+                      <div className="flex items-center gap-1">
+                        <Calendar className="w-4 h-4" />
+                        <span>Updated: {promiseData.as_of_date}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <FileText className="w-4 h-4" />
+                        <span>Parliament Session {promiseData.parliament_session.user_label}</span>
+                      </div>
+                      <div className="relative">
+                        <button
+                          onClick={() => setShowShareMenu((prev) => !prev)}
+                          className="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1 rounded-full text-xs font-medium transition border border-slate-300"
+                          type="button"
+                        >
+                          <Share2 className="w-3 h-3" />
+                          Share Tracker
+                        </button>
+
+                        {showShareMenu && (
+                          <>
+                            <div className="fixed inset-0 z-10" onClick={() => setShowShareMenu(false)} />
+                            <div className="absolute top-full mt-2 left-0 bg-white rounded-lg shadow-xl border border-slate-200 py-2 z-20 min-w-[200px]">
+                              {shareOptions.map((option, idx) => {
+                                const IconComponent = option.icon || Share2;
+                                return (
+                                  <button
+                                    key={option.name}
+                                    onClick={(event) => {
+                                      event.stopPropagation();
+                                      option.action();
+                                      if (option.name !== 'Copy Link') {
+                                        setShowShareMenu(false);
+                                      }
+                                    }}
+                                    className="w-full px-4 py-2 hover:bg-slate-50 flex items-center gap-3 transition text-left"
+                                    type="button"
+                                  >
+                                    <IconComponent className={`w-4 h-4 ${option.color}`} />
+                                    <span className="text-slate-700">{option.name}</span>
+                                    {option.name === 'Copy Link' && copySuccess && (
+                                      <Check className="w-4 h-4 text-green-600 ml-auto" />
+                                    )}
+                                  </button>
+                                );
+                              })}
+                            </div>
+                          </>
+                        )}
+                      </div>
+                    </div>
+                    <a
+                      href="https://liberal.ca/wp-content/uploads/sites/292/2025/04/Canada-Strong.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1 text-red-600 hover:text-red-700 text-sm font-medium transition underline"
+                    >
+                      <FileText className="w-4 h-4" />
+                      View Liberal Platform (PDF)
+                      <ExternalLink className="w-3 h-3" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 mb-3">
+                <div className="bg-yellow-50 rounded-lg shadow p-4 border-l-4 border-yellow-500">
+                  <div className="text-2xl font-bold text-yellow-700">{stats.early}</div>
+                  <div className="text-xs text-yellow-600">Early Stage</div>
+                </div>
+                <div className="bg-blue-50 rounded-lg shadow p-4 border-l-4 border-blue-500">
+                  <div className="text-2xl font-bold text-blue-700">{stats.inProgress}</div>
+                  <div className="text-xs text-blue-600">In Progress</div>
+                </div>
+                <div className="bg-green-50 rounded-lg shadow p-4 border-l-4 border-green-500">
+                  <div className="text-2xl font-bold text-green-700">{stats.completed}</div>
+                  <div className="text-xs text-green-600">Completed</div>
+                </div>
+                <div className="bg-slate-50 rounded-lg shadow p-4 border-l-4 border-slate-500">
+                  <div className="text-2xl font-bold text-slate-800">{stats.total}</div>
+                  <div className="text-xs text-slate-600">Total Promises</div>
+                </div>
+              </div>
+
+              <div className="mb-6 flex justify-center">
+                <div className="text-sm bg-slate-100 px-4 py-2 rounded-lg text-slate-700">
+                  <span className="font-medium">Session Window:</span> {promiseData.parliament_session.session_window}
+                </div>
+              </div>
+
+              <div className="bg-white rounded-lg shadow p-4 mb-4">
+                <div className="flex flex-col md:flex-row gap-4">
+                  <div className="flex-1">
+                    <div className="relative">
+                      <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 w-5 h-5" />
+                      <input
+                        type="text"
+                        placeholder="Search promises..."
+                        className="w-full pl-10 pr-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                        value={searchTerm}
+                        onChange={(event) => setSearchTerm(event.target.value)}
+                      />
+                    </div>
+                  </div>
+                  <div className="flex gap-2 flex-wrap">
+                    <button
+                      onClick={() => setSelectedStatus('all')}
+                      className={`px-4 py-2 rounded-lg font-medium transition ${
+                        selectedStatus === 'all'
+                          ? 'bg-blue-500 text-white'
+                          : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                      }`}
+                      type="button"
+                    >
+                      All
+                    </button>
+                    <button
+                      onClick={() => setSelectedStatus('early')}
+                      className={`px-4 py-2 rounded-lg font-medium transition ${
+                        selectedStatus === 'early'
+                          ? 'bg-yellow-500 text-white'
+                          : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                      }`}
+                      type="button"
+                    >
+                      Early Stage
+                    </button>
+                    <button
+                      onClick={() => setSelectedStatus('in_progress')}
+                      className={`px-4 py-2 rounded-lg font-medium transition ${
+                        selectedStatus === 'in_progress'
+                          ? 'bg-blue-500 text-white'
+                          : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                      }`}
+                      type="button"
+                    >
+                      In Progress
+                    </button>
+                    <button
+                      onClick={() => setSelectedStatus('completed')}
+                      className={`px-4 py-2 rounded-lg font-medium transition ${
+                        selectedStatus === 'completed'
+                          ? 'bg-green-500 text-white'
+                          : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                      }`}
+                      type="button"
+                    >
+                      Completed
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {filteredPromises.map((promise) => (
+                  <div key={promise.plank_id} className="bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow">
+                    <div
+                      className="p-6 cursor-pointer"
+                      onClick={() =>
+                        setExpandedPromise((current) => (current === promise.plank_id ? null : promise.plank_id))
+                      }
+                    >
+                      <div className="flex items-start gap-4">
+                        <div className="flex-shrink-0 mt-1">
+                          {expandedPromise === promise.plank_id ? (
+                            <Minus className="w-8 h-8 text-slate-600" />
+                          ) : (
+                            <Plus className="w-8 h-8 text-slate-600" />
+                          )}
+                        </div>
+                        <div className="flex-1">
+                          <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-3">
+                            <div className="flex-1 md:pr-4">
+                              <h3 className="text-xl font-semibold text-slate-800 mb-2">{promise.title}</h3>
+                              <p className="text-slate-600 text-sm mb-3">{promise.promise_summary}</p>
+                            </div>
+                            <StatusBadge status={promise.overall_status} />
+                          </div>
+                          <ProgressBar status={promise.overall_status} />
+                        </div>
+                      </div>
+
+                      {expandedPromise === promise.plank_id && (
+                        <div className="mt-6 pt-6 border-t border-slate-200 md:ml-12">
+                          {promise.government_activity && promise.government_activity.length > 0 && (
+                            <div className="mb-6">
+                              <h4 className="font-semibold text-slate-800 mb-3 flex items-center gap-2">
+                                <FileText className="w-4 h-4" />
+                                Government Activity
+                              </h4>
+                              <div className="space-y-3">
+                                {promise.government_activity.map((activity, idx) => (
+                                  <div key={`${promise.plank_id}-gov-${idx}`} className="bg-slate-50 rounded p-4">
+                                    <div className="font-medium text-slate-800 mb-1">
+                                      {activity.bill_number ? `Bill ${activity.bill_number}: ` : ''}
+                                      {activity.short_title || activity.name}
+                                    </div>
+                                    {activity.current_stage && (
+                                      <div className="text-sm text-slate-600 mb-2">{activity.current_stage}</div>
+                                    )}
+                                    {activity.last_activity_date && (
+                                      <div className="text-xs text-slate-500">
+                                        Last activity: {activity.last_activity_date}
+                                      </div>
+                                    )}
+                                    {(activity.legisinfo_url || activity.url) && (
+                                      <a
+                                        href={activity.legisinfo_url || activity.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-blue-600 hover:text-blue-800 text-sm flex items-center gap-1 mt-2"
+                                        onClick={(event) => event.stopPropagation()}
+                                      >
+                                        View details <ExternalLink className="w-3 h-3" />
+                                      </a>
+                                    )}
+                                  </div>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {promise.hansard && promise.hansard.length > 0 && (
+                            <div className="mb-6">
+                              <h4 className="font-semibold text-slate-800 mb-3">Parliamentary Records (Hansard)</h4>
+                              <div className="space-y-2">
+                                {promise.hansard.map((item, idx) => (
+                                  <a
+                                    key={`${promise.plank_id}-hansard-${idx}`}
+                                    href={item.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block bg-purple-50 rounded p-3 hover:bg-purple-100 transition"
+                                    onClick={(event) => event.stopPropagation()}
+                                  >
+                                    <div className="font-medium text-purple-900 text-sm mb-1">{item.sitting}</div>
+                                    {item.quote_snippet && (
+                                      <div className="text-xs text-purple-700 italic mb-1">"{item.quote_snippet}"</div>
+                                    )}
+                                    <div className="text-xs text-purple-600">{item.date}</div>
+                                  </a>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {promise.news && promise.news.length > 0 && (
+                            <div className="mb-6">
+                              <h4 className="font-semibold text-slate-800 mb-3">Recent News</h4>
+                              <div className="space-y-2">
+                                {promise.news.slice(0, 3).map((item, idx) => (
+                                  <a
+                                    key={`${promise.plank_id}-news-${idx}`}
+                                    href={item.url}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="block bg-blue-50 rounded p-3 hover:bg-blue-100 transition"
+                                    onClick={(event) => event.stopPropagation()}
+                                  >
+                                    <div className="font-medium text-blue-900 text-sm mb-1">{item.title}</div>
+                                    <div className="text-xs text-blue-700">
+                                      {item.source} • {item.date}
+                                    </div>
+                                  </a>
+                                ))}
+                              </div>
+                            </div>
+                          )}
+
+                          {promise.status_notes && (
+                            <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded">
+                              <div className="text-sm text-amber-800">
+                                <strong>Latest update:</strong> {promise.status_notes}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {filteredPromises.length === 0 && (
+                <div className="text-center py-12 bg-white rounded-lg shadow">
+                  <div className="text-slate-400 text-lg">No promises match your search</div>
+                </div>
+              )}
+
+              <div className="mt-8 bg-blue-50 border-l-4 border-blue-400 p-6 rounded-lg shadow">
+                <div className="flex items-start gap-3">
+                  <FileText className="w-5 h-5 text-blue-700 mt-0.5 flex-shrink-0" />
+                  <div className="text-blue-900">
+                    <h4 className="font-semibold mb-2">Platform Attribution</h4>
+                    <p className="text-sm leading-relaxed">
+                      All promises tracked on this page originate from the Liberal Party of Canada's 2025 federal election platform
+                      document
+                      <a
+                        href="https://liberal.ca/wp-content/uploads/sites/292/2025/04/Canada-Strong.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-medium underline hover:text-blue-800 mx-1"
+                        onClick={(event) => event.stopPropagation()}
+                      >
+                        "Canada Strong"
+                      </a>
+                      (released April 19, 2025). This accountability tracker monitors the implementation status of campaign
+                      commitments made by the Mark Carney Liberal Government. Cross-reference specific promises with the full
+                      platform document for complete policy details and context.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      };
+
+      const root = ReactDOM.createRoot(document.getElementById('root'));
+      root.render(<PromiseTracker />);
+    </script>
+  </body>
+</html>
