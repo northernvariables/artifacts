@@ -210,17 +210,25 @@
     }
     .demo-card figure.preview {
       display: none;
+      height: 180px;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #e2e8f0;
     }
     .demo-card figure.preview.has-image {
       display: block;
     }
+    .demo-card figure.preview.has-image img {
+      height: 100%;
+    }
     .demo-card figure img {
       width: 100%;
+      height: 100%;
       border-radius: 10px;
       border: 2px solid rgba(102, 126, 234, 0.35);
       object-fit: cover;
-      max-height: 180px;
       background: #e2e8f0;
+      display: block;
     }
     .demo-card h3 {
       color: #1e293b;
@@ -249,12 +257,12 @@
     .share-actions {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-top: 8px;
+      gap: 8px;
+      margin-top: 4px;
       align-items: center;
     }
     .share-actions span {
-      font-size: 0.75rem;
+      font-size: 0.72rem;
       letter-spacing: 0.08em;
       font-weight: 600;
       text-transform: uppercase;
@@ -265,13 +273,13 @@
     .share-icons {
       display: flex;
       flex-wrap: wrap;
-      gap: 10px 16px;
+      gap: 8px 12px;
       align-items: center;
       justify-content: center;
     }
     .share-icon {
-      width: 38px;
-      height: 38px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       border: 2px solid transparent;
       display: inline-flex;
@@ -291,8 +299,8 @@
       outline: none;
     }
     .share-icon svg {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       display: block;
     }
     .sr-only {
