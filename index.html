@@ -124,25 +124,64 @@
       border-radius: inherit;
     }
     .container {
-      max-width: 900px;
-      margin: 40px auto;
-      background: white;
-      padding: 50px;
+      max-width: 960px;
+      margin: 40px auto 72px;
+      background: rgba(255, 255, 255, 0.92);
+      padding: 56px;
+      border-radius: 20px;
+      box-shadow: 0 25px 70px rgba(15, 39, 71, 0.28);
+      backdrop-filter: blur(6px);
+    }
+    .page-hero {
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.55), transparent 60%),
+        linear-gradient(135deg, rgba(15, 39, 71, 0.92), rgba(15, 39, 71, 0.78) 55%, rgba(255, 103, 25, 0.85));
       border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      padding: 42px clamp(1.5rem, 4vw, 3rem);
+      margin-bottom: 48px;
+      color: #f8fafc;
+      text-align: center;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 18px 32px rgba(9, 26, 48, 0.25);
+      position: relative;
+      overflow: hidden;
     }
-    h1 {
-      color: var(--nv-primary-dark);
-      margin-bottom: 12px;
-      font-size: clamp(2.75rem, 5vw, 3.5rem);
-      font-weight: 700;
-      letter-spacing: -0.02em;
-      text-shadow: 0 4px 14px rgba(15, 39, 71, 0.18);
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.18), transparent 55%);
+      mix-blend-mode: screen;
+      pointer-events: none;
     }
-    .subtitle {
-      color: #64748b;
+    .page-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: rgba(248, 250, 252, 0.7);
+      margin-bottom: 22px;
+    }
+    .page-subtitle {
+      font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+      color: rgba(248, 250, 252, 0.85);
+      margin-bottom: 20px;
+      font-weight: 500;
+      letter-spacing: 0.015em;
+    }
+    .page-title {
+      color: #ffffff;
       margin-bottom: 16px;
-      font-size: 1.125rem;
+      font-size: clamp(2.85rem, 5.2vw, 3.8rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      text-shadow: 0 20px 40px rgba(15, 39, 71, 0.45);
+    }
+    .page-description {
+      color: rgba(248, 250, 252, 0.9);
+      font-size: clamp(1rem, 2.1vw, 1.15rem);
+      line-height: 1.7;
+      max-width: 60ch;
+      margin: 0 auto;
     }
     .description {
       color: #475569;
@@ -362,12 +401,15 @@
   </div>
   
   <div class="container">
-    <h1>Northern Variables: Artifacts</h1>
-    <p class="subtitle">Interactive analysis. Shareable insight.</p>
-    <p class="description">
-      Artifacts is where Northern Variables experiments with new forms of storytelling — from interactive data visualizations and dynamic timelines to embedded maps and policy models. Each artifact transforms research into something you can explore, not just read. Designed for open access and easy sharing, these pieces invite readers to engage directly with the evidence behind the headlines and spread it across social platforms.
-    </p>
-    
+    <header class="page-hero">
+      <p class="page-kicker">Northern Variables</p>
+      <p class="page-subtitle">Interactive analysis. Shareable insight.</p>
+      <h1 class="page-title">Northern Variables: Artifacts</h1>
+      <p class="page-description">
+        Artifacts is where Northern Variables experiments with new forms of storytelling — from interactive data visualizations and dynamic timelines to embedded maps and policy models. Each artifact transforms research into something you can explore, not just read. Designed for open access and easy sharing, these pieces invite readers to engage directly with the evidence behind the headlines and spread it across social platforms.
+      </p>
+    </header>
+
     <div class="demo-grid">
       
       
@@ -383,7 +425,6 @@
           <img data-preview-image alt="" loading="lazy" />
         </figure>
         <a href="canadian-politics-survey.html" class="demo-card-link">
-          <div class="icon">🗳️</div>
           <h3>Canadian Federal Politics Survey</h3>
           <p>Test your knowledge of current federal bills and party positions. Interactive survey with verified Hansard sources.</p>
         </a>
