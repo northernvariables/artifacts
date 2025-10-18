@@ -14,7 +14,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
 
   <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide-react@latest/dist/lucide-react.min.js"></script>
+  <script src="https://unpkg.com/lucide-react@latest/dist/lucide-react.umd.js"></script>
 
   <style>
     :root {
@@ -30,99 +30,66 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
     }
 
-    .nv-header {
-      background: white;
-      border-bottom: 2px solid #e5e7eb;
-      padding: 1rem 2rem;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-    }
-
-    .nv-footer {
-      background: var(--nv-primary-dark);
-      color: white;
-      padding: 1.5rem 2rem;
-      text-align: center;
-      font-size: 0.875rem;
-    }
   </style>
 </head>
 <body>
-
-  <div class="nv-header">
-    <div class="flex items-center justify-center">
-      <img
-        src="https://northernvariables.ca/wp-content/uploads/elementor/thumbs/Nothern-Variables-banner-e1760403100195-rd670f4sssyxaqjbgnnpaipg6s8brl3xzizqllks86.png"
-        alt="Northern Variables"
-        style="height: 60px; object-fit: contain;"
-      />
-    </div>
-  </div>
-
   <div id="root"></div>
-
-  <div class="nv-footer">
-    <div class="max-w-4xl mx-auto text-center">
-      <p style="font-size: 0.8rem; margin-bottom: 1.5rem;">&copy; 2025 Northern Variables. All rights reserved.</p>
-
-      <a
-        href="https://axorc.substack.com"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 transition-opacity hover:opacity-80"
-        style="color: #FF6719; margin-bottom: 1.5rem; display: inline-flex; font-size: 1.1rem;"
-      >
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
-        </svg>
-        <span style="font-weight: 500;">Visit us on Substack</span>
-      </a>
-
-      <div style="margin-top: 0.75rem;">
-        <a
-          href="https://northernvariables.ca"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="inline-flex items-center gap-2 text-blue-200 hover:text-white transition-colors"
-        >
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-          </svg>
-          <span>Visit our website</span>
-        </a>
-      </div>
-    </div>
-  </div>
 
   <script type="text/babel">
     const { useState } = React;
-    const {
-      Shield,
-      Key,
-      User,
-      Users,
-      CheckCircle,
-      XCircle,
-      AlertCircle,
-      Network,
-      Smartphone,
-      MapPin,
-      Calendar,
-      Lock,
-      Flag,
-      TrendingDown,
-      AlertTriangle,
-      Clock,
-      Wifi,
-      CheckSquare,
-      Eye,
-      EyeOff,
-      Twitter,
-      Linkedin,
-      Github,
-      Mail,
-      Bell,
-      X
-    } = LucideReact;
+
+    const lucideExports = window.LucideReact || window.lucideReact || null;
+    const createEmojiIcon = (symbol) => {
+      const Icon = ({ className = '', ...rest }) => (
+        <span
+          role="img"
+          aria-hidden="true"
+          className={`${className} inline-flex items-center justify-center`}
+          {...rest}
+        >
+          {symbol}
+        </span>
+      );
+      return Icon;
+    };
+
+    const getIcon = (name, fallbackSymbol) => {
+      if (lucideExports && lucideExports[name]) {
+        return lucideExports[name];
+      }
+      return createEmojiIcon(fallbackSymbol);
+    };
+
+    const Shield = getIcon('Shield', '🛡️');
+    const Key = getIcon('Key', '🔑');
+    const User = getIcon('User', '👤');
+    const Users = getIcon('Users', '👥');
+    const CheckCircle = getIcon('CheckCircle', '✅');
+    const XCircle = getIcon('XCircle', '❌');
+    const AlertCircle = getIcon('AlertCircle', '⚠️');
+    const Network = getIcon('Network', '🌐');
+    const Smartphone = getIcon('Smartphone', '📱');
+    const MapPin = getIcon('MapPin', '📍');
+    const Calendar = getIcon('Calendar', '📅');
+    const Lock = getIcon('Lock', '🔒');
+    const Flag = getIcon('Flag', '🚩');
+    const TrendingDown = getIcon('TrendingDown', '📉');
+    const AlertTriangle = getIcon('AlertTriangle', '⚠️');
+    const Clock = getIcon('Clock', '⏰');
+    const Wifi = getIcon('Wifi', '📶');
+    const CheckSquare = getIcon('CheckSquare', '☑️');
+    const Eye = getIcon('Eye', '👁️');
+    const EyeOff = getIcon('EyeOff', '🙈');
+    const Twitter = getIcon('Twitter', '𝕏');
+    const Linkedin = getIcon('Linkedin', 'in');
+    const Github = getIcon('Github', '🐱');
+    const Mail = getIcon('Mail', '✉️');
+    const Bell = getIcon('Bell', '🔔');
+    const X = getIcon('X', '✖️');
+
+    // Provide a server-side proxy endpoint via window.__INTEREST_FORM_ENDPOINT__.
+    // This avoids embedding private Make.com API keys in the client bundle.
+    const INTEREST_FORM_ENDPOINT = window.__INTEREST_FORM_ENDPOINT__ || null;
 
     function CanadianIdentityApp() {
       const [screen, setScreen] = useState('intro');
@@ -412,11 +379,16 @@
               submissionData.lastName = identity.lastName;
             }
 
-            const response = await fetch('https://hook.us1.make.com/v77a0frqpbu5jw6rfnvzwxxrgt7eeskh', {
+            if (!INTEREST_FORM_ENDPOINT) {
+              console.error('Interest form endpoint not configured. Set window.__INTEREST_FORM_ENDPOINT__ to a server-side proxy URL.');
+              alert('Submission temporarily unavailable. Please try again later.');
+              return;
+            }
+
+            const response = await fetch(INTEREST_FORM_ENDPOINT, {
               method: 'POST',
               headers: {
-                'Content-Type': 'application/json',
-                'x-make-apikey': 'yoLaHdf4yHs&RO%o%wd%0^HdSzG!kY3nWUVn*FSj3u0TM%9m3LQs!CzibTbiZvlcKbhq$w1U4bx7gIFiW9p^m&!whpJB8ehR5bo'
+                'Content-Type': 'application/json'
               },
               body: JSON.stringify(submissionData)
             });
@@ -476,6 +448,8 @@
         score += Math.min(10, identity.reVerifications * 5);
         return Math.max(0, Math.min(100, Math.round(score)));
       };
+
+      const interestFormConfigured = Boolean(INTEREST_FORM_ENDPOINT);
 
       const InterestFormModal = () => {
         if (!showInterestForm) return null;
@@ -572,12 +546,23 @@
                     </label>
                   </div>
 
-                  <button
-                    onClick={submitInterestForm}
-                    className="w-full bg-gradient-to-r from-red-600 to-red-800 py-3 rounded-lg font-semibold hover:from-red-700 hover:to-red-900 transition"
-                  >
-                    Reserve Username
-                  </button>
+              <button
+                onClick={submitInterestForm}
+                disabled={!interestFormConfigured}
+                className={`w-full py-3 rounded-lg font-semibold transition ${
+                  interestFormConfigured
+                    ? 'bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900'
+                    : 'bg-slate-700 cursor-not-allowed'
+                }`}
+              >
+                {interestFormConfigured ? 'Reserve Username' : 'Submission Unavailable'}
+              </button>
+
+              {!interestFormConfigured && (
+                <p className="text-xs text-yellow-400 text-center">
+                  Configure a secure server-side endpoint and expose it as window.__INTEREST_FORM_ENDPOINT__ to enable submissions.
+                </p>
+              )}
 
                   <p className="text-center text-xs text-slate-500 mt-4">
                     © {new Date().getFullYear()} Connexxia Inc.
