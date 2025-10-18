@@ -86,8 +86,9 @@
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background: #ffffff;
       min-height: 100vh;
+      color: var(--nv-text);
     }
     .nv-header {
       background: linear-gradient(135deg, var(--nv-primary-dark) 0%, var(--nv-primary-mid) 55%, var(--nv-accent) 100%);
@@ -123,65 +124,54 @@
       height: auto;
       border-radius: inherit;
     }
-    .page-hero {
-      background:
-        radial-gradient(circle at top left, rgba(255, 255, 255, 0.55), transparent 60%),
-        linear-gradient(135deg, rgba(15, 39, 71, 0.92), rgba(15, 39, 71, 0.78) 55%, rgba(255, 103, 25, 0.85));
-      border-radius: 16px;
-      padding: 32px clamp(1.5rem, 4vw, 3rem);
-      margin: 48px auto;
+    main.page-main {
       max-width: 960px;
-      color: #f8fafc;
+      margin: 56px auto 0;
+      padding: 0 clamp(1.5rem, 4vw, 3rem);
       text-align: center;
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 18px 32px rgba(9, 26, 48, 0.25);
-      position: relative;
-      overflow: hidden;
-    }
-    .page-hero::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.18), transparent 55%);
-      mix-blend-mode: screen;
-      pointer-events: none;
     }
     .page-kicker {
       text-transform: uppercase;
       letter-spacing: 0.32em;
       font-size: 0.72rem;
       font-weight: 600;
-      color: rgba(248, 250, 252, 0.7);
+      color: var(--nv-primary-mid);
       margin-bottom: 22px;
     }
     .page-subtitle {
       font-size: clamp(1.05rem, 2.5vw, 1.25rem);
-      color: rgba(248, 250, 252, 0.85);
+      color: #334155;
       margin-bottom: 20px;
       font-weight: 500;
       letter-spacing: 0.015em;
     }
     .page-title {
-      color: #ffffff;
+      color: var(--nv-primary);
       margin-bottom: 16px;
       font-size: clamp(2.85rem, 5.2vw, 3.8rem);
       font-weight: 800;
       letter-spacing: -0.025em;
-      text-shadow: 0 20px 40px rgba(15, 39, 71, 0.45);
+      text-shadow: none;
     }
     .page-description {
-      color: rgba(248, 250, 252, 0.9);
+      color: #475569;
       font-size: clamp(1rem, 2.1vw, 1.15rem);
       line-height: 1.6;
       max-width: 60ch;
-      margin: 0 auto;
+      margin: 0 auto 48px;
     }
     .demo-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 24px;
       margin: 0 auto 72px;
       padding: 0 clamp(1.5rem, 5vw, 3rem);
       max-width: 1080px;
+    }
+    @media (max-width: 980px) {
+      .demo-grid {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      }
     }
     .demo-card {
       background: #f8fafc;
@@ -368,6 +358,17 @@
       background: rgba(255, 255, 255, 0.18);
       transform: translateY(-2px);
     }
+
+    .demo-card.placeholder {
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    @media (max-width: 768px) {
+      .demo-card.placeholder {
+        display: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -388,16 +389,15 @@
     </div>
   </div>
   
-  <header class="page-hero">
+  <main class="page-main">
     <p class="page-kicker">Northern Variables</p>
     <p class="page-subtitle">Interactive analysis. Shareable insight.</p>
     <h1 class="page-title">Northern Variables: Artifacts</h1>
     <p class="page-description">
       Artifacts is where Northern Variables experiments with new forms of storytelling — from interactive data visualizations and dynamic timelines to embedded maps and policy models. Each artifact transforms research into something you can explore, not just read. Designed for open access and easy sharing, these pieces invite readers to engage directly with the evidence behind the headlines and spread it across social platforms.
     </p>
-  </header>
 
-  <div class="demo-grid">
+    <section class="demo-grid" aria-label="Northern Variables artifacts">
       
       
       <!-- Add your demos below this line -->
@@ -469,7 +469,8 @@
         </div>
         <p class="share-feedback" role="status" aria-live="polite">Link copied to clipboard.</p>
       </article>
-  </div>
+    </section>
+  </main>
 
   <div class="nv-footer">
     <div class="max-w-4xl mx-auto text-center">
@@ -619,6 +620,21 @@
           }
         }
       });
+
+      const grid = document.querySelector('.demo-grid');
+      if (grid) {
+        const visibleCards = grid.querySelectorAll('.demo-card:not(.placeholder)');
+        const remainder = visibleCards.length % 3;
+        if (remainder !== 0 && window.matchMedia('(min-width: 981px)').matches) {
+          const placeholdersNeeded = 3 - remainder;
+          for (let i = 0; i < placeholdersNeeded; i += 1) {
+            const placeholder = document.createElement('article');
+            placeholder.className = 'demo-card placeholder';
+            placeholder.setAttribute('aria-hidden', 'true');
+            grid.appendChild(placeholder);
+          }
+        }
+      }
     });
   </script>
 </body>
