@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Finkelstein Playbook | Northern Variables</title>
+  <meta name="description" content="Explore the Finkelstein Playbook: a five-step breakdown of Canadian Conservative messaging and its global parallels, complete with interactive repetition exercises." />
+  <link rel="canonical" href="https://artifacts.northernvariables.ca/finkelstein-playbook.html" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Northern Variables" />
+  <meta property="og:locale" content="en_CA" />
+  <meta property="og:title" content="The Finkelstein Playbook | Northern Variables" />
+  <meta property="og:description" content="Interactive guide to the Finkelstein Playbook showing how Canadian Conservative messaging connects to global campaigns." />
+  <meta property="og:url" content="https://artifacts.northernvariables.ca/finkelstein-playbook.html" />
+  <meta property="og:image" content="https://northernvariables.ca/wp-content/uploads/2025/10/Northern-Variables.jpg" />
+  <meta property="og:image:alt" content="Northern Variables logo" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="The Finkelstein Playbook | Northern Variables" />
+  <meta name="twitter:description" content="Interactive guide to the Finkelstein Playbook showing how Canadian Conservative messaging connects to global campaigns." />
+  <meta name="twitter:image" content="https://northernvariables.ca/wp-content/uploads/2025/10/Northern-Variables.jpg" />
+  <meta name="twitter:image:alt" content="Northern Variables logo" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="bg-slate-950">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, Fragment, createElement } = React;
+
+    const iconProps = {
+      width: 32,
+      height: 32,
+      stroke: 'currentColor',
+      strokeWidth: 1.8,
+      strokeLinecap: 'round',
+      strokeLinejoin: 'round',
+      fill: 'none',
+      className: 'w-8 h-8'
+    };
+
+    const icons = {
+      target: (props = {}) => (
+        <svg {...iconProps} {...props}>
+          <circle cx="12" cy="12" r="8" />
+          <circle cx="12" cy="12" r="4" />
+          <circle cx="12" cy="12" r="1" fill="currentColor" stroke="none" />
+        </svg>
+      ),
+      xCircle: (props = {}) => (
+        <svg {...iconProps} {...props}>
+          <circle cx="12" cy="12" r="9" />
+          <path d="m15 9-6 6" />
+          <path d="m9 9 6 6" />
+        </svg>
+      ),
+      repeat: (props = {}) => (
+        <svg {...iconProps} {...props}>
+          <path d="M17 1v4h-4" />
+          <path d="m21 5-4-4" />
+          <path d="M3 11v-1a4 4 0 0 1 4-4h10" />
+          <path d="M7 23v-4h4" />
+          <path d="m3 19 4 4" />
+          <path d="M21 13v1a4 4 0 0 1-4 4H7" />
+        </svg>
+      ),
+      alertTriangle: (props = {}) => (
+        <svg {...iconProps} {...props}>
+          <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0Z" />
+          <path d="M12 9v4" />
+          <path d="M12 17h.01" />
+        </svg>
+      ),
+      shield: (props = {}) => (
+        <svg {...iconProps} {...props}>
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10" />
+        </svg>
+      ),
+      chevronRight: (props = {}) => (
+        <svg {...iconProps} {...props}>
+          <path d="m9 18 6-6-6-6" />
+        </svg>
+      )
+    };
+
+    function FinkelsteinPlaybook() {
+      const [activeStep, setActiveStep] = useState(0);
+      const [selectedExample, setSelectedExample] = useState(null);
+      const [revealedPhrases, setRevealedPhrases] = useState({});
+
+      const steps = [
+        {
+          number: 1,
+          title: 'Pick the Fault Line',
+          icon: icons.target,
+          description:
+            "Identify an issue your opponent 'owns' with their base but makes everyone else nervous",
+          examples: [
+            {
+              campaign: '🇨🇦 Poilievre vs. Trudeau (2023-Present)',
+              faultLine: 'Carbon Tax / Climate Policy',
+              explanation:
+                'Liberals own climate action with their base, but carbon tax creates anxiety about cost of living among swing voters and even some traditional Liberal supporters',
+              quote: 'Axe the Tax became the central message',
+              globalParallel: 'This is the core fault line strategy'
+            },
+            {
+              campaign: '🇦🇺 Abbott vs. Gillard (Australia 2013)',
+              faultLine: 'Carbon Tax',
+              explanation:
+                'Labor introduced carbon pricing to satisfy environmental base, but it created cost-of-living concerns',
+              quote: 'Axe the Tax - Tony Abbott used nearly identical language',
+              globalParallel: 'Direct parallel: Same issue, same 3-word phrase structure, same fault line exploitation'
+            },
+            {
+              campaign: '🇫🇷 Yellow Vest Movement (2018)',
+              faultLine: 'Fuel Tax / Carbon Policy',
+              explanation:
+                "Macron's fuel tax to combat climate change alienated working-class voters worried about costs",
+              quote: 'Massive protests forced government retreat on fuel tax',
+              globalParallel: 'Shows the universal anxiety this fault line creates across Western democracies'
+            },
+            {
+              campaign: '🇺🇸 Republicans vs. Biden (2021-2024)',
+              faultLine: 'Energy Costs / Green New Deal',
+              explanation:
+                "Democratic climate policies positioned as raising gas and energy prices",
+              quote: 'Blamed inflation and gas prices on Democratic energy policy',
+              globalParallel: 'Same wedge: environmental policy vs. household budgets'
+            }
+          ]
+        },
+        {
+          number: 2,
+          title: 'Define in 4-6 Words',
+          icon: icons.xCircle,
+          description: 'Create an accusation, not an argument. It must be memorable and damaging.',
+          examples: [
+            {
+              campaign: '🇨🇦 Harper vs. Trudeau (2015)',
+              phrase: 'Just not ready / Nice hair though',
+              analysis:
+                '3 + 3 words. Dismissive, condescending, questions competence without detailed argument',
+              effectiveness:
+                'Became cultural shorthand; people repeated it mockingly even if they did not support Harper',
+              context: "Targeted Trudeau's youth and perceived inexperience"
+            },
+            {
+              campaign: '🇨🇦 Poilievre vs. Trudeau (2022-Present)',
+              phrase: 'Justinflation',
+              analysis: '1 portmanteau word. Personally attributes inflation to Trudeau',
+              effectiveness: 'Trended on social media; opposition supporters use it as his nickname',
+              context: 'Blamed pandemic spending and inflation on Prime Minister personally'
+            },
+            {
+              campaign: '🇺🇸 Trump vs. Clinton (2016)',
+              phrase: 'Crooked Hillary',
+              analysis: '2 words. Direct corruption accusation',
+              effectiveness: 'Rally chant; voters completed the phrase unprompted',
+              globalParallel:
+                "Like 'Justinflation' - makes the person synonymous with the negative quality"
+            },
+            {
+              campaign: '🇬🇧 Conservatives vs. Labour (2010)',
+              phrase: "Labour isn't working",
+              analysis: '3 words. Economic incompetence accusation',
+              effectiveness: 'Recalled from 1979 campaign, reused successfully',
+              globalParallel: "Economic attack phrase similar to 'Justinflation' approach"
+            },
+            {
+              campaign: '🇦🇺 Liberals vs. Labor (2013)',
+              phrase: "Labor can't manage money",
+              analysis: '4 words. Simple fiscal irresponsibility claim',
+              effectiveness: 'Reinforced during debt ceiling debates',
+              globalParallel: 'Economic competence attack like Canadian Conservative messaging'
+            }
+          ]
+        },
+        {
+          number: 3,
+          title: 'Repetition Over Explanation',
+          icon: icons.repeat,
+          description: '10-second units, infinite frequency. Voters should complete your sentence.',
+          interactive: true,
+          examples: [
+            {
+              phrase: '___ the Tax',
+              answer: 'Axe',
+              context:
+                '🇨🇦 Poilievre 2023-Present - Said in every speech, interview, photo op with literal axes as props. Two-word perfection.',
+              globalMatch: '🇦🇺 Tony Abbott used \'Axe the Tax\' identically in Australia 2013'
+            },
+            {
+              phrase: 'Spike the ___',
+              answer: 'Hike',
+              context:
+                '🇨🇦 Poilievre 2023 - Against carbon tax increase. Same two-word rhythm as \'Axe the Tax\'',
+              globalMatch: 'Part of alliterative repetition strategy'
+            },
+            {
+              phrase: 'Just not ___',
+              answer: 'ready',
+              context: '🇨🇦 Harper 2015 - Three words, repeated thousands of times against Trudeau',
+              globalMatch: 'Simple dismissal, no explanation needed'
+            },
+            {
+              phrase: 'Get Brexit ___',
+              answer: 'Done',
+              context: '🇬🇧 Boris Johnson 2019 - Three words, infinite repetition',
+              globalMatch: "Same 3-word action formula as 'Axe the Tax'"
+            },
+            {
+              phrase: 'Make America ___ Again',
+              answer: 'Great',
+              context: '🇺🇸 Trump 2016 - Four words that became MAGA acronym',
+              globalMatch: 'Built entire identity around repetition of single phrase'
+            },
+            {
+              phrase: 'Build ___ Homes',
+              answer: 'The',
+              context:
+                '🇨🇦 Poilievre 2024 - Against bureaucracy, for housing. Simple action phrase.',
+              globalMatch: 'Action-oriented repetition strategy'
+            }
+          ]
+        },
+        {
+          number: 4,
+          title: 'Make it a NO Election',
+          icon: icons.alertTriangle,
+          description: "Don't sell your plan. Sell the risk of theirs. Vote against something, not for something.",
+          examples: [
+            {
+              campaign: '🇨🇦 Poilievre Carbon Tax Campaign',
+              strategy: 'Minimal detail on alternative climate policy',
+              message: 'Carbon tax will make everything unaffordable - vote NO to carbon tax',
+              outcome:
+                'Focused on opposing Liberal policy rather than detailed Conservative climate plan',
+              technique: 'Referendum-style framing: up/down vote on one issue'
+            },
+            {
+              campaign: '🇨🇦 Harper 2015 - Final Weeks',
+              strategy: 'Shifted from own platform to risk prevention',
+              message: "Don't risk the economy with inexperienced leadership",
+              outcome: 'Made election about preventing Trudeau rather than affirming Harper agenda',
+              technique: 'Fear of change over hope for change'
+            },
+            {
+              campaign: '🇦🇺 Abbott 2013 Carbon Tax Repeal',
+              strategy: 'Entire campaign was about repealing Labor\'s tax',
+              message: 'Vote to axe the tax - stop the cost of living pain',
+              outcome: 'Election became referendum on single policy',
+              globalParallel:
+                'Near-identical to Poilievre strategy: vote NO to tax, not YES to detailed alternative'
+            },
+            {
+              campaign: '🇬🇧 Brexit Leave Campaign',
+              strategy: 'Limited detail on post-Brexit plan',
+              message: 'Take back control / Stop sending money to Brussels',
+              outcome: 'Voting AGAINST EU rather than FOR specific alternative',
+              globalParallel: 'Rejectionist voting: stop the threat, minimal detail on alternative'
+            },
+            {
+              campaign: '🇺🇸 Trump 2016 Rust Belt',
+              strategy: 'Vague manufacturing plans',
+              message: 'Stop the trade deals destroying your jobs',
+              outcome: 'Vote to stop job losses, not for detailed economic plan',
+              globalParallel: 'Stop the threat frame, like carbon tax opposition'
+            }
+          ]
+        },
+        {
+          number: 5,
+          title: 'Close with Protector Frame',
+          icon: icons.shield,
+          description: "'Only I can keep you safe/stable/solvent.' Position yourself as the only shield.",
+          examples: [
+            {
+              campaign: '🇨🇦 Harper 2015',
+              quote: 'Protect our economy / Strong leadership',
+              context:
+                'Positioned himself as only stable hand during economic uncertainty',
+              technique: 'Economic security protector against risky alternatives',
+              outcome: 'Used incumbency to frame himself as proven protector'
+            },
+            {
+              campaign: '🇨🇦 Poilievre 2024 - Crime Messaging',
+              quote: 'Jail not bail / Bring home safe streets',
+              context:
+                "Positioned as only leader willing to protect Canadians from 'catch and release' bail system",
+              technique: 'Law and order protector frame',
+              outcome: 'Used violent crime stories to position himself as singular solution'
+            },
+            {
+              campaign: "🇺🇸 Republicans 'Bail Reform' Opposition",
+              quote: 'Bail reform has failed / Keep criminals locked up',
+              context: 'Conservative messaging against progressive bail policies',
+              technique: "Public safety protector opposing 'soft on crime' policies",
+              globalParallel: "Nearly identical to 'Jail not Bail' - direct parallel messaging"
+            },
+            {
+              campaign: '🇺🇸 Trump 2016 RNC Speech',
+              quote: 'I alone can fix it',
+              context:
+                'Explicitly singular protector against crime, terrorism, economic decline',
+              technique: 'First person singular: I/me vs. we/us',
+              globalParallel: 'Made protection personal and exclusive to him'
+            },
+            {
+              campaign: '🇬🇧 Conservatives on Brexit',
+              quote: 'Get Brexit Done - only we can deliver it',
+              context:
+                'After years of deadlock, positioned as only force that could provide stability',
+              technique: 'Stability protector after chaos',
+              globalParallel: "Like Harper's economic protector frame during uncertainty"
+            },
+            {
+              campaign: '🇦🇺 Abbott 2013',
+              quote: 'Stop the boats / Stop the waste',
+              context: 'Protector against border chaos and fiscal mismanagement',
+              technique: 'Security and economic protection combined',
+              globalParallel: 'Multiple protection frames like Canadian Conservative messaging'
+            }
+          ]
+        }
+      ];
+
+      const currentStep = steps[activeStep];
+
+      const togglePhrase = (index) => {
+        setRevealedPhrases((prev) => ({
+          ...prev,
+          [index]: !prev[index]
+        }));
+      };
+
+      const resetStepState = (stepIndex) => {
+        setActiveStep(stepIndex);
+        setSelectedExample(null);
+        setRevealedPhrases({});
+      };
+
+      return (
+        <div className="min-h-screen bg-gradient-to-br from-red-900 via-slate-900 to-slate-900 text-white p-6 sm:p-8">
+          <div className="max-w-6xl mx-auto">
+            <header className="text-center mb-12">
+              <h1 className="text-4xl sm:text-5xl font-bold mb-3 bg-gradient-to-r from-red-400 to-white bg-clip-text text-transparent">
+                The Finkelstein Playbook
+              </h1>
+              <p className="text-slate-300 text-lg">Canadian Conservative Messaging in Global Context</p>
+              <p className="text-sm text-slate-400 mt-2">
+                How Harper, Scheer, O\'Toole, and Poilievre campaigns mirror messaging worldwide
+              </p>
+            </header>
+
+            <div className="flex flex-col sm:flex-row justify-between mb-8 gap-3">
+              {steps.map((step, index) => {
+                const Icon = step.icon;
+                return (
+                  <button
+                    key={index}
+                    type="button"
+                    onClick={() => resetStepState(index)}
+                    className={`flex-1 p-4 rounded-lg transition-all border border-red-900/40 ${
+                      activeStep === index
+                        ? 'bg-gradient-to-r from-red-600 to-red-800 shadow-lg scale-[1.02]'
+                        : 'bg-slate-800/80 hover:bg-slate-700/90'
+                    }`}
+                  >
+                    <div className="flex flex-col items-center gap-1">
+                      <Icon className="w-6 h-6" />
+                      <span className="text-xs font-semibold tracking-wide">{step.number}</span>
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+
+            <div className="bg-slate-800/80 rounded-xl p-6 sm:p-8 shadow-2xl border border-red-900/60">
+              <div className="flex flex-col sm:flex-row items-start gap-4 mb-6">
+                <div className="bg-gradient-to-br from-red-600 to-red-800 p-3 rounded-lg">
+                  {createElement(currentStep.icon, { className: 'w-8 h-8' })}
+                </div>
+                <div>
+                  <h2 className="text-3xl font-bold mb-2">{currentStep.title}</h2>
+                  <p className="text-slate-300 text-lg">{currentStep.description}</p>
+                </div>
+              </div>
+
+              {currentStep.interactive ? (
+                <div className="mb-8 bg-gradient-to-r from-red-950 to-slate-900 rounded-lg p-6 border border-red-800">
+                  <h3 className="text-xl font-bold mb-4 text-red-400">
+                    🇨🇦 Interactive Exercise: Complete the Phrase
+                  </h3>
+                  <p className="text-slate-400 mb-4">
+                    These messages were repeated so often, they became automatic. Can you complete them?
+                  </p>
+                  <div className="space-y-4">
+                    {currentStep.examples.map((ex, idx) => (
+                      <div key={idx} className="bg-slate-800 rounded p-4 border border-slate-700">
+                        <div className="text-xl font-mono mb-2">
+                          {ex.phrase.split('___').map((part, i, parts) => (
+                            <Fragment key={`${idx}-${i}`}>
+                              {part}
+                              {i < parts.length - 1 && (
+                                <span
+                                  onClick={() => togglePhrase(idx)}
+                                  className={`cursor-pointer px-3 py-1 mx-1 rounded transition-all font-bold ${
+                                    revealedPhrases[idx]
+                                      ? 'bg-red-600 text-white'
+                                      : 'bg-slate-700 text-slate-700 hover:bg-slate-600'
+                                  }`}
+                                >
+                                  {revealedPhrases[idx] ? ex.answer : '???'}
+                                </span>
+                              )}
+                            </Fragment>
+                          ))}
+                        </div>
+                        {revealedPhrases[idx] && (
+                          <div className="text-sm text-slate-300 mt-3 space-y-1">
+                            <p className="font-semibold">{ex.context}</p>
+                            {ex.globalMatch && (
+                              <p className="text-red-400">🌍 Global Parallel: {ex.globalMatch}</p>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  <h3 className="text-xl font-semibold mb-4 text-slate-300">
+                    🇨🇦 Canadian Examples → Global Parallels
+                  </h3>
+                  {currentStep.examples.map((example, idx) => (
+                    <button
+                      key={idx}
+                      type="button"
+                      onClick={() => setSelectedExample(selectedExample === idx ? null : idx)}
+                      className={`w-full text-left border-2 rounded-lg p-5 transition-all focus:outline-none focus-visible:ring-4 focus-visible:ring-red-500/40 ${
+                        idx === 0
+                          ? 'border-red-600 bg-gradient-to-r from-red-950 to-slate-800'
+                          : selectedExample === idx
+                          ? 'border-red-500 bg-slate-700'
+                          : 'border-slate-700 hover:border-slate-600 bg-slate-800'
+                      }`}
+                    >
+                      <div className="flex justify-between items-start gap-4">
+                        <div className="flex-1">
+                          <h4 className="font-bold text-lg mb-1">
+                            {example.campaign || example.strategy}
+                          </h4>
+                          {idx === 0 && (
+                            <span className="text-xs bg-red-600 text-white px-2 py-1 rounded inline-block mb-2">
+                              CANADIAN EXAMPLE
+                            </span>
+                          )}
+                          {example.faultLine && (
+                            <div className="text-red-400 font-semibold mb-2">
+                              Fault Line: {example.faultLine}
+                            </div>
+                          )}
+                          {example.phrase && (
+                            <div className="text-yellow-400 font-bold text-xl mb-2">"{example.phrase}"</div>
+                          )}
+                          {example.quote && (
+                            <div className="text-blue-400 italic mb-2">"{example.quote}"</div>
+                          )}
+                        </div>
+                        <div className="flex-shrink-0 transform transition-transform">
+                          {createElement(icons.chevronRight, {
+                            className: `w-5 h-5 ${selectedExample === idx ? 'rotate-90' : ''}`
+                          })}
+                        </div>
+                      </div>
+
+                      {selectedExample === idx && (
+                        <div className="mt-4 pt-4 border-t border-slate-600 space-y-2 text-slate-300">
+                          {example.explanation && <p>{example.explanation}</p>}
+                          {example.analysis && (
+                            <p>
+                              <strong>Analysis:</strong> {example.analysis}
+                            </p>
+                          )}
+                          {example.effectiveness && (
+                            <p>
+                              <strong>Effectiveness:</strong> {example.effectiveness}
+                            </p>
+                          )}
+                          {example.context && (
+                            <p>
+                              <strong>Context:</strong> {example.context}
+                            </p>
+                          )}
+                          {example.technique && (
+                            <p>
+                              <strong>Technique:</strong> {example.technique}
+                            </p>
+                          )}
+                          {example.message && (
+                            <p>
+                              <strong>Message:</strong> {example.message}
+                            </p>
+                          )}
+                          {example.counterStrategy && (
+                            <p>
+                              <strong>Counter-Strategy:</strong> {example.counterStrategy}
+                            </p>
+                          )}
+                          {example.outcome && (
+                            <p>
+                              <strong>Outcome:</strong> {example.outcome}
+                            </p>
+                          )}
+                          {example.globalParallel && (
+                            <div className="mt-3 p-3 bg-red-950 rounded border border-red-800">
+                              <p className="text-red-400 font-semibold">🌍 Global Parallel:</p>
+                              <p className="text-slate-300">{example.globalParallel}</p>
+                            </div>
+                          )}
+                        </div>
+                      )}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="flex flex-col sm:flex-row justify-between mt-8 gap-4">
+              <button
+                type="button"
+                onClick={() => resetStepState(Math.max(0, activeStep - 1))}
+                disabled={activeStep === 0}
+                className={`px-6 py-3 rounded-lg font-semibold transition ${
+                  activeStep === 0
+                    ? 'bg-slate-700/60 text-slate-500 cursor-not-allowed'
+                    : 'bg-slate-700 hover:bg-slate-600 text-white'
+                }`}
+              >
+                Previous Step
+              </button>
+              <button
+                type="button"
+                onClick={() => resetStepState(Math.min(steps.length - 1, activeStep + 1))}
+                disabled={activeStep === steps.length - 1}
+                className={`px-6 py-3 rounded-lg font-semibold transition ${
+                  activeStep === steps.length - 1
+                    ? 'bg-slate-700/60 text-slate-500 cursor-not-allowed'
+                    : 'bg-gradient-to-r from-red-600 to-red-800 hover:from-red-700 hover:to-red-900 text-white'
+                }`}
+              >
+                Next Step
+              </button>
+            </div>
+
+            <div className="mt-8 p-6 bg-slate-800/80 rounded-lg border border-slate-700 text-sm text-slate-300 leading-relaxed">
+              <strong>Educational Context:</strong> This analysis examines messaging frameworks used by Canadian Conservative campaigns (Harper, Scheer, O\'Toole, Poilievre) and their parallels in international politics. The examples show how similar techniques appear across the political spectrum globally. Understanding these patterns helps voters recognize persuasion tactics and make more informed decisions. This is analytical content, not endorsement of any candidate or position.
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<FinkelsteinPlaybook />);
+  </script>
+</body>
+</html>
