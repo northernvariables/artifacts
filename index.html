@@ -3,45 +3,185 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Interactive Demos - Northern Variables</title>
+  <title>Northern Variables: Artifacts – Interactive Analysis & Shareable Insight</title>
+  <meta
+    name="description"
+    content="Explore Northern Variables: Artifacts for interactive journalism, immersive data stories, and share-ready research tools that transform evidence into insight."
+  >
+  <link rel="canonical" href="https://northernvariables.ca/artifacts/" />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#0f2747" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Northern Variables" />
+  <meta property="og:locale" content="en_CA" />
+  <meta
+    property="og:title"
+    content="Northern Variables: Artifacts – Interactive Analysis & Shareable Insight"
+  />
+  <meta
+    property="og:description"
+    content="Interactive data visualizations, policy models, and dynamic storytelling from Northern Variables. Explore artifacts designed for engagement and easy sharing."
+  />
+  <meta property="og:url" content="https://northernvariables.ca/artifacts/" />
+  <meta
+    property="og:image"
+    content="https://northernvariables.ca/northern-variables-email-banner-2/"
+  />
+  <meta
+    property="og:image:alt"
+    content="Northern Variables brand collage promoting interactive research artifacts"
+  />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Northern Variables: Artifacts" />
+  <meta
+    name="twitter:description"
+    content="Dive into interactive stories and research tools from Northern Variables designed for exploration and sharing."
+  />
+  <meta
+    name="twitter:image"
+    content="https://northernvariables.ca/northern-variables-email-banner-2/"
+  />
+  <meta
+    name="twitter:image:alt"
+    content="Northern Variables brand collage promoting interactive research artifacts"
+  />
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      "name": "Northern Variables: Artifacts",
+      "description": "Interactive data visualizations, timelines, policy models, and other artifacts from Northern Variables designed for exploration and sharing.",
+      "url": "https://northernvariables.ca/artifacts/",
+      "image": "https://northernvariables.ca/northern-variables-email-banner-2/",
+      "inLanguage": "en-CA",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Northern Variables",
+        "url": "https://northernvariables.ca/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://northernvariables.ca/northern-variables-email-banner-2/"
+        }
+      }
+    }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    * { 
-      margin: 0; 
-      padding: 0; 
-      box-sizing: border-box; 
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    :root {
+      --nv-primary: #0f2747;
+      --nv-primary-dark: #091a30;
+      --nv-primary-mid: #163b6b;
+      --nv-accent: #ff6719;
+      --nv-accent-dark: #d85612;
+      --nv-text: #0f172a;
+      --nv-soft: #f1f5f9;
     }
     body {
+      margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
-      padding: 40px 20px;
     }
-    .header-logo {
-      max-width: 100%;
-      height: auto;
-      margin: 0 auto 40px;
+    .nv-header {
+      background: linear-gradient(135deg, var(--nv-primary-dark) 0%, var(--nv-primary-mid) 55%, var(--nv-accent) 100%);
+      border-bottom: 4px solid rgba(255, 255, 255, 0.25);
+      padding: 2.25rem 1.5rem;
+      box-shadow: 0 10px 30px rgba(9, 26, 48, 0.25);
+    }
+
+    .nv-header-inner {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 3px;
+      background: rgba(255, 255, 255, 0.86);
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 12px 30px rgba(9, 26, 48, 0.15);
+      backdrop-filter: blur(6px);
+    }
+
+    .nv-header-inner a {
       display: block;
-      filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+      border-radius: inherit;
+    }
+
+    .nv-header-inner a:focus-visible {
+      outline: 3px solid rgba(15, 39, 71, 0.6);
+      outline-offset: 4px;
+    }
+
+    .nv-header-inner img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: inherit;
     }
     .container {
-      max-width: 900px;
-      margin: 0 auto;
-      background: white;
-      padding: 50px;
+      max-width: 960px;
+      margin: 40px auto 72px;
+      background: rgba(255, 255, 255, 0.92);
+      padding: 56px;
+      border-radius: 20px;
+      box-shadow: 0 25px 70px rgba(15, 39, 71, 0.28);
+      backdrop-filter: blur(6px);
+    }
+    .page-hero {
+      background:
+        radial-gradient(circle at top left, rgba(255, 255, 255, 0.55), transparent 60%),
+        linear-gradient(135deg, rgba(15, 39, 71, 0.92), rgba(15, 39, 71, 0.78) 55%, rgba(255, 103, 25, 0.85));
       border-radius: 16px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      padding: 42px clamp(1.5rem, 4vw, 3rem);
+      margin-bottom: 48px;
+      color: #f8fafc;
+      text-align: center;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 18px 32px rgba(9, 26, 48, 0.25);
+      position: relative;
+      overflow: hidden;
     }
-    h1 {
-      color: #1e293b;
-      margin-bottom: 10px;
-      font-size: 2.5rem;
-      font-weight: 700;
+    .page-hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at bottom right, rgba(255, 255, 255, 0.18), transparent 55%);
+      mix-blend-mode: screen;
+      pointer-events: none;
     }
-    .subtitle {
-      color: #64748b;
-      margin-bottom: 40px;
-      font-size: 1.125rem;
+    .page-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.32em;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: rgba(248, 250, 252, 0.7);
+      margin-bottom: 22px;
+    }
+    .page-subtitle {
+      font-size: clamp(1.05rem, 2.5vw, 1.25rem);
+      color: rgba(248, 250, 252, 0.85);
+      margin-bottom: 20px;
+      font-weight: 500;
+      letter-spacing: 0.015em;
+    }
+    .page-title {
+      color: #ffffff;
+      margin-bottom: 16px;
+      font-size: clamp(2.85rem, 5.2vw, 3.8rem);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      text-shadow: 0 20px 40px rgba(15, 39, 71, 0.45);
+    }
+    .page-description {
+      color: rgba(248, 250, 252, 0.9);
+      font-size: clamp(1rem, 2.1vw, 1.15rem);
+      line-height: 1.7;
+      max-width: 60ch;
+      margin: 0 auto;
     }
     .demo-grid {
       display: grid;
@@ -54,15 +194,44 @@
       border: 2px solid #e2e8f0;
       border-radius: 12px;
       padding: 24px;
-      text-decoration: none;
       transition: all 0.3s ease;
-      display: block;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
     }
-    .demo-card:hover {
+    .demo-card:hover,
+    .demo-card:focus-within {
       transform: translateY(-4px);
       box-shadow: 0 12px 24px rgba(0,0,0,0.1);
       border-color: #667eea;
       background: white;
+    }
+    .demo-card-link {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .demo-card-link:focus-visible {
+      outline: 3px solid #6366f1;
+      outline-offset: 4px;
+      border-radius: 12px;
+    }
+    .demo-card figure {
+      margin: 0;
+    }
+    .demo-card figure.preview {
+      display: none;
+    }
+    .demo-card figure.preview.has-image {
+      display: block;
+    }
+    .demo-card figure img {
+      width: 100%;
+      border-radius: 10px;
+      border: 2px solid rgba(102, 126, 234, 0.35);
+      object-fit: cover;
+      max-height: 180px;
+      background: #e2e8f0;
     }
     .demo-card h3 {
       color: #1e293b;
@@ -88,6 +257,75 @@
       font-size: 24px;
       font-weight: bold;
     }
+    .share-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px 16px;
+      margin-top: 8px;
+      align-items: center;
+    }
+    .share-actions span {
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      font-weight: 600;
+      text-transform: uppercase;
+      color: #64748b;
+      display: block;
+      width: 100%;
+    }
+    .share-icons {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+    }
+    .share-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: #4c51bf;
+      background: transparent;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+      text-decoration: none;
+      position: relative;
+    }
+    .share-icon:hover,
+    .share-icon:focus-visible {
+      transform: translateY(-2px);
+      border-color: rgba(76, 81, 191, 0.35);
+      box-shadow: 0 6px 12px rgba(76, 81, 191, 0.25);
+      outline: none;
+    }
+    .share-icon svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+    }
+    .sr-only {
+      border: 0 !important;
+      clip: rect(1px, 1px, 1px, 1px) !important;
+      -webkit-clip-path: inset(50%) !important;
+      clip-path: inset(50%) !important;
+      height: 1px !important;
+      margin: -1px !important;
+      overflow: hidden !important;
+      padding: 0 !important;
+      position: absolute !important;
+      width: 1px !important;
+      white-space: nowrap !important;
+    }
+    .share-feedback {
+      font-size: 0.75rem;
+      color: #059669;
+      margin-top: 4px;
+      display: none;
+    }
+    .share-feedback.active {
+      display: block;
+    }
     .add-demo {
       background: #f1f5f9;
       border: 2px dashed #cbd5e1;
@@ -101,83 +339,296 @@
       border-color: #94a3b8;
       box-shadow: none;
     }
-    footer {
+    .nv-footer {
+      background: linear-gradient(120deg, var(--nv-primary-dark) 0%, var(--nv-primary) 60%, var(--nv-accent-dark) 100%);
+      color: #f8fafc;
+      padding: 2.5rem 1.5rem;
       text-align: center;
-      margin-top: 60px;
-      color: white;
-      font-size: 0.875rem;
-      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      font-size: 0.9rem;
+      box-shadow: 0 -12px 24px rgba(15, 39, 71, 0.3);
     }
-    footer a {
-      color: white;
-      text-decoration: underline;
+
+    .nv-footer a {
+      color: #ffd7c2;
+      text-decoration: none;
+    }
+
+    .nv-footer a:hover {
+      color: #ffffff;
+    }
+
+    .nv-footer-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 0.85rem 1.5rem;
+      border-radius: 9999px;
+      transition: background 0.2s ease, transform 0.2s ease;
+      margin-bottom: 1.75rem;
+    }
+
+    .nv-footer-cta:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-2px);
     }
   </style>
 </head>
 <body>
-  <img 
-    src="https://northernvariables.ca/northern-variables-email-banner-2/" 
-    alt="Northern Variables"
-    class="header-logo"
-  />
+  <div class="nv-header">
+    <div class="nv-header-inner">
+      <a
+        href="https://northernvariables.ca"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Visit the Northern Variables homepage"
+      >
+        <img
+          src="https://northernvariables.ca/northern-variables-email-banner-2/"
+          alt="Northern Variables"
+          class="w-full h-auto"
+        />
+      </a>
+    </div>
+  </div>
   
   <div class="container">
-    <h1>Interactive Demos</h1>
-    <p class="subtitle">Explore our collection of interactive components and demonstrations</p>
-    
+    <header class="page-hero">
+      <p class="page-kicker">Northern Variables</p>
+      <p class="page-subtitle">Interactive analysis. Shareable insight.</p>
+      <h1 class="page-title">Northern Variables: Artifacts</h1>
+      <p class="page-description">
+        Artifacts is where Northern Variables experiments with new forms of storytelling — from interactive data visualizations and dynamic timelines to embedded maps and policy models. Each artifact transforms research into something you can explore, not just read. Designed for open access and easy sharing, these pieces invite readers to engage directly with the evidence behind the headlines and spread it across social platforms.
+      </p>
+    </header>
+
     <div class="demo-grid">
       
       
       <!-- Add your demos below this line -->
-<!-- Canadian Politics Survey -->
-<a href="canadian-politics-survey.html" class="demo-card">
-  <div class="icon">🗳️</div>
-  <h3>Canadian Federal Politics Survey</h3>
-  <p>Test your knowledge of current federal bills and party positions. Interactive survey with verified Hansard sources.</p>
-</a>
-      <!-- Copy and paste this structure for each new demo:
-      
-      <a href="your-demo-name.html" class="demo-card">
-        <div class="icon">🎯</div>
-        <h3>Your Demo Title</h3>
-        <p>Brief description of what this demo does.</p>
-      </a>
-      
-      -->
-      
+      <!-- Canadian Politics Survey -->
+      <article
+        class="demo-card"
+        data-share-title="Canadian Federal Politics Survey"
+        data-share-description="Test your knowledge of current federal bills and party positions. Interactive survey with verified Hansard sources."
+        data-share-url="canadian-politics-survey.html"
+      >
+        <figure class="preview" data-preview-container>
+          <img data-preview-image alt="" loading="lazy" />
+        </figure>
+        <a href="canadian-politics-survey.html" class="demo-card-link">
+          <div class="icon">🗳️</div>
+          <h3>Canadian Federal Politics Survey</h3>
+          <p>Test your knowledge of current federal bills and party positions. Interactive survey with verified Hansard sources.</p>
+        </a>
+        <div class="share-actions" aria-label="Share Canadian Federal Politics Survey artifact">
+          <span>Share</span>
+          <div class="share-icons">
+            <button type="button" class="share-icon" data-share="copy">
+              <span class="sr-only">Copy link</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+            </button>
+            <a class="share-icon" data-share="email" href="#" target="_blank" rel="noopener noreferrer">
+              <span class="sr-only">Share via email</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                <polyline points="22,6 12,13 2,6"></polyline>
+              </svg>
+            </a>
+            <a class="share-icon" data-share="threads" href="#" target="_blank" rel="noopener noreferrer">
+              <span class="sr-only">Share on Threads</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12.04 3c-3.71 0-6.04 2.27-6.04 5.83 0 3.33 2.33 5.84 5.67 5.84 1.87 0 3.22-.76 4.02-2.17-.19-1.21-1.08-1.91-2.38-1.91-1.12 0-1.93.57-2.26 1.54-.13.41-.54.7-.98.7-.75 0-1.33-.64-1.11-1.36.61-1.94 2.31-3.2 4.35-3.2 2.18 0 3.87 1.18 4.42 3.04.4-.73.61-1.59.61-2.58C17.34 5.54 15.11 3 12.04 3z"></path>
+                <path d="M16.6 13.73c-.78 1.6-2.32 2.47-4.27 2.47-3.28 0-5.87-2.46-5.87-5.83S9.05 4.54 12.33 4.54s5.41 2.58 5.41 5.83c0 5.89-4.55 8.09-7.65 8.09-1.64 0-3.21-.37-4.36-.98"></path>
+              </svg>
+            </a>
+            <a class="share-icon" data-share="substack" href="#" target="_blank" rel="noopener noreferrer">
+              <span class="sr-only">Share on Substack</span>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M3 4h18v2H3V4zm0 4h18v6l-9-5-9 5V8zm0 8 9-5 9 5v2H3v-2z"></path>
+              </svg>
+            </a>
+            <a class="share-icon" data-share="instagram" href="#" target="_blank" rel="noopener noreferrer">
+              <span class="sr-only">Share on Instagram</span>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect>
+                <circle cx="12" cy="12" r="3.5"></circle>
+                <circle cx="17.5" cy="6.5" r="1"></circle>
+              </svg>
+            </a>
+            <a class="share-icon" data-share="facebook" href="#" target="_blank" rel="noopener noreferrer">
+              <span class="sr-only">Share on Facebook</span>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M22 12.07C22 6.5 17.52 2 12 2S2 6.5 2 12.07c0 5.03 3.66 9.2 8.44 9.93v-7.03H8.08v-2.9h2.36V9.41c0-2.33 1.39-3.62 3.53-3.62 1.02 0 2.09.18 2.09.18v2.3h-1.18c-1.17 0-1.54.73-1.54 1.48v1.78h2.63l-.42 2.9h-2.21V22c4.78-.73 8.44-4.9 8.44-9.93z"></path>
+              </svg>
+            </a>
+            <a class="share-icon" data-share="x" href="#" target="_blank" rel="noopener noreferrer">
+              <span class="sr-only">Share on X (Twitter)</span>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M20.98 3.5h-3.4l-4.28 5.73-4.83-5.73H3.02l7.2 8.55-6.9 8.45h3.4l4.98-6.69 5.63 6.69h5.45l-7.75-9.21 6.95-8.79z"></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+        <p class="share-feedback" role="status" aria-live="polite">Link copied to clipboard.</p>
+      </article>
     </div>
   </div>
-  
-  <footer>
-    <p style="font-size: 0.8rem; margin-bottom: 1.5rem;">&copy; 2025 Northern Variables. All rights reserved.</p>
-    
-    <a 
-      href="https://axorc.substack.com" 
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center gap-2 transition-opacity hover:opacity-80"
-      style="color: #FF6719; margin-bottom: 1.5rem; display: inline-flex; font-size: 1.1rem;"
-    >
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-        <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
-      </svg>
-      <span style="font-weight: 500;">Visit us on Substack</span>
-    </a>
-    
-    <div style="margin-top: 0.75rem;">
-      <a 
-        href="https://northernvariables.ca" 
+
+  <div class="nv-footer">
+    <div class="max-w-4xl mx-auto text-center">
+      <p style="font-size: 0.85rem; margin-bottom: 1.75rem; letter-spacing: 0.01em;">&copy; 2025 Northern Variables. All rights reserved.</p>
+
+      <a
+        href="https://axorc.substack.com"
         target="_blank"
         rel="noopener noreferrer"
-        class="inline-flex items-center gap-2 hover:underline"
-        style="color: white;"
+        class="nv-footer-cta"
       >
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z"/>
         </svg>
-        <span>Visit our website</span>
+        <span>Visit us on Substack</span>
       </a>
     </div>
-  </footer>
+  </div>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const cards = document.querySelectorAll('.demo-card[data-share-url]');
+
+      cards.forEach((card) => {
+        const link = card.querySelector('.demo-card-link');
+        const shareActions = card.querySelector('.share-actions');
+        const feedback = card.querySelector('.share-feedback');
+        const previewImage = card.querySelector('[data-preview-image]');
+        const previewContainer = card.querySelector('[data-preview-container]');
+
+        if (!link || !shareActions) {
+          return;
+        }
+
+        const shareUrl = new URL(link.getAttribute('href'), window.location.href).href;
+        const shareTitle = card.dataset.shareTitle || link.querySelector('h3')?.textContent?.trim() || document.title;
+        const descriptionSource = card.dataset.shareDescription || link.querySelector('p')?.textContent?.trim() || '';
+        const shareSummary = `${shareTitle}${descriptionSource ? ' — ' + descriptionSource : ''}`;
+
+        const encodedUrl = encodeURIComponent(shareUrl);
+        const encodedTitle = encodeURIComponent(shareTitle);
+        const encodedSummary = encodeURIComponent(shareSummary);
+        const encodedBody = encodeURIComponent(`${descriptionSource ? descriptionSource + '\n\n' : ''}Explore the artifact: ${shareUrl}`);
+
+        shareActions.querySelectorAll('a[data-share]').forEach((anchor) => {
+          const type = anchor.dataset.share;
+          let href = '#';
+
+          switch (type) {
+            case 'email':
+              href = `mailto:?subject=${encodedTitle}&body=${encodedBody}`;
+              break;
+            case 'threads':
+              href = `https://www.threads.net/intent/post?text=${encodedSummary}%0A${encodedUrl}`;
+              break;
+            case 'substack':
+              href = `https://substack.com/redirect?url=${encodedUrl}&utm_source=share&utm_medium=artifacts&utm_campaign=${encodedTitle}`;
+              break;
+            case 'instagram':
+              href = `https://www.instagram.com/?url=${encodedUrl}`;
+              break;
+            case 'facebook':
+              href = `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`;
+              break;
+            case 'x':
+              href = `https://twitter.com/intent/tweet?text=${encodedSummary}&url=${encodedUrl}`;
+              break;
+            default:
+              href = shareUrl;
+          }
+
+          anchor.setAttribute('href', href);
+        });
+
+        const copyButton = shareActions.querySelector('button[data-share="copy"]');
+        if (copyButton) {
+          copyButton.addEventListener('click', async () => {
+            try {
+              if (navigator.clipboard && navigator.clipboard.writeText) {
+                await navigator.clipboard.writeText(shareUrl);
+              } else {
+                const tempInput = document.createElement('input');
+                tempInput.value = shareUrl;
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                tempInput.remove();
+              }
+
+              if (feedback) {
+                feedback.classList.add('active');
+                clearTimeout(feedback.dataset.timeoutId);
+                const timeoutId = window.setTimeout(() => {
+                  feedback.classList.remove('active');
+                }, 2400);
+                feedback.dataset.timeoutId = timeoutId;
+              }
+            } catch (error) {
+              console.error('Unable to copy link', error);
+            }
+          });
+        }
+
+        const providedImage = card.dataset.shareImage;
+        if (previewImage) {
+          const applyPreview = (src, altText = '') => {
+            if (!src) {
+              previewImage.removeAttribute('src');
+              previewImage.setAttribute('alt', '');
+              previewContainer?.classList.remove('has-image');
+              return;
+            }
+
+            previewImage.src = src;
+            previewImage.alt = altText || `${shareTitle} social preview image`;
+            previewContainer?.classList.add('has-image');
+          };
+
+          if (providedImage) {
+            applyPreview(new URL(providedImage, shareUrl).href);
+          } else {
+            fetch(shareUrl)
+              .then((response) => (response.ok ? response.text() : ''))
+              .then((html) => {
+                if (!html) {
+                  return;
+                }
+
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const imageMeta =
+                  doc.querySelector('meta[property="og:image"]') ||
+                  doc.querySelector('meta[name="twitter:image"], meta[name="twitter:image:src"]');
+                const altMeta =
+                  doc.querySelector('meta[property="og:image:alt"]') ||
+                  doc.querySelector('meta[name="twitter:image:alt"]');
+
+                const imageUrl = imageMeta?.getAttribute('content');
+                if (imageUrl) {
+                  const resolvedUrl = new URL(imageUrl, shareUrl).href;
+                  const altText = altMeta?.getAttribute('content') || '';
+                  applyPreview(resolvedUrl, altText);
+                }
+              })
+              .catch((error) => {
+                console.warn('Unable to load social preview image', error);
+              });
+          }
+        }
+      });
+    });
+  </script>
 </body>
 </html>
