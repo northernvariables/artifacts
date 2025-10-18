@@ -13,9 +13,17 @@
       content="Track the Mark Carney Liberal Government's progress on campaign promises from the 2025 federal election. Monitor legislation, policy implementation, and accountability in real-time."
     />
 
+    <link
+      rel="canonical"
+      href="https://artifacts.northernvariables.ca/canada-federal-election-45-tracker.html"
+    />
+
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://northernvariables.ca/artifacts/canada-federal-election-45-tracker.html" />
+    <meta
+      property="og:url"
+      content="https://artifacts.northernvariables.ca/canada-federal-election-45-tracker.html"
+    />
     <meta
       property="og:title"
       content="Canada Federal Election 45 - Liberal Government Accountability Tracker"
@@ -24,11 +32,17 @@
       property="og:description"
       content="Track the Mark Carney Liberal Government's progress on campaign promises from the 2025 federal election. Monitor legislation, policy implementation, and accountability in real-time."
     />
-    <meta property="og:image" content="https://northernvariables.ca/northern-variables-email-banner-2/" />
+    <meta
+      property="og:image"
+      content="https://northernvariables.ca/wp-content/uploads/2025/10/680fe4f3c6ad288d147f5e09.webp"
+    />
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
-    <meta property="twitter:url" content="https://northernvariables.ca/artifacts/canada-federal-election-45-tracker.html" />
+    <meta
+      property="twitter:url"
+      content="https://artifacts.northernvariables.ca/canada-federal-election-45-tracker.html"
+    />
     <meta
       property="twitter:title"
       content="Canada Federal Election 45 - Liberal Government Accountability Tracker"
@@ -37,7 +51,10 @@
       property="twitter:description"
       content="Track the Mark Carney Liberal Government's progress on campaign promises from the 2025 federal election. Monitor legislation, policy implementation, and accountability in real-time."
     />
-    <meta property="twitter:image" content="https://northernvariables.ca/northern-variables-email-banner-2/" />
+    <meta
+      property="twitter:image"
+      content="https://northernvariables.ca/wp-content/uploads/2025/10/680fe4f3c6ad288d147f5e09.webp"
+    />
 
     <!-- React -->
     <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
@@ -173,13 +190,13 @@
     <div class="nv-header">
       <div class="nv-header-inner">
         <a
-          href="https://northernvariables.ca"
+          href="https://artifacts.northernvariables.ca/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Visit the Northern Variables homepage"
         >
           <img
-            src="https://northernvariables.ca/northern-variables-email-banner-2/"
+            src="https://northernvariables.ca/wp-content/uploads/2025/10/680fe4f3c6ad288d147f5e09.webp"
             alt="Northern Variables"
           />
         </a>
@@ -731,11 +748,14 @@
         ],
       };
 
-      const shareBaseUrl = window.location.href;
+      const shareBaseUrl =
+        'https://artifacts.northernvariables.ca/canada-federal-election-45-tracker.html';
       const shareTitle =
         'Canada Federal Election 45 - Liberal Government Accountability Tracker';
       const shareDescription =
         "Track the Mark Carney Liberal Government's progress on campaign promises from the 2025 federal election.";
+
+      const EH_SOCIAL_SHARE_URL = null; // Placeholder: supply EH! Social share endpoint when available.
 
       const PromiseTracker = () => {
         const [selectedStatus, setSelectedStatus] = useState('all');
@@ -837,18 +857,28 @@
               ),
             color: 'text-slate-900',
           },
-          {
-            name: 'EH! Social',
-            icon: Share2,
-            action: () =>
-              window.open(
-                `[EH_SOCIAL_SHARE_URL]?url=${encodeURIComponent(shareBaseUrl)}&title=${encodeURIComponent(
-                  shareTitle
-                )}`,
-                '_blank'
-              ),
-            color: 'text-red-600',
-          },
+          EH_SOCIAL_SHARE_URL
+            ? {
+                name: 'EH! Social',
+                icon: Share2,
+                action: () =>
+                  window.open(
+                    `${EH_SOCIAL_SHARE_URL}?url=${encodeURIComponent(shareBaseUrl)}&title=${encodeURIComponent(
+                      shareTitle
+                    )}`,
+                    '_blank'
+                  ),
+                color: 'text-red-600',
+              }
+            : {
+                name: 'EH! Social (configure URL)',
+                icon: Share2,
+                action: () =>
+                  console.warn(
+                    'EH! Social share URL placeholder – set EH_SOCIAL_SHARE_URL with the production endpoint.'
+                  ),
+                color: 'text-red-600',
+              },
         ];
 
         const statusConfig = {
