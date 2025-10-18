@@ -51,10 +51,115 @@
     <script src="https://unpkg.com/lucide-react@latest/dist/lucide-react.umd.js"></script>
 
     <style>
+      :root {
+        --nv-primary: #0f2747;
+        --nv-primary-dark: #091a30;
+        --nv-primary-mid: #163b6b;
+        --nv-accent: #ff6719;
+        --nv-accent-dark: #d85612;
+        --nv-text: #0f172a;
+        --nv-soft: #f1f5f9;
+      }
+
       body {
         margin: 0;
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
         background-color: #f8fafc;
+        color: var(--nv-text);
+      }
+
+      .nv-header {
+        background: linear-gradient(
+          135deg,
+          var(--nv-primary-dark) 0%,
+          var(--nv-primary-mid) 55%,
+          var(--nv-accent) 100%
+        );
+        border-bottom: 4px solid rgba(255, 255, 255, 0.25);
+        padding: 2.25rem 1.5rem;
+        box-shadow: 0 10px 30px rgba(9, 26, 48, 0.25);
+      }
+
+      .nv-header-inner {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: 3px;
+        background: rgba(255, 255, 255, 0.86);
+        border-radius: 1rem;
+        overflow: hidden;
+        box-shadow: 0 12px 30px rgba(9, 26, 48, 0.15);
+        backdrop-filter: blur(6px);
+      }
+
+      .nv-header-inner a {
+        display: block;
+        border-radius: inherit;
+      }
+
+      .nv-header-inner a:focus-visible {
+        outline: 3px solid rgba(15, 39, 71, 0.6);
+        outline-offset: 4px;
+      }
+
+      .nv-header-inner img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: inherit;
+      }
+
+      .nv-main {
+        max-width: 1200px;
+        margin: 56px auto;
+        padding: 0 clamp(1.5rem, 5vw, 3.5rem);
+      }
+
+      @media (max-width: 768px) {
+        .nv-main {
+          margin: 32px auto;
+          padding: 0 1.25rem;
+        }
+      }
+
+      .nv-footer {
+        background: linear-gradient(
+          120deg,
+          var(--nv-primary-dark) 0%,
+          var(--nv-primary) 60%,
+          var(--nv-accent-dark) 100%
+        );
+        color: #f8fafc;
+        padding: 2.5rem 1.5rem;
+        text-align: center;
+        font-size: 0.9rem;
+        box-shadow: 0 -12px 24px rgba(15, 39, 71, 0.3);
+      }
+
+      .nv-footer a {
+        color: #ffd7c2;
+        text-decoration: none;
+      }
+
+      .nv-footer a:hover {
+        color: #ffffff;
+      }
+
+      .nv-footer-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.125rem;
+        font-weight: 600;
+        background: rgba(255, 255, 255, 0.12);
+        padding: 0.85rem 1.5rem;
+        border-radius: 9999px;
+        transition: background 0.2s ease, transform 0.2s ease;
+        margin-bottom: 1.75rem;
+      }
+
+      .nv-footer-cta:hover {
+        background: rgba(255, 255, 255, 0.18);
+        transform: translateY(-2px);
       }
 
       .lucide-fallback-icon {
@@ -65,7 +170,51 @@
     </style>
   </head>
   <body>
-    <div id="root"></div>
+    <div class="nv-header">
+      <div class="nv-header-inner">
+        <a
+          href="https://northernvariables.ca"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit the Northern Variables homepage"
+        >
+          <img
+            src="https://northernvariables.ca/northern-variables-email-banner-2/"
+            alt="Northern Variables"
+          />
+        </a>
+      </div>
+    </div>
+
+    <main class="nv-main">
+      <div id="root"></div>
+    </main>
+
+    <div class="nv-footer">
+      <div class="max-w-4xl mx-auto text-center">
+        <p style="font-size: 0.85rem; margin-bottom: 1.75rem; letter-spacing: 0.01em;">
+          &copy; 2025 Northern Variables. All rights reserved.
+        </p>
+
+        <a
+          href="https://axorc.substack.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="nv-footer-cta"
+        >
+          <svg
+            width="22"
+            height="22"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z" />
+          </svg>
+          <span>Visit us on Substack</span>
+        </a>
+      </div>
+    </div>
 
     <script type="text/babel">
       const { useState, useMemo } = React;
