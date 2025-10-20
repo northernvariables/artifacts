@@ -484,7 +484,7 @@ export const allQuestions = [
       text: "B.C. should continue decriminalization of small-quantity drug possession while focusing enforcement on trafficking rather than users.",
       jurisdiction: "provincial",
       province_gate: ["BC"],
-      issue_bucket: "civil_liberties_public_safety",
+      issue_bucket: "substance_use",
       axis_map: [
         { axis_id: "social_values", weight: 0.4, polarity: -1 },
         { axis_id: "civil_liberties", weight: 0.3, polarity: -1 },
@@ -496,7 +496,7 @@ export const allQuestions = [
       text: "Public drug use should be prohibited in most public spaces even if possession is decriminalized.",
       jurisdiction: "provincial",
       province_gate: ["BC"],
-      issue_bucket: "civil_liberties_public_safety",
+      issue_bucket: "substance_use",
       axis_map: [
         { axis_id: "social_values", weight: 0.4, polarity: 1 },
         { axis_id: "civil_liberties", weight: 0.3, polarity: 1 }
@@ -540,7 +540,7 @@ export const allQuestions = [
       text: "The Surrey Police Service transition should be completed as planned.",
       jurisdiction: "provincial",
       province_gate: ["BC"],
-      issue_bucket: "civil_liberties_public_safety",
+      issue_bucket: "policing",
       axis_map: [
         { axis_id: "social_values", weight: 0.4, polarity: 1 },
         { axis_id: "populism", weight: 0.3, polarity: 1 }
@@ -562,7 +562,7 @@ export const allQuestions = [
       text: "The province should fast-track major transit projects even if it requires higher borrowing.",
       jurisdiction: "provincial",
       province_gate: ["BC"],
-      issue_bucket: "climate_environment",
+      issue_bucket: "transport",
       axis_map: [
         { axis_id: "climate_resources", weight: 0.4, polarity: -1 },
         { axis_id: "economic_model", weight: 0.3, polarity: -1 }
@@ -573,7 +573,7 @@ export const allQuestions = [
       text: "Alberta should restrict where large wind and solar projects can be built to protect farmland and viewscapes.",
       jurisdiction: "provincial",
       province_gate: ["AB"],
-      issue_bucket: "energy_resources",
+      issue_bucket: "energy",
       axis_map: [
         { axis_id: "climate_resources", weight: 0.5, polarity: 1 },
         { axis_id: "economic_model", weight: 0.2, polarity: 1 }
@@ -584,7 +584,7 @@ export const allQuestions = [
       text: "Alberta should accelerate renewable energy by removing new setbacks and siting limits.",
       jurisdiction: "provincial",
       province_gate: ["AB"],
-      issue_bucket: "energy_resources",
+      issue_bucket: "energy",
       axis_map: [
         { axis_id: "climate_resources", weight: 0.5, polarity: -1 },
         { axis_id: "economic_model", weight: 0.2, polarity: -1 }
@@ -595,7 +595,7 @@ export const allQuestions = [
       text: "Reforming Alberta's electricity market to prioritize reliability is worth short-term investment uncertainty.",
       jurisdiction: "provincial",
       province_gate: ["AB"],
-      issue_bucket: "economy_taxes",
+      issue_bucket: "energy",
       axis_map: [
         { axis_id: "economic_model", weight: 0.4, polarity: 1 }
       ]
@@ -605,7 +605,7 @@ export const allQuestions = [
       text: "Alberta should actively challenge federal carbon-pricing decisions it views as regionally unfair.",
       jurisdiction: "provincial",
       province_gate: ["AB"],
-      issue_bucket: "climate_environment",
+      issue_bucket: "federal_relations",
       axis_map: [
         { axis_id: "federalism", weight: 0.5, polarity: 1 },
         { axis_id: "climate_resources", weight: 0.3, polarity: 1 }
@@ -616,7 +616,7 @@ export const allQuestions = [
       text: "The province should expand oil and gas production while investing in carbon capture, utilization, and storage (CCUS).",
       jurisdiction: "provincial",
       province_gate: ["AB"],
-      issue_bucket: "energy_resources",
+      issue_bucket: "energy",
       axis_map: [
         { axis_id: "climate_resources", weight: 0.6, polarity: 1 },
         { axis_id: "economic_model", weight: 0.2, polarity: 1 }
@@ -637,7 +637,7 @@ export const allQuestions = [
       text: "Alberta should pursue a separate provincial pension plan.",
       jurisdiction: "provincial",
       province_gate: ["AB"],
-      issue_bucket: "economy_taxes",
+      issue_bucket: "federal_relations",
       axis_map: [
         { axis_id: "federalism", weight: 0.6, polarity: 1 },
         { axis_id: "populism", weight: 0.2, polarity: -1 }
@@ -648,7 +648,7 @@ export const allQuestions = [
       text: "Municipalities should have greater authority to approve or refuse energy projects in their area.",
       jurisdiction: "provincial",
       province_gate: ["AB"],
-      issue_bucket: "ethics_governance",
+      issue_bucket: "governance",
       axis_map: [
         { axis_id: "populism", weight: 0.4, polarity: -1 }
       ]
@@ -658,7 +658,7 @@ export const allQuestions = [
       text: "Schools should require parental consent before students under 16 can change names or pronouns on school records.",
       jurisdiction: "provincial",
       province_gate: ["SK"],
-      issue_bucket: "education_childcare",
+      issue_bucket: "education",
       axis_map: [
         { axis_id: "social_values", weight: 0.6, polarity: 1 },
         { axis_id: "civil_liberties", weight: 0.2, polarity: 1 }
@@ -669,7 +669,7 @@ export const allQuestions = [
       text: "Courts should rigorously review education policies affecting students' rights for Charter compliance.",
       jurisdiction: "provincial",
       province_gate: ["SK"],
-      issue_bucket: "civil_liberties_public_safety",
+      issue_bucket: "justice",
       axis_map: [
         { axis_id: "civil_liberties", weight: 0.5, polarity: -1 },
         { axis_id: "populism", weight: 0.2, polarity: 1 }
@@ -680,7 +680,7 @@ export const allQuestions = [
       text: "Saskatchewan should refuse to collect the federal carbon charge on home heating natural gas.",
       jurisdiction: "provincial",
       province_gate: ["SK"],
-      issue_bucket: "climate_environment",
+      issue_bucket: "federal_relations",
       axis_map: [
         { axis_id: "federalism", weight: 0.6, polarity: 1 },
         { axis_id: "climate_resources", weight: 0.2, polarity: 1 }
@@ -691,7 +691,7 @@ export const allQuestions = [
       text: "The province should aim to be 'carbon-tax free' for families and businesses.",
       jurisdiction: "provincial",
       province_gate: ["SK"],
-      issue_bucket: "economy_taxes",
+      issue_bucket: "taxes",
       axis_map: [
         { axis_id: "climate_resources", weight: 0.5, polarity: 1 },
         { axis_id: "populism", weight: 0.2, polarity: -1 }
@@ -702,7 +702,7 @@ export const allQuestions = [
       text: "Saskatchewan should expand natural gas generation and pursue small modular nuclear reactors to ensure reliable power.",
       jurisdiction: "provincial",
       province_gate: ["SK"],
-      issue_bucket: "energy_resources",
+      issue_bucket: "energy",
       axis_map: [
         { axis_id: "climate_resources", weight: 0.6, polarity: 1 }
       ]
@@ -712,7 +712,7 @@ export const allQuestions = [
       text: "The government should freeze Crown utility charges tied to carbon pricing.",
       jurisdiction: "provincial",
       province_gate: ["SK"],
-      issue_bucket: "economy_taxes",
+      issue_bucket: "utilities",
       axis_map: [
         { axis_id: "economic_model", weight: 0.4, polarity: 1 },
         { axis_id: "climate_resources", weight: 0.3, polarity: 1 }
@@ -723,7 +723,7 @@ export const allQuestions = [
       text: "More provincial funds should go to violent-crime prevention and rural policing.",
       jurisdiction: "provincial",
       province_gate: ["SK"],
-      issue_bucket: "civil_liberties_public_safety",
+      issue_bucket: "policing",
       axis_map: [
         { axis_id: "social_values", weight: 0.5, polarity: 1 }
       ]
@@ -733,7 +733,7 @@ export const allQuestions = [
       text: "Public-sector wage settlements should track inflation closely even if deficits rise.",
       jurisdiction: "provincial",
       province_gate: ["SK"],
-      issue_bucket: "economy_taxes",
+      issue_bucket: "economy",
       axis_map: [
         { axis_id: "economic_model", weight: 0.6, polarity: -1 }
       ]
@@ -804,7 +804,7 @@ export const allQuestions = [
       text: "Hydro rates should be held down even if it slows debt reduction at Manitoba Hydro.",
       jurisdiction: "provincial",
       province_gate: ["MB"],
-      issue_bucket: "economy_taxes",
+      issue_bucket: "utilities",
       axis_map: [
         { axis_id: "economic_model", weight: 0.5, polarity: -1 },
         { axis_id: "populism", weight: 0.2, polarity: -1 }
@@ -815,7 +815,7 @@ export const allQuestions = [
       text: "Manitoba should increase climate adaptation spending for floods, fires, and drought.",
       jurisdiction: "provincial",
       province_gate: ["MB"],
-      issue_bucket: "climate_environment",
+      issue_bucket: "environment",
       axis_map: [
         { axis_id: "climate_resources", weight: 0.6, polarity: -1 }
       ]
@@ -825,7 +825,7 @@ export const allQuestions = [
       text: "Ontario should proceed with Highway 413 to ease congestion and support growth.",
       jurisdiction: "provincial",
       province_gate: ["ON"],
-      issue_bucket: "climate_environment",
+      issue_bucket: "transport",
       axis_map: [
         { axis_id: "climate_resources", weight: 0.4, polarity: 1 },
         { axis_id: "economic_model", weight: 0.3, polarity: 1 }
@@ -836,7 +836,7 @@ export const allQuestions = [
       text: "Ontario should cancel or pause Highway 413 pending stronger environmental assessment.",
       jurisdiction: "provincial",
       province_gate: ["ON"],
-      issue_bucket: "climate_environment",
+      issue_bucket: "transport",
       axis_map: [
         { axis_id: "climate_resources", weight: 0.4, polarity: -1 },
         { axis_id: "economic_model", weight: 0.3, polarity: -1 }
@@ -847,7 +847,7 @@ export const allQuestions = [
       text: "Expanding strong-mayor powers to more municipalities is appropriate to speed housing approvals.",
       jurisdiction: "provincial",
       province_gate: ["ON"],
-      issue_bucket: "ethics_governance",
+      issue_bucket: "governance",
       axis_map: [
         { axis_id: "populism", weight: 0.5, polarity: 1 },
         { axis_id: "economic_model", weight: 0.2, polarity: 1 }
@@ -858,7 +858,7 @@ export const allQuestions = [
       text: "Strong-mayor powers should be rolled back because they harm local democracy without boosting housing results.",
       jurisdiction: "provincial",
       province_gate: ["ON"],
-      issue_bucket: "ethics_governance",
+      issue_bucket: "governance",
       axis_map: [
         { axis_id: "populism", weight: 0.5, polarity: -1 },
         { axis_id: "economic_model", weight: 0.2, polarity: -1 }
@@ -869,7 +869,7 @@ export const allQuestions = [
       text: "The Ontario Place/Therme redevelopment is a worthwhile public-private project.",
       jurisdiction: "provincial",
       province_gate: ["ON"],
-      issue_bucket: "ethics_governance",
+      issue_bucket: "infrastructure",
       axis_map: [
         { axis_id: "economic_model", weight: 0.5, polarity: 1 },
         { axis_id: "populism", weight: 0.2, polarity: 1 }
@@ -880,7 +880,7 @@ export const allQuestions = [
       text: "The Ontario Place/Therme plan should be scaled back or cancelled in favour of public park and heritage uses.",
       jurisdiction: "provincial",
       province_gate: ["ON"],
-      issue_bucket: "ethics_governance",
+      issue_bucket: "infrastructure",
       axis_map: [
         { axis_id: "economic_model", weight: 0.5, polarity: -1 },
         { axis_id: "populism", weight: 0.2, polarity: -1 }
@@ -891,7 +891,7 @@ export const allQuestions = [
       text: "The government's Greenbelt land decisions were acceptable and the province has corrected process issues.",
       jurisdiction: "provincial",
       province_gate: ["ON"],
-      issue_bucket: "climate_environment",
+      issue_bucket: "land_use",
       axis_map: [
         { axis_id: "climate_resources", weight: 0.3, polarity: 1 },
         { axis_id: "populism", weight: 0.3, polarity: 1 }
@@ -902,7 +902,7 @@ export const allQuestions = [
       text: "The Greenbelt land swap was unacceptable and warrants continued investigation.",
       jurisdiction: "provincial",
       province_gate: ["ON"],
-      issue_bucket: "climate_environment",
+      issue_bucket: "land_use",
       axis_map: [
         { axis_id: "climate_resources", weight: 0.3, polarity: -1 },
         { axis_id: "populism", weight: 0.3, polarity: -1 }
@@ -913,7 +913,7 @@ export const allQuestions = [
       text: "Bill 96's strengthened French-language requirements for businesses should proceed.",
       jurisdiction: "provincial",
       province_gate: ["QC"],
-      issue_bucket: "ethics_governance",
+      issue_bucket: "language_culture",
       axis_map: [
         { axis_id: "social_values", weight: 0.4, polarity: 1 },
         { axis_id: "federalism", weight: 0.3, polarity: 1 }
@@ -924,7 +924,7 @@ export const allQuestions = [
       text: "Recent expansions to French-language obligations under Bill 96 go too far and should be rolled back.",
       jurisdiction: "provincial",
       province_gate: ["QC"],
-      issue_bucket: "ethics_governance",
+      issue_bucket: "language_culture",
       axis_map: [
         { axis_id: "social_values", weight: 0.4, polarity: -1 },
         { axis_id: "federalism", weight: 0.3, polarity: -1 }
@@ -957,7 +957,7 @@ export const allQuestions = [
       text: "The province should pursue a Quebec-Levis 'third link' bridge or tunnel project.",
       jurisdiction: "provincial",
       province_gate: ["QC"],
-      issue_bucket: "climate_environment",
+      issue_bucket: "transport",
       axis_map: [
         { axis_id: "climate_resources", weight: 0.5, polarity: 1 },
         { axis_id: "economic_model", weight: 0.2, polarity: 1 }
@@ -968,7 +968,7 @@ export const allQuestions = [
       text: "Funds should be reallocated from the third link to public transit like tramways and REM expansions.",
       jurisdiction: "provincial",
       province_gate: ["QC"],
-      issue_bucket: "climate_environment",
+      issue_bucket: "transport",
       axis_map: [
         { axis_id: "climate_resources", weight: 0.5, polarity: -1 },
         { axis_id: "economic_model", weight: 0.2, polarity: -1 }
@@ -979,7 +979,7 @@ export const allQuestions = [
       text: "Raising out-of-province university tuition and adding French-proficiency requirements was justified.",
       jurisdiction: "provincial",
       province_gate: ["QC"],
-      issue_bucket: "education_childcare",
+      issue_bucket: "education",
       axis_map: [
         { axis_id: "social_values", weight: 0.4, polarity: 1 },
         { axis_id: "federalism", weight: 0.2, polarity: 1 }
@@ -990,7 +990,7 @@ export const allQuestions = [
       text: "The tuition increase and new French requirements for out-of-province students should be reversed.",
       jurisdiction: "provincial",
       province_gate: ["QC"],
-      issue_bucket: "education_childcare",
+      issue_bucket: "education",
       axis_map: [
         { axis_id: "social_values", weight: 0.4, polarity: -1 },
         { axis_id: "federalism", weight: 0.2, polarity: -1 }
@@ -1021,7 +1021,7 @@ export const allQuestions = [
       text: "Policy 713 should allow informal use of names and pronouns at school without requiring parental consent.",
       jurisdiction: "provincial",
       province_gate: ["NB"],
-      issue_bucket: "education_childcare",
+      issue_bucket: "education",
       axis_map: [
         { axis_id: "social_values", weight: 0.5, polarity: -1 },
         { axis_id: "civil_liberties", weight: 0.2, polarity: -1 }
@@ -1032,7 +1032,7 @@ export const allQuestions = [
       text: "Schools should require parental consent for students under 16 to change names or pronouns, even informally.",
       jurisdiction: "provincial",
       province_gate: ["NB"],
-      issue_bucket: "education_childcare",
+      issue_bucket: "education",
       axis_map: [
         { axis_id: "social_values", weight: 0.5, polarity: 1 },
         { axis_id: "civil_liberties", weight: 0.2, polarity: 1 }
@@ -1064,7 +1064,7 @@ export const allQuestions = [
       text: "Property tax reform should shift burden away from primary residences toward non-owner-occupied and commercial properties.",
       jurisdiction: "provincial",
       province_gate: ["NB"],
-      issue_bucket: "economy_taxes",
+      issue_bucket: "taxes",
       axis_map: [
         { axis_id: "economic_model", weight: 0.5, polarity: -1 }
       ]
@@ -1125,7 +1125,7 @@ export const allQuestions = [
       text: "Nova Scotia should prioritize tax cuts even if that slows health-care hiring.",
       jurisdiction: "provincial",
       province_gate: ["NS"],
-      issue_bucket: "economy_taxes",
+      issue_bucket: "taxes",
       axis_map: [
         { axis_id: "economic_model", weight: 0.6, polarity: 1 }
       ]
@@ -1135,7 +1135,7 @@ export const allQuestions = [
       text: "Fast-tracking renewable energy and grid upgrades should take precedence over new natural-gas infrastructure.",
       jurisdiction: "provincial",
       province_gate: ["NS"],
-      issue_bucket: "energy_resources",
+      issue_bucket: "energy",
       axis_map: [
         { axis_id: "climate_resources", weight: 0.6, polarity: -1 }
       ]
@@ -1155,7 +1155,7 @@ export const allQuestions = [
       text: "Major projects should include community-benefits agreements for local hiring and training.",
       jurisdiction: "provincial",
       province_gate: ["NS"],
-      issue_bucket: "economy_taxes",
+      issue_bucket: "infrastructure",
       axis_map: [
         { axis_id: "economic_model", weight: 0.3, polarity: -1 },
         { axis_id: "populism", weight: 0.3, polarity: -1 }
@@ -1227,7 +1227,7 @@ export const allQuestions = [
       text: "The province should invest more in active transportation and transit to reduce car dependence.",
       jurisdiction: "provincial",
       province_gate: ["PE"],
-      issue_bucket: "climate_environment",
+      issue_bucket: "transport",
       axis_map: [
         { axis_id: "climate_resources", weight: 0.5, polarity: -1 }
       ]
@@ -1248,7 +1248,7 @@ export const allQuestions = [
       text: "Newfoundland and Labrador should advance the Bay du Nord offshore project as a jobs and revenue opportunity while managing emissions.",
       jurisdiction: "provincial",
       province_gate: ["NL"],
-      issue_bucket: "energy_resources",
+      issue_bucket: "energy",
       axis_map: [
         { axis_id: "climate_resources", weight: 0.6, polarity: 1 },
         { axis_id: "economic_model", weight: 0.2, polarity: 1 }
@@ -1259,7 +1259,7 @@ export const allQuestions = [
       text: "NL should pivot away from new offshore oil toward renewables and electrification.",
       jurisdiction: "provincial",
       province_gate: ["NL"],
-      issue_bucket: "energy_resources",
+      issue_bucket: "energy",
       axis_map: [
         { axis_id: "climate_resources", weight: 0.7, polarity: -1 }
       ]
@@ -1269,7 +1269,7 @@ export const allQuestions = [
       text: "The Churchill Falls MOU with Quebec should be finalized along current lines.",
       jurisdiction: "provincial",
       province_gate: ["NL"],
-      issue_bucket: "economy_taxes",
+      issue_bucket: "federal_relations",
       axis_map: [
         { axis_id: "federalism", weight: 0.5, polarity: 1 },
         { axis_id: "economic_model", weight: 0.2, polarity: 1 }
@@ -1280,7 +1280,7 @@ export const allQuestions = [
       text: "NL should seek different terms or delay Churchill Falls arrangements until 2041.",
       jurisdiction: "provincial",
       province_gate: ["NL"],
-      issue_bucket: "economy_taxes",
+      issue_bucket: "federal_relations",
       axis_map: [
         { axis_id: "federalism", weight: 0.5, polarity: -1 },
         { axis_id: "populism", weight: 0.2, polarity: -1 }
@@ -1311,7 +1311,7 @@ export const allQuestions = [
       text: "Hydro rates should be kept stable via rate mitigation even if it constrains other provincial spending.",
       jurisdiction: "provincial",
       province_gate: ["NL"],
-      issue_bucket: "economy_taxes",
+      issue_bucket: "utilities",
       axis_map: [
         { axis_id: "economic_model", weight: 0.5, polarity: -1 },
         { axis_id: "populism", weight: 0.2, polarity: -1 }
@@ -1353,7 +1353,7 @@ export const allQuestions = [
       text: "New highways should be prioritized over new transit in high-growth regions.",
       jurisdiction: "provincial",
       province_gate: ["BC","AB","SK","MB","ON","QC","NB","NS","PE","NL"],
-      issue_bucket: "climate_environment",
+      issue_bucket: "transport",
       axis_map: [
         { axis_id: "climate_resources", weight: 0.5, polarity: 1 },
         { axis_id: "economic_model", weight: 0.2, polarity: 1 }
@@ -1374,7 +1374,7 @@ export const allQuestions = [
       text: "Municipalities should be penalized if they fail to meet provincially set housing targets.",
       jurisdiction: "provincial",
       province_gate: ["BC","AB","SK","MB","ON","QC","NB","NS","PE","NL"],
-      issue_bucket: "ethics_governance",
+      issue_bucket: "governance",
       axis_map: [
         { axis_id: "populism", weight: 0.5, polarity: 1 },
         { axis_id: "economic_model", weight: 0.2, polarity: 1 }
@@ -1385,7 +1385,7 @@ export const allQuestions = [
       text: "Carbon pricing should be reduced or paused to address affordability pressures.",
       jurisdiction: "provincial",
       province_gate: ["BC","AB","SK","MB","ON","QC","NB","NS","PE","NL"],
-      issue_bucket: "economy_taxes",
+      issue_bucket: "taxes",
       axis_map: [
         { axis_id: "climate_resources", weight: 0.6, polarity: 1 },
         { axis_id: "populism", weight: 0.2, polarity: -1 }
