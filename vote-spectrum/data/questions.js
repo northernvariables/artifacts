@@ -1328,6 +1328,138 @@ export const allQuestions = [
       ]
     },
     {
+      qid: "YT_RENEWABLE_MICROGRIDS",
+      text: "Yukon should expand renewable energy microgrids for remote communities even if electricity rates rise in the short term.",
+      jurisdiction: "provincial",
+      province_gate: ["YT"],
+      issue_bucket: "energy_resources",
+      axis_map: [
+        { axis_id: "climate_resources", weight: 0.8, polarity: -1 },
+        { axis_id: "economic_model", weight: 0.3, polarity: -1 }
+      ]
+    },
+    {
+      qid: "YT_RESOURCE_REVENUE_AUTONOMY",
+      text: "Yukon should negotiate greater control over royalties from new mining projects even if it slows federal approvals.",
+      jurisdiction: "provincial",
+      province_gate: ["YT"],
+      issue_bucket: "federal_relations",
+      axis_map: [
+        { axis_id: "federalism", weight: 0.6, polarity: -1 },
+        { axis_id: "economic_model", weight: 0.3, polarity: -1 }
+      ]
+    },
+    {
+      qid: "YT_WILDFIRE_ADAPTATION",
+      text: "The territory should invest more in wildfire breaks and community relocation planning even if it requires higher taxes.",
+      jurisdiction: "provincial",
+      province_gate: ["YT"],
+      issue_bucket: "climate_environment",
+      axis_map: [
+        { axis_id: "climate_resources", weight: 0.7, polarity: -1 },
+        { axis_id: "economic_model", weight: 0.2, polarity: -1 }
+      ]
+    },
+    {
+      qid: "YT_MEDICAL_TRAVEL_SUPPORT",
+      text: "Yukon should expand medical travel subsidies for specialized care outside the territory even if other programs are trimmed.",
+      jurisdiction: "provincial",
+      province_gate: ["YT"],
+      issue_bucket: "healthcare",
+      axis_map: [
+        { axis_id: "economic_model", weight: 0.5, polarity: -1 },
+        { axis_id: "populism", weight: 0.2, polarity: -1 }
+      ]
+    },
+    {
+      qid: "NT_RARE_EARTHS_ACCELERATE",
+      text: "The Northwest Territories should fast-track rare earth and critical mineral projects even if environmental reviews are streamlined.",
+      jurisdiction: "provincial",
+      province_gate: ["NT"],
+      issue_bucket: "energy_resources",
+      axis_map: [
+        { axis_id: "climate_resources", weight: 0.8, polarity: 1 },
+        { axis_id: "economic_model", weight: 0.3, polarity: 1 }
+      ]
+    },
+    {
+      qid: "NT_PERMAFROST_INFRASTRUCTURE",
+      text: "The territory should dramatically increase spending to reinforce roads and buildings threatened by permafrost thaw even if deficits grow.",
+      jurisdiction: "provincial",
+      province_gate: ["NT"],
+      issue_bucket: "infrastructure",
+      axis_map: [
+        { axis_id: "climate_resources", weight: 0.6, polarity: -1 },
+        { axis_id: "economic_model", weight: 0.3, polarity: -1 }
+      ]
+    },
+    {
+      qid: "NT_RESOURCE_REVENUE_SHARE",
+      text: "The Northwest Territories should push Ottawa for a larger share of resource revenues to fund territorial services even if negotiations are confrontational.",
+      jurisdiction: "provincial",
+      province_gate: ["NT"],
+      issue_bucket: "federal_relations",
+      axis_map: [
+        { axis_id: "federalism", weight: 0.6, polarity: -1 },
+        { axis_id: "economic_model", weight: 0.2, polarity: -1 }
+      ]
+    },
+    {
+      qid: "NT_ON_THE_LAND_TREATMENT",
+      text: "Territorial funding should prioritize on-the-land addictions and mental health programs even if other health services wait longer.",
+      jurisdiction: "provincial",
+      province_gate: ["NT"],
+      issue_bucket: "healthcare",
+      axis_map: [
+        { axis_id: "economic_model", weight: 0.4, polarity: -1 },
+        { axis_id: "reconciliation", weight: 0.4, polarity: -1 }
+      ]
+    },
+    {
+      qid: "NU_CRITICAL_MINERALS_APPROVE",
+      text: "Nunavut should approve new critical mineral mines with stringent Inuit employment guarantees even if environmental risks remain.",
+      jurisdiction: "provincial",
+      province_gate: ["NU"],
+      issue_bucket: "energy_resources",
+      axis_map: [
+        { axis_id: "climate_resources", weight: 0.7, polarity: 1 },
+        { axis_id: "economic_model", weight: 0.3, polarity: 1 }
+      ]
+    },
+    {
+      qid: "NU_EXPAND_SEALIFT_SUBSIDY",
+      text: "The territory should expand freight and sealift subsidies to keep food affordable even if it increases government spending.",
+      jurisdiction: "provincial",
+      province_gate: ["NU"],
+      issue_bucket: "cost_of_living",
+      axis_map: [
+        { axis_id: "economic_model", weight: 0.6, polarity: -1 },
+        { axis_id: "populism", weight: 0.2, polarity: -1 }
+      ]
+    },
+    {
+      qid: "NU_INUKTUT_EDUCATION_EXPAND",
+      text: "Nunavut should invest heavily in Inuktut immersion teacher recruitment and curriculum even if other education priorities are delayed.",
+      jurisdiction: "provincial",
+      province_gate: ["NU"],
+      issue_bucket: "education_childcare",
+      axis_map: [
+        { axis_id: "reconciliation", weight: 0.6, polarity: -1 },
+        { axis_id: "institutional_trust", weight: 0.3, polarity: -1 }
+      ]
+    },
+    {
+      qid: "NU_HEALTH_HOUSING_CORRIDORS",
+      text: "The government should build combined health centres and staff housing hubs in communities even if it requires more borrowing.",
+      jurisdiction: "provincial",
+      province_gate: ["NU"],
+      issue_bucket: "healthcare",
+      axis_map: [
+        { axis_id: "economic_model", weight: 0.5, polarity: -1 },
+        { axis_id: "institutional_trust", weight: 0.2, polarity: -1 }
+      ]
+    },
+    {
       qid: "MULTI_AS_OF_RIGHT_MULTIPLEX",
       text: "The province should mandate as-of-right multiplexes (duplex to fourplex) in all urban residential zones.",
       jurisdiction: "provincial",

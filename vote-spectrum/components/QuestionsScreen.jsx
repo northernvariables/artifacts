@@ -1,5 +1,7 @@
 import React, { useMemo } from 'react';
 
+const TERRITORY_CODES = new Set(['YT', 'NT', 'NU']);
+
 const DID_YOU_KNOW_FACTS = [
   'Canada has had 23 Prime Ministers since Confederation in 1867.',
   'The longest-serving PM was William Lyon Mackenzie King (21 years).',
@@ -65,6 +67,18 @@ export const QuestionsScreen = ({
   const isImportant = currentQuestion ? Boolean(questionImportance[currentQuestion.qid]) : false;
   const randomFact = DID_YOU_KNOW_FACTS[currentQuestionIndex % DID_YOU_KNOW_FACTS.length];
 
+  const relevantProvinceTags = useMemo(() => {
+    if (!currentQuestion || currentQuestion.jurisdiction !== 'provincial') {
+      return [];
+    }
+
+    if (!province || !Array.isArray(currentQuestion.province_gate)) {
+      return [];
+    }
+
+    return currentQuestion.province_gate.filter((code) => code === province);
+  }, [currentQuestion, province]);
+
   if (!questions.length || !currentQuestion) {
     return (
       <div className="min-h-screen bg-gradient-to-br from-red-50 via-white to-red-50 flex items-center justify-center p-4">
@@ -104,11 +118,15 @@ export const QuestionsScreen = ({
                 <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
                   {currentQuestion.issue_bucket.replace(/_/g, ' ').toUpperCase()}
                 </span>
-                {currentQuestion.jurisdiction === 'provincial' && (
-                  <span className="inline-block px-3 py-1 bg-purple-100 text-purple-800 text-xs font-semibold rounded-full">
-                    {province} PROVINCIAL
-                  </span>
-                )}
+                {currentQuestion.jurisdiction === 'provincial' &&
+                  relevantProvinceTags.map((code) => (
+                    <span
+                      key={code}
+                      className="inline-block px-3 py-1 bg-purple-100 text-purple-800 text-xs font-semibold rounded-full"
+                    >
+                      {code} {TERRITORY_CODES.has(code) ? 'TERRITORIAL' : 'PROVINCIAL'}
+                    </span>
+                  ))}
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4 h-[10rem] flex items-start overflow-y-auto">
                 {currentQuestion.text}
