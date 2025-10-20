@@ -20,7 +20,6 @@ export const WelcomeScreen = ({ onStart }) => (
             <li>Educational facts about Canadian politics</li>
             <li>Progress milestones to keep you motivated</li>
             <li>Priority weighting exercise across 12 issue areas</li>
-            <li>3 knowledge check questions</li>
             <li>Detailed breakdown showing WHY you matched with each party</li>
             <li>Consistency analysis of your responses</li>
             <li>Personalized results with party alignment & 2D positioning</li>

@@ -136,35 +136,6 @@
     "MULTI_MUNI_PENALTIES_HOUSING": "Les municipalités devraient être pénalisées si elles ne respectent pas les cibles de logements fixées par la province.",
     "MULTI_REDUCE_CARBON_PRICING": "La tarification du carbone devrait être réduite ou suspendue pour atténuer les pressions sur le coût de la vie."
   },
-  "knowledge": {
-    "K1_INFLATION": {
-      "text": "L'inflation désigne principalement :",
-      "options": [
-        "Une hausse générale des prix dans l'économie",
-        "Une hausse du prix de l'essence seulement",
-        "Une augmentation des salaires seulement",
-        "Une baisse de la valeur des exportations"
-      ]
-    },
-    "K2_DEFICIT_DEBT": {
-      "text": "Le déficit budgétaire fédéral est :",
-      "options": [
-        "Le montant total que le gouvernement doit",
-        "La différence entre les dépenses et les revenus au cours d'une année",
-        "La valeur totale des actifs du gouvernement",
-        "Le taux d'intérêt fixé par la banque centrale"
-      ]
-    },
-    "K3_MARGINAL_TAX": {
-      "text": "Un taux d'imposition marginal signifie :",
-      "options": [
-        "Tout votre revenu est imposé au même taux",
-        "L'impôt sur le dernier dollar gagné",
-        "Un forfait fixe ajouté à chaque chèque de paie",
-        "Une taxe uniquement sur les gains en capital"
-      ]
-    }
-  },
   "issueBuckets": {
     "cost_of_living": "Coût de la vie",
     "housing": "Logement",

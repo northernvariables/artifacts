@@ -50,7 +50,6 @@ const UI_COPY = {
         'Educational facts about Canadian politics',
         'Progress milestones to keep you motivated',
         'Priority weighting exercise across 12 issue areas',
-        '3 knowledge check questions',
         'Detailed breakdown showing WHY you matched with each party',
         'Consistency analysis of your responses',
         'Personalized results with party alignment & 2D positioning'
@@ -149,7 +148,7 @@ const UI_COPY = {
       totalAssigned: 'Total Assigned',
       tip: 'Tip: Try spreading points across your top 5 priorities.',
       back: 'Back to questions',
-      continue: 'Continue to knowledge check',
+      continue: 'Continue',
       issueDescriptions: {
         cost_of_living: 'Inflation, affordability, and everyday expenses.',
         housing: 'Housing supply, affordability, and homelessness.',
@@ -181,7 +180,7 @@ const UI_COPY = {
       items: [
         'Province and high-level demographic info (if provided)',
         'Your answers to survey questions',
-        'Importance weights and knowledge check results',
+        'Importance weights',
         'Calculated alignment with each party'
       ],
       checkboxLabel: 'I agree to anonymously share my results to improve the Vote Spectrum analysis.',
@@ -190,7 +189,7 @@ const UI_COPY = {
     },
     results: {
       heading: 'Your Vote Spectrum Results',
-      summary: 'Based on {count} questions, importance weighting, and knowledge calibration.',
+      summary: 'Based on {count} questions and your importance weighting.',
       pastVote: 'Past vote: {value}',
       pastVoteUndisclosed: 'Past vote undisclosed',
       province: 'Province: {province}',
@@ -198,7 +197,7 @@ const UI_COPY = {
       federalAlignmentTitle: 'Top federal party alignments',
       confidenceTitle: 'Confidence assessment',
       confidenceDescription:
-        'We gauge confidence based on how consistently you responded and your knowledge check results.',
+        'We gauge confidence based on how consistently you responded.',
       confidenceLevels: {
         high: 'high',
         medium: 'medium',
@@ -1624,6 +1623,8 @@ const VoteCompass = ({
     dataSubmitted
   } = state;
 
+  const hasKnowledgeQuiz = knowledgeQuiz.length > 0;
+
   useEffect(() => {
     if (typeof document !== 'undefined') {
       document.documentElement.lang = language === 'fr' ? 'fr-CA' : 'en-CA';
@@ -1965,13 +1966,18 @@ const VoteCompass = ({
             importance={importance}
             issueBuckets={issueBuckets}
             onSetImportance={(nextImportance) => dispatch({ type: ACTIONS.SET_IMPORTANCE, payload: nextImportance })}
-            onContinue={() => dispatch({ type: ACTIONS.SET_SCREEN, payload: 'knowledge' })}
+            onContinue={() =>
+              dispatch({
+                type: ACTIONS.SET_SCREEN,
+                payload: hasKnowledgeQuiz ? 'knowledge' : 'consent'
+              })
+            }
             onBack={() => dispatch({ type: ACTIONS.SET_SCREEN, payload: 'questions' })}
             i18n={i18n}
             translations={activeTranslations}
           />
         )}
-        {screen === 'knowledge' && (
+        {screen === 'knowledge' && hasKnowledgeQuiz && (
           <KnowledgeScreen
             knowledgeQuiz={knowledgeQuiz}
             knowledgeAnswers={knowledgeAnswers}
