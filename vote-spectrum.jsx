@@ -213,12 +213,20 @@ const VoteCompass = () => {
     dispatch({ type: ACTIONS.MARK_MILESTONE, payload: milestone.value });
     dispatch({ type: ACTIONS.SHOW_MILESTONE, payload: milestone.message });
 
+    return undefined;
+  }, [currentQuestionIndex, screen, questions.length, milestoneFlags, dispatch]);
+
+  useEffect(() => {
+    if (!showMilestone) {
+      return undefined;
+    }
+
     const timeout = setTimeout(() => {
       dispatch({ type: ACTIONS.HIDE_MILESTONE });
     }, 3000);
 
     return () => clearTimeout(timeout);
-  }, [currentQuestionIndex, screen, questions.length, milestoneFlags]);
+  }, [showMilestone, dispatch]);
 
   const goToNextQuestion = useCallback(() => {
     if (currentQuestionIndex < questions.length - 1) {

@@ -1150,8 +1150,8 @@ const QuestionsScreen = ({
           </div>
 
           {showMilestone && milestoneKey !== null && (
-            <div className="absolute inset-0 flex items-center justify-center bg-white bg-opacity-90 rounded-2xl animate-fade-in">
-              <div className="bg-red-100 border border-red-300 text-red-800 px-6 py-3 rounded-xl text-lg font-semibold shadow-lg">
+            <div className="absolute inset-0 flex items-center justify-center bg-emerald-900 bg-opacity-10 rounded-2xl animate-fade-in">
+              <div className="bg-emerald-100 border border-emerald-300 text-emerald-900 px-6 py-3 rounded-xl text-lg font-semibold shadow-lg">
                 {i18n.t(`milestones.${milestoneKey}`)}
               </div>
             </div>
@@ -1685,12 +1685,20 @@ const VoteCompass = ({
     dispatch({ type: ACTIONS.MARK_MILESTONE, payload: milestone.value });
     dispatch({ type: ACTIONS.SHOW_MILESTONE, payload: milestone.key });
 
+    return undefined;
+  }, [currentQuestionIndex, screen, filteredQuestions.length, milestoneFlags, dispatch]);
+
+  useEffect(() => {
+    if (!showMilestone) {
+      return undefined;
+    }
+
     const timeout = setTimeout(() => {
       dispatch({ type: ACTIONS.HIDE_MILESTONE });
     }, 3000);
 
     return () => clearTimeout(timeout);
-  }, [currentQuestionIndex, screen, filteredQuestions.length, milestoneFlags]);
+  }, [showMilestone, dispatch]);
 
   const goToNextQuestion = useCallback(() => {
     if (currentQuestionIndex < filteredQuestions.length - 1) {
