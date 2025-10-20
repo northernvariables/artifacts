@@ -556,9 +556,9 @@ const PAST_VOTE_OPTIONS = [
 ];
 
 const MILESTONES = [
-  { value: 25, upperBound: 30, key: 25 },
-  { value: 50, upperBound: 55, key: 50 },
-  { value: 75, upperBound: 80, key: 75 }
+  { value: 25, upperBound: 30, translationKey: 25 },
+  { value: 50, upperBound: 55, translationKey: 50 },
+  { value: 75, upperBound: 80, translationKey: 75 }
 ];
 
 const getByPath = (source, path) =>
@@ -819,12 +819,6 @@ function voteCompassReducer(state, action) {
       return state;
   }
 }
-
-const MILESTONES = [
-  { value: 25, upperBound: 30, message: "25% Complete! You're doing great!" },
-  { value: 50, upperBound: 55, message: 'Halfway there! Keep up the momentum!' },
-  { value: 75, upperBound: 80, message: '75% Done! Almost at the finish line!' }
-];
 
 const getConsentWebhookUrl = () => '';
 
@@ -1683,7 +1677,7 @@ const VoteCompass = ({
     }
 
     dispatch({ type: ACTIONS.MARK_MILESTONE, payload: milestone.value });
-    dispatch({ type: ACTIONS.SHOW_MILESTONE, payload: milestone.key });
+    dispatch({ type: ACTIONS.SHOW_MILESTONE, payload: milestone.translationKey });
 
     return undefined;
   }, [currentQuestionIndex, screen, filteredQuestions.length, milestoneFlags, dispatch]);
