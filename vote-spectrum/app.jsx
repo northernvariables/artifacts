@@ -31,6 +31,71 @@ const {
   ZAxis = () => null
 } = RechartsLib;
 
+const withAlpha = (hex, alpha = 0.12) => {
+  if (!hex || typeof hex !== 'string') {
+    return `rgba(15, 23, 42, ${alpha})`;
+  }
+  let normalized = hex.replace('#', '');
+  if (normalized.length === 3) {
+    normalized = normalized
+      .split('')
+      .map((char) => char + char)
+      .join('');
+  }
+  const value = parseInt(normalized.slice(0, 6), 16);
+  const r = (value >> 16) & 255;
+  const g = (value >> 8) & 255;
+  const b = value & 255;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
+const PartyResultRow = ({ item, index }) => {
+  const safeColor = item.color || '#0f172a';
+  const rawAlignment = typeof item.alignment === 'number' ? item.alignment : Number(item.alignment) || 0;
+  const safeAlignment = Math.min(Math.max(rawAlignment, 0), 100);
+  const displayAlignment = Math.round(safeAlignment);
+
+  return (
+    <div
+      className="flex items-center gap-4 p-4 rounded-xl border shadow-sm"
+      style={{
+        borderColor: safeColor,
+        background: withAlpha(safeColor, 0.12)
+      }}
+    >
+      <div
+        className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold"
+        style={{ backgroundColor: safeColor }}
+      >
+        {index + 1}
+      </div>
+      {item.logo ? (
+        <img
+          src={item.logo}
+          alt={`${item.party} logo`}
+          className="w-12 h-12 rounded-full bg-white object-contain p-1 shadow-sm"
+        />
+      ) : (
+        <div className="w-12 h-12 rounded-full bg-white text-gray-500 flex items-center justify-center font-semibold shadow-sm">
+          {item.party?.charAt(0) ?? '?'}
+        </div>
+      )}
+      <div className="flex-1">
+        <div className="flex justify-between items-center text-sm font-semibold text-gray-900">
+          <span>{item.party}</span>
+          <span>{displayAlignment}%</span>
+        </div>
+        <div className="w-full bg-white/70 rounded-full h-2 mt-2">
+          <div
+            className="h-2 rounded-full"
+            style={{ width: `${safeAlignment}%`, backgroundColor: safeColor }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const UI_COPY = {
   en: {
     language: {
@@ -1376,16 +1441,22 @@ const ResultsScreen = ({
 
   const partyAlignment = Object.entries(results.partyDistances)
     .map(([code, data]) => ({
+      code,
       party: translatePartyName(code, parties, translations, i18n),
-      alignment: Math.round(data.alignment)
+      alignment: data.alignment,
+      color: parties[code]?.color,
+      logo: parties[code]?.logo
     }))
     .sort((a, b) => b.alignment - a.alignment)
     .slice(0, 5);
 
   const provincialAlignment = Object.entries(results.provincialPartyDistances || {})
     .map(([code, data]) => ({
+      code,
       party: translateProvincialPartyName(province, code, provincialParties, translations, i18n),
-      alignment: Math.round(data.alignment)
+      alignment: data.alignment,
+      color: provincialParties[province]?.[code]?.color,
+      logo: provincialParties[province]?.[code]?.logo
     }))
     .sort((a, b) => b.alignment - a.alignment)
     .slice(0, 5);
@@ -1434,25 +1505,9 @@ const ResultsScreen = ({
           <div className="mt-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
             <div className="lg:col-span-2 bg-gray-50 rounded-xl p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">{i18n.t('results.federalAlignmentTitle')}</h3>
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {partyAlignment.map((item, index) => (
-                  <div key={item.party} className="flex items-center gap-4 p-4 bg-white rounded-lg shadow">
-                    <div className="w-10 h-10 rounded-full bg-red-100 text-red-700 font-bold flex items-center justify-center">
-                      {index + 1}
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex justify-between text-sm font-semibold text-gray-900">
-                        <span>{item.party}</span>
-                        <span>{item.alignment}%</span>
-                      </div>
-                      <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
-                        <div
-                          className="bg-red-500 h-2 rounded-full"
-                          style={{ width: `${item.alignment}%` }}
-                        />
-                      </div>
-                    </div>
-                  </div>
+                  <PartyResultRow key={item.code || item.party} item={item} index={index} />
                 ))}
               </div>
             </div>
@@ -1520,23 +1575,10 @@ const ResultsScreen = ({
           <div className="bg-white rounded-2xl shadow-xl p-8">
             <h3 className="text-lg font-semibold text-gray-900 mb-4">{i18n.t('results.provincialAlignmentTitle')}</h3>
             {province ? (
-              <div className="space-y-3">
+              <div className="space-y-4">
                 {provincialAlignment.length ? (
                   provincialAlignment.map((item, index) => (
-                    <div key={item.party} className="flex items-center gap-4 p-4 bg-gray-50 rounded-lg">
-                      <div className="w-10 h-10 rounded-full bg-blue-100 text-blue-700 font-bold flex items-center justify-center">
-                        {index + 1}
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex justify-between text-sm font-semibold text-gray-900">
-                          <span>{item.party}</span>
-                          <span>{item.alignment}%</span>
-                        </div>
-                        <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
-                          <div className="bg-blue-500 h-2 rounded-full" style={{ width: `${item.alignment}%` }} />
-                        </div>
-                      </div>
-                    </div>
+                    <PartyResultRow key={item.code || item.party} item={item} index={index} />
                   ))
                 ) : (
                   <p className="text-sm text-gray-600">{i18n.t('results.provincialInsufficient')}</p>
