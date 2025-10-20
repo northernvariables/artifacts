@@ -24,9 +24,83 @@
   <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
   <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    .nv-footer {
+      background: linear-gradient(120deg, #091a30 0%, #0f2747 60%, #d85612 100%);
+      color: #f8fafc;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+      font-size: 0.9rem;
+      box-shadow: 0 -12px 24px rgba(15, 39, 71, 0.3);
+      margin-top: 4rem;
+    }
+
+    .nv-footer a {
+      color: #ffd7c2;
+      text-decoration: none;
+    }
+
+    .nv-footer a:hover {
+      color: #ffffff;
+    }
+
+    .nv-footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+
+    .nv-footer-links a {
+      font-weight: 600;
+      letter-spacing: 0.025em;
+    }
+
+    .nv-footer-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1.125rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 0.85rem 1.5rem;
+      border-radius: 9999px;
+      transition: background 0.2s ease, transform 0.2s ease;
+      margin-bottom: 1.75rem;
+    }
+
+    .nv-footer-cta:hover {
+      background: rgba(255, 255, 255, 0.18);
+      transform: translateY(-2px);
+    }
+  </style>
 </head>
 <body class="bg-slate-950">
   <div id="root"></div>
+
+  <div class="nv-footer">
+    <div class="max-w-4xl mx-auto text-center">
+      <a
+        href="https://axorc.substack.com"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="nv-footer-cta"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path d="M22.539 8.242H1.46V5.406h21.08v2.836zM1.46 10.812V24L12 18.11 22.54 24V10.812H1.46zM22.54 0H1.46v2.836h21.08V0z" />
+        </svg>
+        <span>Visit us on Substack</span>
+      </a>
+
+      <div class="nv-footer-links">
+        <a href="https://northernvariables.ca/" target="_blank" rel="noopener noreferrer">northernvariables.ca</a>
+        <a href="https://artifacts.northernvariables.ca/" target="_self">artifacts.northernvariables.ca</a>
+      </div>
+
+      <p style="font-size: 0.85rem; letter-spacing: 0.01em;">&copy; 2025 Northern Variables. All rights reserved.</p>
+    </div>
+  </div>
 
   <script type="text/babel">
     const { useState, Fragment, createElement } = React;
