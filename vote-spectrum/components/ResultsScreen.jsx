@@ -16,6 +16,66 @@ import {
 
 const SHARE_URL = 'https://axorc.substack.com';
 
+const withAlpha = (hex, alpha = 0.12) => {
+  if (!hex || typeof hex !== 'string') {
+    return `rgba(15, 23, 42, ${alpha})`;
+  }
+  let normalized = hex.replace('#', '');
+  if (normalized.length === 3) {
+    normalized = normalized.split('').map((char) => char + char).join('');
+  }
+  const bigint = parseInt(normalized.slice(0, 6), 16);
+  const r = (bigint >> 16) & 255;
+  const g = (bigint >> 8) & 255;
+  const b = bigint & 255;
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+};
+
+const PartyResultRow = ({ party, index }) => {
+  const safeColor = party.color || '#0f172a';
+  const safeAlignment = Number.isFinite(party.alignment) ? Math.min(Math.max(party.alignment, 0), 100) : 0;
+
+  return (
+    <div
+      className="flex items-center gap-4 p-4 rounded-xl border shadow-sm"
+      style={{
+        borderColor: safeColor,
+        background: withAlpha(safeColor, 0.12)
+      }}
+    >
+      <div
+        className="w-10 h-10 rounded-full flex items-center justify-center text-white font-bold"
+        style={{ backgroundColor: safeColor }}
+      >
+        {index + 1}
+      </div>
+      {party.logo ? (
+        <img
+          src={party.logo}
+          alt={`${party.name} logo`}
+          className="w-12 h-12 rounded-full bg-white object-contain p-1 shadow-sm"
+        />
+      ) : (
+        <div className="w-12 h-12 rounded-full bg-white text-gray-500 flex items-center justify-center font-semibold shadow-sm">
+          {party.name?.charAt(0) ?? '?'}
+        </div>
+      )}
+      <div className="flex-1">
+        <div className="flex justify-between items-center text-sm font-semibold text-gray-900">
+          <span>{party.name}</span>
+          <span>{safeAlignment.toFixed(0)}% match</span>
+        </div>
+        <div className="w-full bg-white/70 rounded-full h-2 mt-2">
+          <div
+            className="h-2 rounded-full"
+            style={{ width: `${safeAlignment}%`, backgroundColor: safeColor }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export const ResultsScreen = ({
   results,
   responses,
@@ -43,9 +103,10 @@ export const ResultsScreen = ({
       .sort(([, a], [, b]) => b.alignment - a.alignment)
       .map(([code, data]) => ({
         code,
-        name: parties[code].name,
+        name: parties[code]?.name || code,
         alignment: data.alignment,
-        color: parties[code].color
+        color: parties[code]?.color,
+        logo: parties[code]?.logo
       })),
   [partyDistances, parties]);
 
@@ -55,9 +116,10 @@ export const ResultsScreen = ({
       .sort(([, a], [, b]) => b.alignment - a.alignment)
       .map(([code, data]) => ({
         code,
-        name: provincial[code].name,
+        name: provincial[code]?.name || code,
         alignment: data.alignment,
-        color: provincial[code].color
+        color: provincial[code]?.color,
+        logo: provincial[code]?.logo
       }));
   }, [provincialPartyDistances, provincialParties, province]);
 
@@ -147,7 +209,7 @@ export const ResultsScreen = ({
                 className="p-6 rounded-xl shadow-lg border-4 text-center"
                 style={{
                   borderColor: sortedParties[0].color,
-                  backgroundColor: `${sortedParties[0].color}15`
+                  backgroundColor: withAlpha(sortedParties[0].color, 0.12)
                 }}
               >
                 <div className="text-sm font-semibold text-gray-600 mb-2">YOUR TOP FEDERAL MATCH</div>
@@ -158,6 +220,13 @@ export const ResultsScreen = ({
                   >
                     #1
                   </div>
+                  {sortedParties[0].logo && (
+                    <img
+                      src={sortedParties[0].logo}
+                      alt={`${sortedParties[0].name} logo`}
+                      className="w-12 h-12 rounded-full bg-white object-contain p-1 shadow"
+                    />
+                  )}
                   <div className="text-left">
                     <div className="text-2xl font-bold" style={{ color: sortedParties[0].color }}>
                       {sortedParties[0].name}
@@ -174,7 +243,7 @@ export const ResultsScreen = ({
                   className="p-6 rounded-xl shadow-lg border-4 text-center"
                   style={{
                     borderColor: sortedProvincialParties[0].color,
-                    backgroundColor: `${sortedProvincialParties[0].color}15`
+                    backgroundColor: withAlpha(sortedProvincialParties[0].color, 0.12)
                   }}
                 >
                   <div className="text-sm font-semibold text-gray-600 mb-2">YOUR TOP {province} PROVINCIAL MATCH</div>
@@ -185,6 +254,13 @@ export const ResultsScreen = ({
                     >
                       #1
                     </div>
+                    {sortedProvincialParties[0].logo && (
+                      <img
+                        src={sortedProvincialParties[0].logo}
+                        alt={`${sortedProvincialParties[0].name} logo`}
+                        className="w-12 h-12 rounded-full bg-white object-contain p-1 shadow"
+                      />
+                    )}
                     <div className="text-left">
                       <div className="text-2xl font-bold" style={{ color: sortedProvincialParties[0].color }}>
                         {sortedProvincialParties[0].name}
@@ -310,20 +386,23 @@ export const ResultsScreen = ({
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
             <div>
-              <h3 className="text-xl font-bold mb-4">Top Alignment Details</h3>
-              {sortedParties.slice(0, 3).map((party) => (
-                <div key={party.code} className="mb-4 p-4 border border-gray-200 rounded-lg">
-                  <div className="flex items-center justify-between mb-2">
-                    <div className="text-lg font-semibold" style={{ color: party.color }}>
-                      {party.name}
-                    </div>
-                    <span className="text-sm font-bold text-gray-700">{party.alignment.toFixed(0)}% match</span>
+              <h3 className="text-xl font-bold mb-4">Federal Alignment Details</h3>
+              <div className="space-y-4">
+                {sortedParties.map((party, index) => (
+                  <PartyResultRow key={party.code} party={party} index={index} />
+                ))}
+              </div>
+
+              {sortedProvincialParties.length > 0 && (
+                <>
+                  <h3 className="text-xl font-bold mt-8 mb-4">Provincial Alignment Details</h3>
+                  <div className="space-y-4">
+                    {sortedProvincialParties.map((party, index) => (
+                      <PartyResultRow key={party.code} party={party} index={index} />
+                    ))}
                   </div>
-                  <p className="text-sm text-gray-600">
-                    You align closely with {party.name} on most axes. Review the breakdown below to see which policy areas drive this alignment.
-                  </p>
-                </div>
-              ))}
+                </>
+              )}
             </div>
 
             <div>
