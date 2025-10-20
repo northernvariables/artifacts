@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Interactive Canada Map</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      line-height: 1.55;
+      color: #1d2734;
+      background-color: #f3f5f9;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    .page {
+      max-width: min(1100px, 92vw);
+      margin: 0 auto;
+      padding: 2.75rem 1.5rem 4rem;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: clamp(1.75rem, 2vw + 1.4rem, 3.15rem);
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+      color: #1a2d4d;
+    }
+
+    .lead {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 2.5rem;
+      font-size: 1.05rem;
+      color: #3f4a5a;
+    }
+
+    .map-wrapper {
+      position: relative;
+      border-radius: 20px;
+      background: #ffffff;
+      padding: clamp(1rem, 2vw, 1.75rem);
+      box-shadow: 0 16px 38px rgba(33, 64, 125, 0.12);
+      border: 1px solid rgba(80, 110, 160, 0.12);
+    }
+
+    .map-wrapper object {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .fallback-text {
+      margin: 1rem;
+      text-align: center;
+      color: #5a6576;
+      font-size: 0.95rem;
+    }
+
+    .info-panel {
+      margin-top: 2rem;
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 1.5rem;
+      box-shadow: 0 14px 32px rgba(27, 55, 104, 0.12);
+      border: 1px solid rgba(70, 100, 160, 0.16);
+    }
+
+    .info-panel h2 {
+      margin: 0 0 0.75rem;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1a2d4d;
+    }
+
+    .info-panel p {
+      margin: 0;
+      font-size: 1.05rem;
+      color: #38475a;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 700px) {
+      .page {
+        padding: 2.5rem 1rem 3.5rem;
+      }
+
+      .info-panel {
+        padding: 1.25rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <span id="map-title" class="sr-only">Interactive map of Canada highlighting provinces and territories</span>
+    <h1>Explore Canada</h1>
+    <p class="lead">Tap or click on a province or territory to highlight it and see its name. The soft pastel palette makes each region easy to tell apart.</p>
+
+    <div class="map-wrapper">
+      <object
+        id="canada-map"
+        type="image/svg+xml"
+        data="assets/Canada.svg"
+        role="img"
+        aria-labelledby="map-title"
+      >
+        <p class="fallback-text">Your browser needs SVG support to see the interactive Canada map.</p>
+      </object>
+    </div>
+
+    <section class="info-panel" aria-live="polite">
+      <h2 id="selection-heading">Selected region</h2>
+      <p id="selection-text">Choose a province or territory to see its name.</p>
+    </section>
+  </main>
+
+  <script>
+    (function () {
+      const mapObject = document.getElementById('canada-map');
+      const selectionText = document.getElementById('selection-text');
+      const selectionHeading = document.getElementById('selection-heading');
+
+      const provinceConfig = {
+        AB: { name: 'Alberta', color: '#F6D8AE' },
+        BC: { name: 'British Columbia', color: '#B5EAD7' },
+        MB: { name: 'Manitoba', color: '#FCE1A8' },
+        NB: { name: 'New Brunswick', color: '#CDE7BE' },
+        NL: { name: 'Newfoundland and Labrador', color: '#E7C6FF' },
+        NS: { name: 'Nova Scotia', color: '#FFB7C3' },
+        NT: { name: 'Northwest Territories', color: '#D3E4FD' },
+        NU: { name: 'Nunavut', color: '#FFF1BA' },
+        ON: { name: 'Ontario', color: '#C6DEF1' },
+        PE: { name: 'Prince Edward Island', color: '#A0E7E5' },
+        QC: { name: 'Québec', color: '#FFD3B6' },
+        SK: { name: 'Saskatchewan', color: '#F9E0AE' },
+        YT: { name: 'Yukon', color: '#E2F0CB' }
+      };
+
+      const shapeSelector = 'path, polygon, polyline, rect, circle, ellipse';
+      let provinceRecords = new Map();
+      let selectedCode = null;
+
+      mapObject.addEventListener('load', initializeMap);
+
+      if (mapObject.contentDocument && mapObject.contentDocument.documentElement) {
+        initializeMap();
+      }
+
+      function initializeMap() {
+        const svgDocument = mapObject.contentDocument;
+        if (!svgDocument) {
+          selectionText.textContent = 'Unable to load the map. Please refresh the page.';
+          return;
+        }
+
+        if (svgDocument.__interactiveMapReady) {
+          return;
+        }
+        svgDocument.__interactiveMapReady = true;
+
+        provinceRecords = new Map();
+        selectedCode = null;
+
+        const svgRoot = svgDocument.documentElement;
+        injectShapeStyles(svgDocument, svgRoot);
+
+        // The base SVG omits an "AB" group, so detect Alberta polygons by location.
+        const albertaShapes = findAlbertaShapes(svgDocument);
+
+        Object.entries(provinceConfig).forEach(([code, details]) => {
+          const shapes = code === 'AB' ? albertaShapes : collectShapes(svgDocument.getElementById(code));
+
+          if (!shapes.length) {
+            console.warn(`Interactive map: unable to find shapes for ${code}.`);
+            return;
+          }
+
+          const record = {
+            code,
+            name: details.name,
+            color: details.color,
+            shapes
+          };
+
+          provinceRecords.set(code, record);
+
+          shapes.forEach((shape, index) => {
+            shape.classList.add('province-shape');
+            shape.style.fill = details.color;
+            shape.style.stroke = '#ffffff';
+            shape.style.strokeWidth = '1.5';
+            shape.style.vectorEffect = 'non-scaling-stroke';
+            shape.dataset.province = code;
+
+            shape.addEventListener('mouseenter', () => handleHover(code));
+            shape.addEventListener('mouseleave', () => handleLeave(code));
+            shape.addEventListener('click', (event) => {
+              event.preventDefault();
+              handleSelect(code);
+            });
+
+            if (index === 0) {
+              shape.setAttribute('tabindex', '0');
+              shape.setAttribute('role', 'button');
+              shape.setAttribute('aria-label', details.name);
+              shape.addEventListener('focus', () => handleHover(code));
+              shape.addEventListener('blur', () => handleLeave(code));
+              shape.addEventListener('keydown', (event) => {
+                if (event.key === 'Enter' || event.key === ' ') {
+                  event.preventDefault();
+                  handleSelect(code);
+                }
+              });
+            } else {
+              shape.setAttribute('aria-hidden', 'true');
+            }
+          });
+        });
+      }
+
+      function injectShapeStyles(documentRef, svgRoot) {
+        const styleElement = documentRef.createElementNS('http://www.w3.org/2000/svg', 'style');
+        styleElement.textContent = `
+          .province-shape {
+            transition: fill 160ms ease, stroke 160ms ease, stroke-width 160ms ease;
+            cursor: pointer;
+            outline: none;
+          }
+          .province-shape:focus-visible {
+            outline: 3px solid #1a2d4d;
+            outline-offset: 2px;
+          }
+        `;
+        svgRoot.appendChild(styleElement);
+      }
+
+      function collectShapes(element) {
+        if (!element) {
+          return [];
+        }
+
+        if (element.matches(shapeSelector)) {
+          return [element];
+        }
+
+        return Array.from(element.querySelectorAll(shapeSelector));
+      }
+
+      function findAlbertaShapes(svgDocument) {
+        const polygons = Array.from(svgDocument.querySelectorAll('#Canada_Outline > g > polygon'));
+        if (!polygons.length) {
+          return [];
+        }
+
+        return polygons
+          .filter((polygon) => {
+            const box = polygon.getBBox();
+            const centreX = box.x + box.width / 2;
+            const centreY = box.y + box.height / 2;
+            return centreX > 820 && centreX < 1125 && centreY > 600 && centreY < 920;
+          })
+          .sort((a, b) => getArea(b) - getArea(a));
+      }
+
+      function handleHover(code) {
+        if (!provinceRecords.has(code) || selectedCode === code) {
+          return;
+        }
+        const record = provinceRecords.get(code);
+        applyAppearance(record, lighten(record.color, 0.22), '#f0edf9', 1.8);
+      }
+
+      function handleLeave(code) {
+        if (!provinceRecords.has(code) || selectedCode === code) {
+          return;
+        }
+        const record = provinceRecords.get(code);
+        applyAppearance(record, record.color, '#ffffff', 1.5);
+      }
+
+      function handleSelect(code) {
+        if (!provinceRecords.has(code)) {
+          return;
+        }
+
+        if (selectedCode === code) {
+          const record = provinceRecords.get(code);
+          applyAppearance(record, record.color, '#ffffff', 1.5);
+          selectedCode = null;
+          selectionHeading.textContent = 'Selected region';
+          selectionText.textContent = 'Choose a province or territory to see its name.';
+          return;
+        }
+
+        if (selectedCode && provinceRecords.has(selectedCode)) {
+          const previousRecord = provinceRecords.get(selectedCode);
+          applyAppearance(previousRecord, previousRecord.color, '#ffffff', 1.5);
+        }
+
+        selectedCode = code;
+        const record = provinceRecords.get(code);
+        applyAppearance(record, lighten(record.color, 0.38), '#5d576b', 2.6);
+        selectionHeading.textContent = 'Selected region';
+        selectionText.textContent = `${record.name} (${code})`;
+      }
+
+      function applyAppearance(record, fillColor, strokeColor, strokeWidth) {
+        record.shapes.forEach((shape) => {
+          shape.style.fill = fillColor;
+          shape.style.stroke = strokeColor;
+          shape.style.strokeWidth = strokeWidth;
+        });
+      }
+
+      function lighten(hex, amount) {
+        const rgb = hexToRgb(hex);
+        const adjust = (value) => Math.min(255, Math.round(value + (255 - value) * amount));
+        return rgbToHex(adjust(rgb.r), adjust(rgb.g), adjust(rgb.b));
+      }
+
+      function hexToRgb(hex) {
+        const normalized = hex.replace('#', '');
+        if (normalized.length === 3) {
+          return {
+            r: parseInt(normalized[0] + normalized[0], 16),
+            g: parseInt(normalized[1] + normalized[1], 16),
+            b: parseInt(normalized[2] + normalized[2], 16)
+          };
+        }
+        const value = parseInt(normalized, 16);
+        return {
+          r: (value >> 16) & 255,
+          g: (value >> 8) & 255,
+          b: value & 255
+        };
+      }
+
+      function rgbToHex(r, g, b) {
+        return `#${[r, g, b]
+          .map((component) => component.toString(16).padStart(2, '0'))
+          .join('')}`;
+      }
+
+      function getArea(element) {
+        const box = element.getBBox();
+        return box.width * box.height;
+      }
+    })();
+  </script>
+</body>
+</html>
