@@ -128,7 +128,7 @@ const brandingStyles = `
   }
 `;
 
-const headerImageUrl = 'https://northernvariables.ca/wp-content/uploads/2025/10/680fe4f3c6ad288d147f5e09.webp';
+const headerImageUrl = 'https://northernvariables.ca/wp-content/uploads/2025/10/Northern-Variables-Email-Banner-1.png';
 
 const backgroundStyle = {
   background:
