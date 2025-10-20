@@ -162,6 +162,8 @@ const VoteCompass = () => {
     dataSubmitted
   } = state;
 
+  const hasKnowledgeQuiz = knowledgeQuiz.length > 0;
+
   useEffect(() => {
     const styleTag = document.createElement('style');
     styleTag.textContent = brandingStyles;
@@ -489,11 +491,16 @@ const VoteCompass = () => {
             importance={importance}
             issueBuckets={issueBuckets}
             onSetImportance={(nextImportance) => dispatch({ type: ACTIONS.SET_IMPORTANCE, payload: nextImportance })}
-            onContinue={() => dispatch({ type: ACTIONS.SET_SCREEN, payload: 'knowledge' })}
+            onContinue={() =>
+              dispatch({
+                type: ACTIONS.SET_SCREEN,
+                payload: hasKnowledgeQuiz ? 'knowledge' : 'consent'
+              })
+            }
             onBack={() => dispatch({ type: ACTIONS.SET_SCREEN, payload: 'questions' })}
           />
         )}
-        {screen === 'knowledge' && (
+        {screen === 'knowledge' && hasKnowledgeQuiz && (
           <KnowledgeScreen
             knowledgeQuiz={knowledgeQuiz}
             knowledgeAnswers={knowledgeAnswers}

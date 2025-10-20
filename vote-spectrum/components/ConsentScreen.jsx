@@ -17,7 +17,6 @@ export const ConsentScreen = ({ consentToShare, onToggleConsent, onSubmit, onSki
             <li>Your responses to all survey questions</li>
             <li>Which questions you marked as important</li>
             <li>Your priority issue rankings</li>
-            <li>Your knowledge quiz responses</li>
             <li>Your past voting behavior (2021)</li>
             <li>Your calculated political positioning</li>
             <li>Timestamp of submission</li>
