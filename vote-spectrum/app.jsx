@@ -1,18 +1,35 @@
 const { useState, useMemo, useEffect, useReducer, useCallback } = React;
+
+const rechartsAvailable = typeof window !== 'undefined' && typeof window.Recharts === 'object' && window.Recharts !== null;
+
+const createChartFallback = (message) => {
+  const FallbackComponent = () => (
+    <div className="h-full w-full flex items-center justify-center text-sm text-gray-500 text-center px-4 py-6 border border-dashed border-gray-300 rounded-lg bg-gray-50">
+      {message}
+    </div>
+  );
+  return FallbackComponent;
+};
+
+const fallbackResponsiveContainer = ({ children }) => <div className="w-full h-full">{children}</div>;
+const FallbackScatterChart = createChartFallback('Interactive scatter plot unavailable. Please refresh to retry.');
+const FallbackBarChart = createChartFallback('Interactive alignment chart unavailable. Please refresh to retry.');
+
+const RechartsLib = rechartsAvailable ? window.Recharts : {};
 const {
-  ResponsiveContainer,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  Legend,
-  Cell,
-  ScatterChart,
-  Scatter,
-  ZAxis
-} = Recharts;
+  ResponsiveContainer = fallbackResponsiveContainer,
+  BarChart = FallbackBarChart,
+  Bar = () => null,
+  XAxis = () => null,
+  YAxis = () => null,
+  CartesianGrid = () => null,
+  Tooltip = () => null,
+  Legend = () => null,
+  Cell = () => null,
+  ScatterChart = FallbackScatterChart,
+  Scatter = () => null,
+  ZAxis = () => null
+} = RechartsLib;
 
 const ACTIONS = {
   SET_SCREEN: 'SET_SCREEN',
@@ -830,6 +847,11 @@ const ResultsScreen = ({
                 </ScatterChart>
               </ResponsiveContainer>
             </div>
+            {!rechartsAvailable && (
+              <p className="mt-4 text-xs text-gray-500">
+                Interactive charts are unavailable because the visualization library could not be loaded. Refresh the page to try again.
+              </p>
+            )}
           </div>
 
           <div className="bg-white rounded-2xl shadow-xl p-8">
