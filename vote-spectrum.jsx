@@ -14,6 +14,130 @@ import { KnowledgeScreen } from './vote-spectrum/components/KnowledgeScreen';
 import { ConsentScreen } from './vote-spectrum/components/ConsentScreen';
 import { ResultsScreen } from './vote-spectrum/components/ResultsScreen';
 
+const brandingStyles = `
+  .nv-header {
+    background: linear-gradient(135deg, #091a30 0%, #163b6b 55%, #ff6719 100%);
+    border-bottom: 4px solid rgba(255, 255, 255, 0.25);
+    padding: 2.25rem 1.5rem;
+    box-shadow: 0 10px 30px rgba(9, 26, 48, 0.25);
+  }
+
+  .nv-header-inner {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 3px;
+    background: rgba(255, 255, 255, 0.86);
+    border-radius: 1rem;
+    overflow: hidden;
+    box-shadow: 0 12px 30px rgba(9, 26, 48, 0.15);
+    backdrop-filter: blur(6px);
+  }
+
+  .nv-header-inner img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: inherit;
+  }
+
+  .nv-footer {
+    background: linear-gradient(120deg, #091a30 0%, #0f2747 60%, #d85612 100%);
+    color: #f8fafc;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    font-size: 0.9rem;
+    box-shadow: 0 -12px 24px rgba(15, 39, 71, 0.3);
+  }
+
+  .nv-footer a {
+    color: #ffd7c2;
+    text-decoration: none;
+  }
+
+  .nv-footer a:hover {
+    color: #ffffff;
+  }
+
+  .nv-footer-links {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    gap: 1rem;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .nv-footer-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.65rem;
+    padding: 0.65rem 1.25rem;
+    border-radius: 9999px;
+    background: rgba(255, 255, 255, 0.08);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.18);
+    transition: background 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .nv-footer-link:hover {
+    background: rgba(255, 255, 255, 0.16);
+    box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.28);
+    transform: translateY(-1px);
+  }
+
+  .nv-footer-link-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 9999px;
+    background: rgba(15, 23, 42, 0.18);
+    color: #fff7ed;
+    box-shadow: 0 4px 10px rgba(15, 23, 42, 0.2);
+  }
+
+  .nv-footer-link-icon svg {
+    width: 1rem;
+    height: 1rem;
+    transition: transform 0.2s ease;
+  }
+
+  .nv-footer-link-icon--scale svg {
+    transform: scale(1.18);
+    transform-origin: center;
+  }
+
+  .nv-footer-link-text {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    line-height: 1.2;
+  }
+
+  .nv-footer-link-text span:last-child {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    opacity: 0.85;
+  }
+`;
+
+const headerImageUrl = 'https://northernvariables.ca/wp-content/uploads/2025/10/680fe4f3c6ad288d147f5e09.webp';
+
+const backgroundStyle = {
+  background:
+    'radial-gradient(circle at top left, rgba(255, 103, 25, 0.08), transparent 55%), linear-gradient(180deg, rgba(15, 39, 71, 0.22) 0%, rgba(15, 39, 71, 0.12) 240px, #f4f6fb 100%)',
+  backgroundColor: '#0f2747'
+};
+
+const footerTextStyle = { fontSize: '0.85rem', letterSpacing: '0.01em' };
+
 const MILESTONES = [
   { value: 25, upperBound: 30, message: "25% Complete! You're doing great!" },
   { value: 50, upperBound: 55, message: 'Halfway there! Keep up the momentum!' },
@@ -37,6 +161,18 @@ const VoteCompass = () => {
     consentToShare,
     dataSubmitted
   } = state;
+
+  useEffect(() => {
+    const styleTag = document.createElement('style');
+    styleTag.textContent = brandingStyles;
+    document.head.appendChild(styleTag);
+
+    return () => {
+      if (styleTag.parentNode) {
+        styleTag.parentNode.removeChild(styleTag);
+      }
+    };
+  }, []);
 
   const questions = useMemo(() => {
     return allQuestions.filter((question) => {
@@ -294,8 +430,14 @@ const VoteCompass = () => {
   }, [consentToShare, calculateResults, province, responses, questionImportance, importance, knowledgeAnswers, pastVote2021]);
 
   return (
-    <div className="font-sans min-h-screen flex flex-col">
-      <div className="flex-1">
+    <div className="font-sans min-h-screen flex flex-col" style={backgroundStyle}>
+      <header className="nv-header">
+        <div className="nv-header-inner">
+          <img src={headerImageUrl} alt="Northern Variables" className="w-full h-auto" />
+        </div>
+      </header>
+
+      <main className="flex-1">
         {screen === 'welcome' && (
           <WelcomeScreen onStart={() => dispatch({ type: ACTIONS.SET_SCREEN, payload: 'province' })} />
         )}
@@ -375,22 +517,47 @@ const VoteCompass = () => {
             onRestart={() => dispatch({ type: ACTIONS.RESET })}
           />
         )}
-      </div>
+      </main>
 
-      <footer className="bg-gray-900 text-white py-6 px-4 mt-auto">
-        <div className="max-w-6xl mx-auto text-center">
-          <p className="text-sm mb-2">{new Date().getFullYear()} Northern Variables. All rights reserved.</p>
-          <p className="text-sm text-gray-400">
-            Read more political analysis at{' '}
-            <a
-              href="https://axorc.substack.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 underline transition-colors"
-            >
-              Northern Variables on Substack
+      <footer className="nv-footer">
+        <div className="max-w-4xl mx-auto text-center">
+          <div className="nv-footer-links">
+            <a className="nv-footer-link" href="https://northernvariables.ca/" target="_blank" rel="noopener noreferrer">
+              <span className="nv-footer-link-icon nv-footer-link-icon--scale" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm6.93 8h-2.764c-.186-2.278-.891-4.312-1.983-5.712A8.027 8.027 0 0 1 18.93 10zM12 4.063c1.155 1.251 1.946 3.52 2.119 5.937H9.881C10.054 7.583 10.845 5.314 12 4.063zM4.5 14a7.95 7.95 0 0 1 0-4h2.708a17.69 17.69 0 0 0 0 4H4.5zm.57 2h2.764c.186 2.278.89 4.312 1.983 5.712A8.027 8.027 0 0 1 5.07 16zm2.764-8H5.07A8.027 8.027 0 0 1 9.317 4.288C8.224 5.688 7.52 7.722 7.334 10zM12 19.937c-1.155-1.251-1.946-3.52-2.119-5.937h4.238C13.946 16.417 13.155 18.686 12 19.937zM14.119 14H9.881a15.73 15.73 0 0 1 0-4h4.238a15.73 15.73 0 0 1 0 4zm.567 5.712c1.093-1.4 1.797-3.434 1.983-5.712h2.764a8.027 8.027 0 0 1-4.747 5.712z" />
+                </svg>
+              </span>
+              <span className="nv-footer-link-text">
+                <span>Northern Variables</span>
+                <span>Website</span>
+              </span>
             </a>
-          </p>
+            <a className="nv-footer-link" href="https://axorc.substack.com" target="_blank" rel="noopener noreferrer">
+              <span className="nv-footer-link-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4 4.75C4 3.784 4.784 3 5.75 3h12.5C19.216 3 20 3.784 20 4.75v2.5c0 .966-.784 1.75-1.75 1.75H5.75C4.784 9 4 8.216 4 7.25v-2.5Zm0 5.75 8 4.5 8-4.5v8.75A1.75 1.75 0 0 1 18.25 21H5.75A1.75 1.75 0 0 1 4 19.25V10.5Zm8 2.75L4 8.75V7.25C4 6.284 4.784 5.5 5.75 5.5h12.5C19.216 5.5 20 6.284 20 7.25v1.5l-8 4.5Z" />
+                </svg>
+              </span>
+              <span className="nv-footer-link-text">
+                <span>Northern Variables</span>
+                <span>Substack</span>
+              </span>
+            </a>
+            <a className="nv-footer-link" href="https://artifacts.northernvariables.ca/" target="_self">
+              <span className="nv-footer-link-icon nv-footer-link-icon--scale" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M4.75 6.25 12 2l7.25 4.25v8.5L12 19l-7.25-4.25v-8.5Zm2.5 1.443v5.365L12 15.69l4.75-2.632V7.693L12 5.06 7.25 7.693ZM12 22l-7.25-4.25 1.5-.879L12 20.25l5.75-3.379 1.5.879L12 22Z" />
+                </svg>
+              </span>
+              <span className="nv-footer-link-text">
+                <span>Artifacts Library</span>
+                <span>Explore</span>
+              </span>
+            </a>
+          </div>
+
+          <p style={footerTextStyle}>&copy; {new Date().getFullYear()} Northern Variables. All rights reserved.</p>
         </div>
       </footer>
     </div>
