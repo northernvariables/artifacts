@@ -181,11 +181,8 @@
         const svgRoot = svgDocument.documentElement;
         injectShapeStyles(svgDocument, svgRoot);
 
-        // The base SVG omits an "AB" group, so detect Alberta polygons by location.
-        const albertaShapes = findAlbertaShapes(svgDocument);
-
         Object.entries(provinceConfig).forEach(([code, details]) => {
-          const shapes = code === 'AB' ? albertaShapes : collectShapes(svgDocument.getElementById(code));
+          const shapes = collectShapes(svgDocument.getElementById(code));
 
           if (!shapes.length) {
             console.warn(`Interactive map: unable to find shapes for ${code}.`);
@@ -261,22 +258,6 @@
         }
 
         return Array.from(element.querySelectorAll(shapeSelector));
-      }
-
-      function findAlbertaShapes(svgDocument) {
-        const polygons = Array.from(svgDocument.querySelectorAll('#Canada_Outline > g > polygon'));
-        if (!polygons.length) {
-          return [];
-        }
-
-        return polygons
-          .filter((polygon) => {
-            const box = polygon.getBBox();
-            const centreX = box.x + box.width / 2;
-            const centreY = box.y + box.height / 2;
-            return centreX > 820 && centreX < 1125 && centreY > 600 && centreY < 920;
-          })
-          .sort((a, b) => getArea(b) - getArea(a));
       }
 
       function handleHover(code) {
@@ -358,10 +339,6 @@
           .join('')}`;
       }
 
-      function getArea(element) {
-        const box = element.getBBox();
-        return box.width * box.height;
-      }
     })();
   </script>
 </body>
