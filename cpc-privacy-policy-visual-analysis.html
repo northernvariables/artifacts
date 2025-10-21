@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CPC Privacy Policy - Visual Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f8fafc;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .nav-tabs {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 999;
+            background: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            transition: opacity 0.3s;
+        }
+        
+        .nav-tabs.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .nav-title {
+            text-align: center;
+            font-size: 0.9em;
+            color: #64748b;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .nav-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .nav-tab {
+            background: #475569;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            font-size: 0.9em;
+            min-width: 140px;
+        }
+        
+        .nav-tab:hover {
+            background: #64748b;
+            transform: translateY(-2px);
+        }
+        
+        .nav-tab.active {
+            background: #2563eb;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+        
+        .view {
+            margin-top: 100px;
+            display: none;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            animation: fadeIn 0.5s;
+            padding-bottom: 150px;
+        }
+        
+        .view.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* INFOGRAPHIC STYLES */
+        .infographic {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .infographic-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .infographic-header h1 {
+            font-size: 2.5em;
+            color: #1a202c;
+            margin-bottom: 10px;
+        }
+        
+        .infographic-header .tagline {
+            font-size: 1.3em;
+            color: #64748b;
+            font-weight: 500;
+        }
+        
+        .disclaimer {
+            background: #f1f5f9;
+            border-left: 4px solid #64748b;
+            padding: 15px;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+            color: #475569;
+        }
+        
+        .legal-disclaimer {
+            background: #fef3c7;
+            border: 2px solid #f59e0b;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            font-size: 0.9em;
+            color: #78350f;
+        }
+        
+        .legal-disclaimer strong {
+            color: #92400e;
+            display: block;
+            margin-bottom: 8px;
+        }
+        
+        .scroll-down-btn {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #475569;
+            color: white;
+            border: none;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.8em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-down-btn:hover {
+            background: #64748b;
+            transform: translateX(-50%) translateY(-3px) scale(1.1);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.4);
+        }
+        
+        .scroll-down-btn.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .bottom-navigation {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s;
+        }
+        
+        .bottom-navigation.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        .bottom-nav-title {
+            text-align: center;
+            font-size: 0.9em;
+            color: #64748b;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        
+        .bottom-nav-buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+        
+        .bottom-nav-btn {
+            background: #475569;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            font-weight: 600;
+            transition: all 0.3s;
+            min-width: 140px;
+        }
+        
+        .bottom-nav-btn:hover {
+            background: #64748b;
+            transform: translateY(-2px);
+        }
+        
+        .bottom-nav-btn.active {
+            background: #2563eb;
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+        }
+        
+        .section-anchor {
+            scroll-margin-top: 20px;
+        }
+        
+        .section-anchor:first-of-type {
+            scroll-margin-top: 20px;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+        
+        .shock-card {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 25px 0;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .shock-card:hover {
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+        
+        .shock-card .number {
+            background: #1e293b;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .shock-card h3 {
+            color: #1e293b;
+            font-size: 1.5em;
+            margin-bottom: 12px;
+        }
+        
+        .shock-card .the-gap {
+            background: #fef3c7;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-left: 4px solid #f59e0b;
+        }
+        
+        .shock-card .the-gap strong {
+            color: #92400e;
+        }
+        
+        .stat-big {
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #1e293b;
+            display: block;
+            margin: 10px 0;
+        }
+        
+        /* DATA FLOW DIAGRAM STYLES */
+        .flow-container {
+            padding: 20px 0;
+        }
+        
+        .flow-container h1 {
+            text-align: center;
+            color: #1a202c;
+            margin-bottom: 30px;
+            font-size: 2.3em;
+        }
+        
+        .flow-section {
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .flow-section h2 {
+            text-align: center;
+            color: #475569;
+            margin-bottom: 25px;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+        
+        .flow-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        
+        .flow-box {
+            background: #f1f5f9;
+            color: #1e293b;
+            padding: 25px;
+            border-radius: 15px;
+            min-width: 200px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: relative;
+            border: 2px solid #e2e8f0;
+        }
+        
+        .flow-box h4 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #1e293b;
+        }
+        
+        .flow-box p {
+            font-size: 0.9em;
+            color: #475569;
+        }
+        
+        .flow-box.danger {
+            background: #fef2f2;
+            border: 2px solid #fca5a5;
+        }
+        
+        .flow-box.danger h4 {
+            color: #991b1b;
+        }
+        
+        .flow-box.warning {
+            background: #fffbeb;
+            border: 2px solid #fcd34d;
+        }
+        
+        .arrow {
+            font-size: 2.5em;
+            color: #94a3b8;
+        }
+        
+        .arrow-down {
+            text-align: center;
+            font-size: 3em;
+            color: #94a3b8;
+            margin: 10px 0;
+        }
+        
+        .red-flag {
+            background: #fffbeb;
+            border: 2px solid #fbbf24;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .red-flag h4 {
+            color: #92400e;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .red-flag p {
+            color: #78350f;
+        }
+        
+        /* MYTH VS REALITY STYLES */
+        .mvr-container h1 {
+            text-align: center;
+            color: #1a202c;
+            margin-bottom: 40px;
+            font-size: 2.3em;
+        }
+        
+        .comparison-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 30px 0;
+            padding: 20px 0;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        
+        .comparison-row:last-child {
+            border-bottom: none;
+        }
+        
+        .myth-side, .reality-side {
+            padding: 25px;
+            border-radius: 12px;
+        }
+        
+        .myth-side {
+            background: #f0f9ff;
+            border: 2px solid #bae6fd;
+        }
+        
+        .reality-side {
+            background: #fef3c7;
+            border: 2px solid #fcd34d;
+        }
+        
+        .myth-side h3 {
+            color: #0c4a6e;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .reality-side h3 {
+            color: #92400e;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .myth-side p, .reality-side p {
+            line-height: 1.6;
+        }
+        
+        .myth-side p {
+            color: #0c4a6e;
+        }
+        
+        .reality-side p {
+            color: #78350f;
+        }
+        
+        .quote-box {
+            background: white;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 12px;
+            font-size: 0.9em;
+            font-style: italic;
+            border-left: 3px solid #94a3b8;
+        }
+        
+        .bottom-cta {
+            background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            margin-top: 40px;
+        }
+        
+        .bottom-cta h3 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+        
+        @media (max-width: 768px) {
+            .comparison-row {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+            }
+            
+            .nav-tab {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="nav-tabs">
+            <div class="nav-title">Jump to another view:</div>
+            <div class="nav-buttons">
+                <button class="nav-tab active" onclick="switchView('infographic')" data-view="infographic">
+                    Infographic
+                </button>
+                <button class="nav-tab" onclick="switchView('flow')" data-view="flow">
+                    Data Flow
+                </button>
+                <button class="nav-tab" onclick="switchView('myth')" data-view="myth">
+                    Myth vs Reality
+                </button>
+            </div>
+        </div>
+        
+        <!-- VIEW 1: INFOGRAPHIC -->
+        <div id="infographic" class="view active">
+            <div class="infographic">
+                <div class="infographic-header">
+                    <h1>🔍 The Privacy Loophole</h1>
+                    <p class="tagline">Analyzing the Conservative Party of Canada's privacy policy through a marketing technology lens</p>
+                </div>
+                
+                <div class="legal-disclaimer">
+                    <strong>⚖️ Legal Disclaimer:</strong>
+                    This is journalistic analysis and commentary, not legal advice. The author is not a lawyer and this does not constitute a legal opinion. For legal advice regarding privacy rights, data protection, or related matters, please consult a qualified attorney. This analysis is based on publicly available documents as of October 2025.
+                </div>
+                
+                <div class="disclaimer">
+                    <strong>Source:</strong> All quotes are from the Conservative Party of Canada's publicly available privacy policy at conservative.ca/privacy-policy. This analysis compares their stated practices against GDPR and CASL standards that apply to commercial entities.
+                </div>
+                
+                <div class="shock-card section-anchor" id="infographic-card-1">
+                    <div class="number">1</div>
+                    <h3>The "Consent" Trick</h3>
+                    <p>In the martech world, consent management is everything. Modern marketing platforms require explicit opt-in, granular consent for different processing activities, and clear documentation of when and how consent was obtained. This is the foundation of GDPR compliance.</p>
+                    <p style="margin-top: 12px;">But when you interact with a political party's website? The rules are completely different:</p>
+                    <div class="the-gap">
+                        <strong>WHAT THE CPC POLICY SAYS:</strong> "If you submit your email... you consent to being added to our email list."
+                    </div>
+                    <p><strong>What this means:</strong> Simply filling out a form = automatic consent for all "political activities." No checkbox, no explicit agreement, no clear scope limitations. Under CASL, this would be illegal for a commercial entity. For political parties? Perfectly acceptable.</p>
+                    <p style="margin-top: 12px; font-style: italic;">Compare this to an e-commerce site where you must check a box saying "Yes, I want to receive marketing emails" - and even then, they can only use your data for the specific purpose you agreed to.</p>
+                </div>
+                
+                <div class="shock-card section-anchor" id="infographic-card-2">
+                    <div class="number">2</div>
+                    <h3>The Internal Sharing Blast Radius</h3>
+                    <p>In enterprise marketing, data access controls are critical. Marketing automation platforms like HubSpot or Salesforce have role-based permissions, audit logs, and strict controls on who can access customer data. GDPR requires organizations to limit data access to only those who need it for specific purposes.</p>
+                    <p style="margin-top: 12px;">Political parties operate under a completely different model:</p>
+                    <div class="the-gap">
+                        <strong>WHAT THE CPC POLICY SAYS:</strong> Your data "may be used and disclosed within our Party (such as to local riding associations, candidates, nomination contestants and leadership contestants)"
+                    </div>
+                    <p><strong>The scale of this:</strong> <span class="stat-big">338</span> riding associations across Canada + hundreds of candidates + nomination contestants + leadership contestants = potentially <strong>thousands of individuals</strong> with access to your:</p>
+                    <ul style="margin: 12px 0 12px 20px; line-height: 1.8;">
+                        <li>Name, address, and contact information</li>
+                        <li>Family member details</li>
+                        <li>Political views and affiliations</li>
+                        <li>Voting preferences and donation history</li>
+                    </ul>
+                    <p style="margin-top: 12px; font-style: italic;">In a commercial context, sharing customer data this broadly without specific consent for each use would be a serious GDPR violation, potentially resulting in fines up to 4% of global revenue.</p>
+                </div>
+                
+                <div class="shock-card section-anchor" id="infographic-card-3">
+                    <div class="number">3</div>
+                    <h3>The "No Sale" Qualifier</h3>
+                    <p>Data brokers and third-party data are hot-button issues in privacy law. GDPR requires transparency about data sources and gives individuals the right to know where their data came from. Modern privacy policies clearly state what data is collected directly vs. acquired from other sources.</p>
+                    <p style="margin-top: 12px;">The CPC's privacy policy includes a seemingly reassuring promise, but read it carefully:</p>
+                    <div class="the-gap">
+                        <strong>WHAT THE CPC POLICY SAYS:</strong> "We will not sell your personal information <strong>that you have chosen to provide to us</strong>"
+                    </div>
+                    <p><strong>The critical qualifier:</strong> "that you have chosen to provide." This carves out a massive exception for data from:</p>
+                    <ul style="margin: 12px 0 12px 20px; line-height: 1.8;">
+                        <li><strong>Elections Canada voter lists:</strong> Your name and address as a registered voter</li>
+                        <li><strong>Publicly available sources:</strong> Property records, social media, public databases</li>
+                        <li><strong>Data enrichment services:</strong> Third-party data appended to your profile</li>
+                        <li><strong>Data acquired through other means:</strong> Canvassing, phone banking responses, event attendance</li>
+                    </ul>
+                    <p style="margin-top: 12px;"><strong>What this means:</strong> The "no sale" promise only covers the small subset of data you directly submitted via their forms. The vast majority of their database—built from voter lists, public sources, and enriched data—isn't covered by this commitment.</p>
+                    <p style="margin-top: 12px; font-style: italic;">A comparable commercial promise would be: "We won't sell the data from your signup form, but all the data we bought about you from data brokers? That's fair game." This would never pass muster under GDPR or modern privacy standards.</p>
+                </div>
+                
+                <div class="shock-card section-anchor" id="infographic-card-4">
+                    <div class="number">4</div>
+                    <h3>The Enforcement Vacuum</h3>
+                    <p>GDPR violations: Up to €20M or 4% of global revenue<br>
+                    CASL violations: Up to $10M in fines</p>
+                    <div class="the-gap">
+                        <strong>WHAT THE CPC POLICY SAYS:</strong> The CPC "is subject to extensive regulation under [the Canada Elections Act]"
+                    </div>
+                    <p><strong>The reality:</strong> Federal political parties are not covered by CASL. Not covered by PIPEDA. Privacy Commissioner has no jurisdiction. The Canada Elections Act has no meaningful privacy enforcement mechanism.*</p>
+                    <p style="font-size: 0.85em; margin-top: 10px; color: #64748b;">*Exception: B.C. residents have enforceable rights under provincial PIPA.</p>
+                </div>
+                
+                <div class="bottom-cta">
+                    <h3>The Bottom Line</h3>
+                    <p>The same Canadian has dramatically different privacy protection depending on whether they're shopping online or engaging with the Conservative Party of Canada.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- VIEW 2: DATA FLOW DIAGRAM -->
+        <div id="flow" class="view">
+            <div class="flow-container">
+                <h1>🔄 Where Your Data Goes in the CPC System</h1>
+                
+                <div class="legal-disclaimer">
+                    <strong>⚖️ Legal Disclaimer:</strong>
+                    This is journalistic analysis and commentary, not legal advice. The author is not a lawyer and this does not constitute a legal opinion. For legal advice regarding privacy rights, data protection, or related matters, please consult a qualified attorney. This analysis is based on publicly available documents as of October 2025.
+                </div>
+                
+                <div class="disclaimer">
+                    Based on the Conservative Party of Canada's privacy policy and Elections Canada regulations.
+                </div>
+                
+                <div class="flow-section section-anchor" id="flow-section-1">
+                    <h2>COLLECTION PHASE</h2>
+                    <div class="flow-row">
+                        <div class="flow-box">
+                            <h4>📝 You Fill a CPC Form</h4>
+                            <p>Sign a petition, RSVP an event, make a donation</p>
+                        </div>
+                        <span class="arrow">→</span>
+                        <div class="flow-box">
+                            <h4>📧 You Get Added</h4>
+                            <p>Name, email, address, political views, family info</p>
+                        </div>
+                    </div>
+                    
+                    <div class="red-flag">
+                        <h4>⚠️ Gap #1: Automatic Consent</h4>
+                        <p>CPC policy: "If you submit your email... you consent to being added to our email list." No explicit opt-in required. Submission = consent for undefined "political activities."</p>
+                        <p style="margin-top: 12px; font-style: italic;"><strong>Note:</strong> This includes responding to unsolicited contact. When you text back to a CPC volunteer - even to say "stop contacting me" - you've technically confirmed your number is active and provided engagement data. That response becomes part of your profile.</p>
+                    </div>
+                </div>
+                
+                <div class="flow-section section-anchor" id="flow-section-2">
+                    <h2>ENRICHMENT PHASE</h2>
+                    <div class="flow-row">
+                        <div class="flow-box">
+                            <h4>📋 Elections Canada Lists</h4>
+                            <p>Name, address of all registered voters</p>
+                        </div>
+                        <span class="arrow">+</span>
+                        <div class="flow-box">
+                            <h4>🌐 Public Sources</h4>
+                            <p>Social media, property records, databases</p>
+                        </div>
+                        <span class="arrow">+</span>
+                        <div class="flow-box">
+                            <h4>📊 Your Submission</h4>
+                            <p>Direct information you provided</p>
+                        </div>
+                    </div>
+                    
+                    <div class="arrow-down">↓</div>
+                    
+                    <div class="flow-row">
+                        <div class="flow-box warning">
+                            <h4>🎯 CPC Database</h4>
+                            <p>Combined, analyzed, scored for likelihood to support</p>
+                        </div>
+                    </div>
+                    
+                    <div class="red-flag">
+                        <h4>⚠️ Gap #2: Data You Didn't Provide</h4>
+                        <p>CPC policy promises not to sell data "you have chosen to provide" - but what about enriched or acquired data? The qualifier creates ambiguity.</p>
+                    </div>
+                </div>
+                
+                <div class="flow-section section-anchor" id="flow-section-3">
+                    <h2>DISTRIBUTION PHASE</h2>
+                    <div class="flow-row">
+                        <div class="flow-box danger">
+                            <h4>⚠️ INTERNAL CPC SHARING</h4>
+                            <p>338 riding associations, candidates, nomination & leadership contestants</p>
+                        </div>
+                    </div>
+                    
+                    <div class="arrow-down">↓</div>
+                    
+                    <div class="flow-row">
+                        <div class="flow-box">
+                            <h4>📍 Local Riding</h4>
+                            <p>Canvassers at your door with lists</p>
+                        </div>
+                        <div class="flow-box">
+                            <h4>📱 Digital Ads</h4>
+                            <p>Targeted based on your profile</p>
+                        </div>
+                        <div class="flow-box">
+                            <h4>☎️ Phone Banks</h4>
+                            <p>Volunteers calling from databases</p>
+                        </div>
+                    </div>
+                    
+                    <div class="red-flag">
+                        <h4>⚠️ Gap #3: Massive Internal Blast Radius</h4>
+                        <p>CPC policy: "your personal information may be used and disclosed within our Party" - shared across entire party structure with no individual consent or scope limits.</p>
+                    </div>
+                </div>
+                
+                <div class="flow-section section-anchor" id="flow-section-4">
+                    <h2>THIRD-PARTY PHASE</h2>
+                    <div class="flow-row">
+                        <div class="flow-box warning">
+                            <h4>🔧 Analytics Vendors</h4>
+                            <p>Google Analytics, third-party cookies</p>
+                        </div>
+                        <div class="flow-box warning">
+                            <h4>📨 Email Platforms</h4>
+                            <p>Mass email service providers</p>
+                        </div>
+                        <div class="flow-box warning">
+                            <h4>🖥️ Web Hosts</h4>
+                            <p>Infrastructure providers</p>
+                        </div>
+                    </div>
+                    
+                    <div class="red-flag">
+                        <h4>⚠️ Gap #4: Third-Party Ad Tracking</h4>
+                        <p>CPC policy allows third-party cookies "to assist in advertising." You can opt-out of ads through Google/AdChoices, but not first-party CPC profiling.</p>
+                    </div>
+                </div>
+                
+                <div class="bottom-cta">
+                    <h3>Notice What's Missing?</h3>
+                    <p>No mandatory breach notification. No data portability rights (except B.C.). No external enforcement. No retention limits. No purpose restrictions beyond "political activities."</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- VIEW 3: MYTH VS REALITY -->
+        <div id="myth" class="view">
+            <div class="mvr-container">
+                <h1>💭 What You Think vs. What the CPC Policy Says</h1>
+                
+                <div class="legal-disclaimer">
+                    <strong>⚖️ Legal Disclaimer:</strong>
+                    This is journalistic analysis and commentary, not legal advice. The author is not a lawyer and this does not constitute a legal opinion. For legal advice regarding privacy rights, data protection, or related matters, please consult a qualified attorney. This analysis is based on publicly available documents as of October 2025.
+                </div>
+                
+                <div class="disclaimer">
+                    These comparisons use direct quotes from the Conservative Party of Canada's privacy policy.
+                </div>
+                
+                <div id="myth-section-1" class="section-anchor">
+                <div class="comparison-row">
+                    <div class="myth-side">
+                        <h3>✅ What You Probably Think</h3>
+                        <p>When I sign a CPC petition or donate, they'll only use my email to contact me about that specific issue or campaign.</p>
+                    </div>
+                    <div class="reality-side">
+                        <h3>⚠️ What the CPC Policy Says</h3>
+                        <p>You've given blanket consent for all "political activities" including fundraising, volunteer recruitment, canvassing, and "customizing your experience."</p>
+                        <div class="quote-box">
+                            CPC Policy: "Our database and lists... are used for political activities such as fundraising, volunteer drives and canvassing"
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+                <div id="myth-section-2" class="section-anchor">
+                <div class="comparison-row">
+                    <div class="myth-side">
+                        <h3>✅ What You Probably Think</h3>
+                        <p>My information stays with the central CPC office - they wouldn't share my personal details without asking me first.</p>
+                    </div>
+                    <div class="reality-side">
+                        <h3>⚠️ What the CPC Policy Says</h3>
+                        <p>Your data flows automatically to hundreds of riding associations, local candidates, nomination contestants, and leadership contestants across the country.</p>
+                        <div class="quote-box">
+                            CPC Policy: "your personal information may be used and disclosed within our Party" - no additional consent required
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+                <div id="myth-section-3" class="section-anchor">
+                <div class="comparison-row">
+                    <div class="myth-side">
+                        <h3>✅ What You Probably Think</h3>
+                        <p>When the CPC says they won't sell my data, that means my information is safe and won't be shared commercially.</p>
+                    </div>
+                    <div class="reality-side">
+                        <h3>⚠️ What the CPC Policy Says</h3>
+                        <p>The no-sale promise only covers data "you have chosen to provide" - not data from voter lists, public sources, or data enrichment. That leaves a massive loophole.</p>
+                        <div class="quote-box">
+                            CPC Policy: "We will not sell your personal information that you have chosen to provide to us"
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+                <div id="myth-section-4" class="section-anchor">
+                <div class="comparison-row">
+                    <div class="myth-side">
+                        <h3>✅ What You Probably Think</h3>
+                        <p>If the CPC mishandles my data, I can complain to the Privacy Commissioner like I would with any company.</p>
+                    </div>
+                    <div class="reality-side">
+                        <h3>⚠️ What the CPC Policy Says</h3>
+                        <p>The CPC claims to be "subject to extensive regulation" under the Canada Elections Act - but federal political parties are not covered by PIPEDA, Privacy Commissioner has no jurisdiction, and CASL exempts political fundraising.*</p>
+                        <div class="quote-box">
+                            *Exception: B.C. residents can enforce rights under provincial PIPA (2024 BCSC ruling)
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+                <div id="myth-section-5" class="section-anchor">
+                <div class="comparison-row">
+                    <div class="myth-side">
+                        <h3>✅ What You Probably Think</h3>
+                        <p>I can request to see all the data the CPC has on me, or ask them to delete it, just like with Google or Facebook.</p>
+                    </div>
+                    <div class="reality-side">
+                        <h3>⚠️ What the CPC Policy Says</h3>
+                        <p>The policy only mentions "updating" your information via email. No general right to access all your data, no data portability, no clear erasure process, no retention schedule.*</p>
+                        <div class="quote-box">
+                            CPC Policy: "If you wish to update your personal information, contact us by e-mail"
+                        </div>
+                    </div>
+                </div>
+                </div>
+                
+                <div id="myth-section-6" class="section-anchor">
+                <div class="comparison-row">
+                    <div class="myth-side">
+                        <h3>✅ What You Probably Think</h3>
+                        <p>Canadian privacy laws protect me equally whether I'm dealing with a business or the Conservative Party.</p>
+                    </div>
+                    <div class="reality-side">
+                        <h3>⚠️ What Actually Happens</h3>
+                        <p>The same Canadian has dramatically different protection levels. Commercial companies face GDPR-style rules, CASL penalties up to $10M, and Privacy Commissioner oversight. The CPC? None of the above.</p>
+                    </div>
+                </div>
+                </div>
+                
+                <div class="bottom-cta">
+                    <h3>Why Does This Matter?</h3>
+                    <p>These aren't just policy differences - they represent a fundamental imbalance in how Canadian law protects citizens. Your grocery store faces more privacy restrictions than the Conservative Party of Canada.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Floating scroll button -->
+    <button class="scroll-down-btn" id="floatingScrollBtn" onclick="scrollToNext()" aria-label="Scroll to next section">
+        ↓
+    </button>
+    
+    <!-- Bottom navigation -->
+    <div class="bottom-navigation" id="bottomNav">
+        <div class="bottom-nav-title">Jump to another view:</div>
+        <div class="bottom-nav-buttons">
+            <button class="bottom-nav-btn" onclick="switchView('infographic')" data-view="infographic">
+                Infographic
+            </button>
+            <button class="bottom-nav-btn" onclick="switchView('flow')" data-view="flow">
+                Data Flow
+            </button>
+            <button class="bottom-nav-btn" onclick="switchView('myth')" data-view="myth">
+                Myth vs Reality
+            </button>
+        </div>
+    </div>
+    
+    <script>
+        let currentView = 'infographic';
+        
+        const sections = {
+            'infographic': [
+                'infographic-card-1',
+                'infographic-card-2',
+                'infographic-card-3',
+                'infographic-card-4'
+            ],
+            'flow': [
+                'flow-section-1',
+                'flow-section-2',
+                'flow-section-3',
+                'flow-section-4'
+            ],
+            'myth': [
+                'myth-section-1',
+                'myth-section-2',
+                'myth-section-3',
+                'myth-section-4',
+                'myth-section-5',
+                'myth-section-6'
+            ]
+        };
+        
+        function switchView(viewId) {
+            currentView = viewId;
+            
+            document.querySelectorAll('.view').forEach(view => {
+                view.classList.remove('active');
+            });
+            
+            document.getElementById(viewId).classList.add('active');
+            
+            document.querySelectorAll('.nav-tab, .bottom-nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-view') === viewId) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            updateNavigation();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        function getCurrentSectionIndex() {
+            const currentSections = sections[currentView];
+            const scrollTop = window.scrollY;
+            const viewElement = document.getElementById(currentView);
+            
+            if (!viewElement) return 0;
+            
+            const viewRect = viewElement.getBoundingClientRect();
+            const viewTop = window.scrollY + viewRect.top;
+            
+            if (scrollTop < viewTop + 300) {
+                return 0;
+            }
+            
+            let currentIndex = 0;
+            
+            for (let i = 0; i < currentSections.length; i++) {
+                const element = document.getElementById(currentSections[i]);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    const elementTop = window.scrollY + rect.top;
+                    
+                    if (scrollTop >= elementTop - 150) {
+                        currentIndex = i;
+                    }
+                }
+            }
+            
+            return currentIndex;
+        }
+        
+        function scrollToNext() {
+            const currentSections = sections[currentView];
+            const viewElement = document.getElementById(currentView);
+            
+            if (!viewElement) return;
+            
+            const scrollTop = window.scrollY;
+            const viewRect = viewElement.getBoundingClientRect();
+            const viewTop = window.scrollY + viewRect.top;
+            
+            if (scrollTop < viewTop + 300) {
+                const firstElement = document.getElementById(currentSections[0]);
+                if (firstElement) {
+                    firstElement.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start'
+                    });
+                    return;
+                }
+            }
+            
+            const currentIndex = getCurrentSectionIndex();
+            const nextIndex = currentIndex + 1;
+            
+            if (nextIndex < currentSections.length) {
+                const nextElement = document.getElementById(currentSections[nextIndex]);
+                if (nextElement) {
+                    nextElement.scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start'
+                    });
+                }
+            }
+        }
+        
+        function updateNavigation() {
+            const scrollBtn = document.getElementById('floatingScrollBtn');
+            const bottomNav = document.getElementById('bottomNav');
+            const topNav = document.querySelector('.nav-tabs');
+            const currentSections = sections[currentView];
+            
+            const scrollPosition = window.scrollY;
+            const scrollBottom = scrollPosition + window.innerHeight;
+            const documentHeight = document.documentElement.scrollHeight;
+            
+            const currentIndex = getCurrentSectionIndex();
+            const isLastSection = currentIndex >= currentSections.length - 1;
+            const nearBottom = scrollBottom >= documentHeight - 200;
+            
+            if (scrollPosition < 50) {
+                topNav.classList.remove('hidden');
+                bottomNav.classList.remove('visible');
+                scrollBtn.classList.remove('hidden');
+            }
+            else if (nearBottom || isLastSection) {
+                topNav.classList.add('hidden');
+                bottomNav.classList.add('visible');
+                scrollBtn.classList.add('hidden');
+                
+                document.querySelectorAll('.bottom-nav-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.getAttribute('data-view') === currentView) {
+                        btn.classList.add('active');
+                    }
+                });
+            }
+            else {
+                topNav.classList.add('hidden');
+                bottomNav.classList.remove('visible');
+                scrollBtn.classList.remove('hidden');
+            }
+        }
+        
+        let scrollTimeout;
+        window.addEventListener('scroll', function() {
+            clearTimeout(scrollTimeout);
+            scrollTimeout = setTimeout(updateNavigation, 50);
+        });
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            updateNavigation();
+        });
+    </script>
+</body>
+</html>
