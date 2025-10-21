@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conservative Party Opt-Out Tool</title>
+  <meta
+    name="description"
+    content="Step-by-step guide to help supporters and voters opt out of Conservative Party of Canada communications, unsubscribe from outreach, and exercise privacy rights under PIPEDA."
+  />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Northern Variables" />
+  <meta property="og:locale" content="en_CA" />
+  <meta property="og:title" content="Conservative Party Opt-Out Tool" />
+  <meta
+    property="og:description"
+    content="Generate a deletion request, unsubscribe from outreach, and learn how to protect your voter privacy with this guided opt-out flow for the Conservative Party of Canada."
+  />
+  <meta property="og:url" content="https://artifacts.northernvariables.ca/cpc-opt-out.html" />
+  <meta
+    property="og:image"
+    content="https://northernvariables.ca/wp-content/uploads/2025/10/Northern-Variables.jpg"
+  />
+  <meta property="og:image:alt" content="Northern Variables logo" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Conservative Party Opt-Out Tool" />
+  <meta
+    name="twitter:description"
+    content="Use this guided assistant to send a deletion request, unsubscribe, and remove yourself from Conservative Party outreach lists."
+  />
+  <meta
+    name="twitter:image"
+    content="https://northernvariables.ca/wp-content/uploads/2025/10/Northern-Variables.jpg"
+  />
+  <meta name="twitter:image:alt" content="Northern Variables logo" />
+  <link rel="icon" href="https://northernvariables.ca/wp-content/uploads/2025/10/cropped-NV-Favicon-32x32.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      background: linear-gradient(180deg, #0f172a 0%, #1e293b 35%, #f8fafc 100%);
+      min-height: 100vh;
+    }
+  </style>
+</head>
+<body class="antialiased">
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState } = React;
+
+    const Icon = ({ className = '', children }) => (
+      <svg
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        className={className}
+        aria-hidden="true"
+      >
+        {children}
+      </svg>
+    );
+
+    const CopyIcon = (props) => (
+      <Icon {...props}>
+        <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+      </Icon>
+    );
+
+    const CheckIcon = (props) => (
+      <Icon {...props}>
+        <polyline points="20 6 9 17 4 12" />
+      </Icon>
+    );
+
+    const MailIcon = (props) => (
+      <Icon {...props}>
+        <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z" />
+        <polyline points="22 6 12 13 2 6" />
+      </Icon>
+    );
+
+    const LogOutIcon = (props) => (
+      <Icon {...props}>
+        <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+        <polyline points="16 17 21 12 16 7" />
+        <line x1="21" y1="12" x2="9" y2="12" />
+      </Icon>
+    );
+
+    const ChevronRightIcon = (props) => (
+      <Icon {...props}>
+        <polyline points="9 18 15 12 9 6" />
+      </Icon>
+    );
+
+    const ChevronLeftIcon = (props) => (
+      <Icon {...props}>
+        <polyline points="15 18 9 12 15 6" />
+      </Icon>
+    );
+
+    const ShareIcon = (props) => (
+      <Icon {...props}>
+        <circle cx="18" cy="5" r="3" />
+        <circle cx="6" cy="12" r="3" />
+        <circle cx="18" cy="19" r="3" />
+        <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" />
+        <line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+      </Icon>
+    );
+
+    function CPCOptOutTool() {
+      const [currentStep, setCurrentStep] = useState(0);
+      const [userInfo, setUserInfo] = useState({
+        fullName: '',
+        address: '',
+        email: '',
+        phone: '',
+      });
+      const [copied, setCopied] = useState(false);
+      const [linkCopied, setLinkCopied] = useState(false);
+
+      const samplePersonas = {
+        minimal: {
+          fullName: 'John Smith',
+          address: '123 Main Street, Toronto, ON M5V 2T6',
+          email: 'john.smith@email.com',
+          phone: '416-555-0123',
+        },
+      };
+
+      const handlePersonaSelect = (persona) => {
+        setUserInfo(samplePersonas[persona]);
+      };
+
+      const copyText = async (value) => {
+        if (!value) return;
+
+        if (navigator.clipboard?.writeText) {
+          await navigator.clipboard.writeText(value);
+          return;
+        }
+
+        const tempInput = document.createElement('textarea');
+        tempInput.value = value;
+        tempInput.setAttribute('readonly', '');
+        tempInput.style.position = 'absolute';
+        tempInput.style.left = '-9999px';
+        document.body.appendChild(tempInput);
+        tempInput.select();
+        document.execCommand('copy');
+        document.body.removeChild(tempInput);
+      };
+
+      const handleQuickUnsubscribe = () => {
+        const unsubscribeUrl = 'https://www.conservative.ca/unsubscribe-me/';
+        window.open(unsubscribeUrl, '_blank', 'noopener');
+        if (userInfo.email) {
+          copyText(userInfo.email).catch((err) => {
+            console.error('Failed to copy email:', err);
+          });
+        }
+      };
+
+      const generateLetter = () => `Hello — I am writing to request that the Conservative Party of Canada delete all personal information you hold about me and stop using it for any communication or sharing with third parties. Please:
+
+• Confirm whether you hold personal information about me (name, address, email, phone, donation history, voter source, political affiliation, voting preferences, family information, demographic data, social media records, interaction history).
+
+• Delete or anonymize all personal information you hold about me in ALL systems, databases, and backups under your control.
+
+• Provide a comprehensive list of ALL third party service providers, vendors, contractors, data processors, and partner organizations (including but not limited to: riding associations, candidates, nomination contestants, leadership contestants, telemarketing firms, analytics providers, email service providers, website hosts, and data brokers such as InfoCanada) with whom you have shared my personal information.
+
+• Confirm that you have instructed ALL third parties listed above to delete my personal information from their systems, and provide written confirmation from each third party that they have completed this deletion.
+
+• Identify and delete any information that has been "linked to, enriched from, or derived from" my personal information, including any profiles, scores, predictions, or inferred data created using my information.
+
+• Confirm that you have flagged or removed my information from any purchased datasets (such as those from InfoCanada, Canada Post's change of address service, or other data vendors) to prevent re-acquisition of my data.
+
+• Confirm that you have removed me from all e-mail lists, phone lists, SMS lists, mailing lists, canvassing lists, and any third-party lists to which you have provided my information.
+
+• Provide written confirmation of ALL actions taken, including the date of completion, the specific systems from which data was deleted, and the names of third parties who were instructed to delete my data.
+
+My details to identify the record:
+Full name: ${userInfo.fullName || '[your full name]'}
+Address: ${userInfo.address || '[your postal address]'}
+Email: ${userInfo.email || '[your email]'}
+Phone: ${userInfo.phone || '[your phone]'}
+
+I understand I may be asked to provide identification to verify my request. If you need anything further, please contact me at the email address above.
+
+Please send your response to this email address within the time required by law (30 days). Thank you.`;
+
+      const copyToClipboard = async () => {
+        try {
+          await copyText(generateLetter());
+          setCopied(true);
+          window.setTimeout(() => setCopied(false), 2000);
+        } catch (err) {
+          console.error('Failed to copy:', err);
+        }
+      };
+
+      const copyShareLink = async () => {
+        try {
+          await copyText(window.location.href);
+          setLinkCopied(true);
+          window.setTimeout(() => setLinkCopied(false), 2000);
+        } catch (err) {
+          console.error('Failed to copy link:', err);
+        }
+      };
+
+      const sendEmail = () => {
+        const subject = encodeURIComponent(
+          'Request to delete and stop using my personal information (PIPEDA access/deletion request)'
+        );
+        const body = encodeURIComponent(generateLetter());
+        window.location.href = `mailto:?subject=${subject}&body=${body}`;
+      };
+
+      const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
+      const shareText =
+        'Check out this tool to opt out of Conservative Party of Canada communications and exercise your privacy rights under PIPEDA.';
+
+      const shareToFacebook = () => {
+        window.open(
+          `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
+          '_blank',
+          'noopener'
+        );
+      };
+
+      const shareToTwitter = () => {
+        window.open(
+          `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(shareUrl)}`,
+          '_blank',
+          'noopener'
+        );
+      };
+
+      const shareToLinkedIn = () => {
+        window.open(
+          `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
+          '_blank',
+          'noopener'
+        );
+      };
+
+      const shareToWhatsApp = () => {
+        window.open(
+          `https://wa.me/?text=${encodeURIComponent(`${shareText} ${shareUrl}`)}`,
+          '_blank',
+          'noopener'
+        );
+      };
+
+      const shareViaEmail = () => {
+        const subject = encodeURIComponent('Conservative Party Opt-Out Tool');
+        const body = encodeURIComponent(`${shareText}\n\n${shareUrl}`);
+        window.location.href = `mailto:?subject=${subject}&body=${body}`;
+      };
+
+      const isFormValid = Boolean(userInfo.fullName && userInfo.address && userInfo.email);
+
+      const steps = [
+        {
+          title: 'Your Information',
+          description: 'First, we need your contact details to generate your personalized deletion request.',
+          content: (
+            <div>
+              <div className="mb-4">
+                <button
+                  onClick={() => handlePersonaSelect('minimal')}
+                  className="px-4 py-2 text-sm bg-blue-100 hover:bg-blue-200 text-blue-700 rounded font-medium"
+                >
+                  Use Sample Data
+                </button>
+              </div>
+
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+                  <input
+                    type="text"
+                    value={userInfo.fullName}
+                    onChange={(e) => setUserInfo({ ...userInfo, fullName: e.target.value })}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="John Smith"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Email Address *</label>
+                  <input
+                    type="email"
+                    value={userInfo.email}
+                    onChange={(e) => setUserInfo({ ...userInfo, email: e.target.value })}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="your.email@example.com"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Full Address *</label>
+                  <input
+                    type="text"
+                    value={userInfo.address}
+                    onChange={(e) => setUserInfo({ ...userInfo, address: e.target.value })}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="123 Main Street, City, Province, Postal Code"
+                  />
+                  <p className="text-xs text-gray-500 mt-1">
+                    Your address helps identify your records and stops physical mail
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number (optional)</label>
+                  <input
+                    type="tel"
+                    value={userInfo.phone}
+                    onChange={(e) => setUserInfo({ ...userInfo, phone: e.target.value })}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    placeholder="416-555-0123"
+                  />
+                </div>
+              </div>
+
+              {!isFormValid && (
+                <div className="mt-4 p-3 bg-amber-50 border border-amber-200 rounded-lg">
+                  <p className="text-sm text-amber-800">Please fill in all required fields (*) to continue</p>
+                </div>
+              )}
+            </div>
+          ),
+        },
+        {
+          title: 'Send Deletion Request',
+          description: 'Now send your formal data deletion request under PIPEDA. This is your legal right.',
+          content: (
+            <div>
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                <h3 className="font-semibold text-blue-900 mb-2">What happens next:</h3>
+                <ol className="text-sm text-blue-800 space-y-2 list-decimal list-inside">
+                  <li>Your email client will open with a pre-filled deletion request</li>
+                  <li>You'll need to add the Privacy Officer's email address (we'll show you where to find it)</li>
+                  <li>Click send - the Conservative Party must respond within 30 days</li>
+                </ol>
+              </div>
+
+              <div className="bg-white border border-gray-300 rounded-lg p-4 mb-6">
+                <div className="flex justify-between items-center mb-2">
+                  <h3 className="font-semibold text-sm">Preview Your Letter</h3>
+                  <button
+                    onClick={copyToClipboard}
+                    className="flex items-center gap-1 px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-sm"
+                  >
+                    {copied ? <CheckIcon className="h-3 w-3" /> : <CopyIcon className="h-3 w-3" />}
+                    {copied ? 'Copied!' : 'Copy'}
+                  </button>
+                </div>
+                <pre className="text-xs bg-gray-50 p-3 rounded border border-gray-200 max-h-48 overflow-y-auto font-mono whitespace-pre-wrap">
+                  {generateLetter()}
+                </pre>
+              </div>
+
+              <button
+                onClick={sendEmail}
+                className="w-full flex items-center justify-center gap-2 py-4 px-6 bg-green-600 text-white rounded-lg hover:bg-green-700 font-semibold text-lg"
+              >
+                <MailIcon className="h-6 w-6" />
+                Open Email &amp; Send Deletion Request
+              </button>
+
+              <div className="mt-4 p-3 bg-gray-100 rounded-lg text-xs text-gray-700">
+                <strong>Important:</strong> When your email opens, add the Privacy Officer's address in the "To:" field. Find it on the{' '}
+                <a
+                  href="https://www.conservative.ca/privacy-policy/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-600 hover:underline font-medium"
+                >
+                  Conservative Party privacy page
+                </a>
+                .
+              </div>
+            </div>
+          ),
+        },
+        {
+          title: 'Unsubscribe from Emails',
+          description: 'Next, unsubscribe from their email list. This stops emails immediately.',
+          content: (
+            <div>
+              <div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-6">
+                <h3 className="font-semibold text-red-900 mb-2">What happens next:</h3>
+                <ol className="text-sm text-red-800 space-y-2 list-decimal list-inside">
+                  <li>We'll open the Conservative Party unsubscribe page</li>
+                  <li>Your email address will be copied to your clipboard</li>
+                  <li>Paste your email into the form and click unsubscribe</li>
+                  <li>You'll stop receiving emails within 24-48 hours</li>
+                </ol>
+              </div>
+
+              <div className="bg-white border border-gray-300 rounded-lg p-4 mb-6">
+                <p className="text-sm text-gray-700 mb-2">
+                  <strong>Your email to paste:</strong>
+                </p>
+                <div className="bg-gray-50 p-3 rounded border border-gray-200 font-mono text-sm break-all">
+                  {userInfo.email || 'Add your email in Step 1'}
+                </div>
+              </div>
+
+              <button
+                onClick={handleQuickUnsubscribe}
+                className="w-full flex items-center justify-center gap-2 py-4 px-6 bg-red-600 text-white rounded-lg hover:bg-red-700 font-semibold text-lg"
+              >
+                <LogOutIcon className="h-6 w-6" />
+                Open Unsubscribe Page (Email Copied)
+              </button>
+
+              <div className="mt-4 p-3 bg-gray-100 rounded-lg text-xs text-gray-700">
+                After clicking, a new tab will open with the unsubscribe page and your email will be copied. Paste it into the form and submit!
+              </div>
+            </div>
+          ),
+        },
+        {
+          title: 'Unfollow Social Media',
+          description: 'Unfollow, unlike, and unsubscribe from Conservative Party social media accounts across all platforms.',
+          content: (
+            <div>
+              <div className="bg-purple-50 border border-purple-200 rounded-lg p-4 mb-6">
+                <h3 className="font-semibold text-purple-900 mb-2">Stop Social Media Content</h3>
+                <p className="text-sm text-purple-800 mb-3">
+                  Even after unsubscribing from emails, you may still see Conservative Party content on social media. Unfollow or unlike their pages to stop seeing their posts in your feeds.
+                </p>
+              </div>
+
+              <div className="space-y-4 mb-6">
+                <div className="bg-white border border-gray-300 rounded-lg p-4">
+                  <div className="flex items-start gap-3">
+                    <div className="bg-blue-100 p-2 rounded">
+                      <svg className="h-6 w-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-gray-900 mb-1">Facebook</h4>
+                      <p className="text-sm text-gray-600 mb-3">Unlike their page to stop seeing posts</p>
+                      <a
+                        href="https://www.facebook.com/cpcpcc/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-sm bg-blue-600 text-white px-3 py-1.5 rounded hover:bg-blue-700 font-medium"
+                      >
+                        Go to Page
+                        <ChevronRightIcon className="h-4 w-4" />
+                      </a>
+                      <p className="text-xs text-gray-500 mt-2">Click "Liked" or "Following" → Select "Unlike" or "Unfollow"</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white border border-gray-300 rounded-lg p-4">
+                  <div className="flex items-start gap-3">
+                    <div className="bg-black p-2 rounded">
+                      <svg className="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-gray-900 mb-1">Twitter / X</h4>
+                      <p className="text-sm text-gray-600 mb-3">Unfollow @CPC_HQ</p>
+                      <a
+                        href="https://x.com/cpc_hq"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-sm bg-black text-white px-3 py-1.5 rounded hover:bg-gray-800 font-medium"
+                      >
+                        Go to Profile
+                        <ChevronRightIcon className="h-4 w-4" />
+                      </a>
+                      <p className="text-xs text-gray-500 mt-2">Click "Following" button → Confirm unfollow</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white border border-gray-300 rounded-lg p-4">
+                  <div className="flex items-start gap-3">
+                    <div className="bg-gradient-to-br from-purple-600 to-pink-500 p-2 rounded">
+                      <svg className="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-gray-900 mb-1">Instagram</h4>
+                      <p className="text-sm text-gray-600 mb-3">Unfollow @cpc_hq</p>
+                      <a
+                        href="https://www.instagram.com/cpc_hq/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-sm bg-pink-600 text-white px-3 py-1.5 rounded hover:bg-pink-700 font-medium"
+                      >
+                        Go to Profile
+                        <ChevronRightIcon className="h-4 w-4" />
+                      </a>
+                      <p className="text-xs text-gray-500 mt-2">Click "Following" button → Confirm unfollow</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white border border-gray-300 rounded-lg p-4">
+                  <div className="flex items-start gap-3">
+                    <div className="bg-red-600 p-2 rounded">
+                      <svg className="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-gray-900 mb-1">YouTube</h4>
+                      <p className="text-sm text-gray-600 mb-3">Unsubscribe from their channel</p>
+                      <a
+                        href="https://www.youtube.com/@conservativepartyofcanada"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-sm bg-red-600 text-white px-3 py-1.5 rounded hover:bg-red-700 font-medium"
+                      >
+                        Go to Channel
+                        <ChevronRightIcon className="h-4 w-4" />
+                      </a>
+                      <p className="text-xs text-gray-500 mt-2">Click "Subscribed" button → Select "Unsubscribe"</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="bg-white border border-gray-300 rounded-lg p-4">
+                  <div className="flex items-start gap-3">
+                    <div className="bg-blue-700 p-2 rounded">
+                      <svg className="h-6 w-6 text-white" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                      </svg>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-semibold text-gray-900 mb-1">LinkedIn</h4>
+                      <p className="text-sm text-gray-600 mb-3">Unfollow company page</p>
+                      <a
+                        href="https://www.linkedin.com/company/conservative-party-of-canada"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 text-sm bg-blue-700 text-white px-3 py-1.5 rounded hover:bg-blue-800 font-medium"
+                      >
+                        Go to Page
+                        <ChevronRightIcon className="h-4 w-4" />
+                      </a>
+                      <p className="text-xs text-gray-500 mt-2">Click "Following" → Confirm unfollow</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gray-100 rounded-lg p-4 text-xs text-gray-700">
+                <h4 className="font-semibold text-gray-900 mb-2 text-sm">Note about TikTok</h4>
+                The Conservative Party does not have an official TikTok account due to security concerns. If you see Conservative content on TikTok, it's from individual politicians, supporters, or third-party accounts.
+              </div>
+            </div>
+          ),
+        },
+        {
+          title: 'Understand Your Voter Privacy Options',
+          description: 'Learn about how Elections Canada handles your information and what privacy options are available.',
+          content: (
+            <div>
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
+                <h3 className="font-semibold text-blue-900 mb-2">Where Political Parties Get Your Information</h3>
+                <p className="text-sm text-blue-800 mb-3">
+                  Political parties in Canada receive voter information from Elections Canada's National Register of Electors. This is how they get names, addresses, and other contact details for outreach during elections.
+                </p>
+                <p className="text-sm text-blue-800">
+                  Elections Canada provides information about your privacy options and how your electoral information is used. You can learn about what choices are available to you.
+                </p>
+              </div>
+
+              <div className="bg-white border border-gray-300 rounded-lg p-5 mb-6">
+                <h3 className="font-semibold text-gray-900 mb-3">Important Information:</h3>
+                <div className="space-y-3 text-sm text-gray-700">
+                  <div className="flex gap-3">
+                    <div className="text-green-600 font-bold min-w-[24px]">✓</div>
+                    <div>You can still vote even if you're not on the National Register — just bring ID to your polling station</div>
+                  </div>
+                  <div className="flex gap-3">
+                    <div className="text-blue-600 font-bold min-w-[24px]">ℹ</div>
+                    <div>The Register helps ensure you receive voter information cards and can vote more easily</div>
+                  </div>
+                  <div className="flex gap-3">
+                    <div className="text-amber-600 font-bold min-w-[24px]">⚠</div>
+                    <div>Elections Canada provides detailed information about how your data is used and your privacy options</div>
+                  </div>
+                </div>
+              </div>
+
+              <a
+                href="https://www.elections.ca/content.aspx?section=vot&dir=reg&document=index&lang=e"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-center gap-2 py-4 px-6 bg-blue-600 text-white rounded-lg hover:bg-blue-700 font-semibold text-lg mb-4"
+              >
+                Visit Elections Canada - Learn About Your Options
+                <ChevronRightIcon className="h-6 w-6" />
+              </a>
+
+              <div className="bg-gray-100 rounded-lg p-4 text-xs text-gray-700">
+                <strong>This step is optional and informational.</strong> Elections Canada's website explains all your privacy options, how political parties use voter information, and what choices you can make. Review their official guidance before making any changes to the National Register of Electors.
+              </div>
+            </div>
+          ),
+        },
+        {
+          title: "Done! What to Expect",
+          description: "You've completed the opt-out process. Here's what happens next.",
+          content: (
+            <div>
+              <div className="bg-green-50 border border-green-200 rounded-lg p-6 mb-6 text-center">
+                <div className="text-4xl mb-3">✓</div>
+                <h3 className="font-bold text-green-900 text-xl mb-2">You're All Set!</h3>
+                <p className="text-green-800">You've taken all the key steps to opt out of Conservative Party communications.</p>
+              </div>
+
+              <div className="bg-blue-50 border border-blue-200 rounded-lg p-5 mb-6">
+                <div className="flex items-center gap-2 mb-3">
+                  <ShareIcon className="h-5 w-5 text-blue-700" />
+                  <h3 className="font-semibold text-blue-900">Share This Tool</h3>
+                </div>
+                <p className="text-sm text-blue-800 mb-4">
+                  Help others exercise their privacy rights. Share this opt-out tool with friends and family.
+                </p>
+
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                  <button
+                    onClick={shareToFacebook}
+                    className="flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 text-sm font-medium"
+                  >
+                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+                    </svg>
+                    Facebook
+                  </button>
+
+                  <button
+                    onClick={shareToTwitter}
+                    className="flex items-center justify-center gap-2 px-3 py-2 bg-black text-white rounded hover:bg-gray-800 text-sm font-medium"
+                  >
+                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                    Twitter
+                  </button>
+
+                  <button
+                    onClick={shareToLinkedIn}
+                    className="flex items-center justify-center gap-2 px-3 py-2 bg-blue-700 text-white rounded hover:bg-blue-800 text-sm font-medium"
+                  >
+                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+                    </svg>
+                    LinkedIn
+                  </button>
+
+                  <button
+                    onClick={shareToWhatsApp}
+                    className="flex items-center justify-center gap-2 px-3 py-2 bg-green-600 text-white rounded hover:bg-green-700 text-sm font-medium"
+                  >
+                    <svg className="h-4 w-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+                    </svg>
+                    WhatsApp
+                  </button>
+
+                  <button
+                    onClick={shareViaEmail}
+                    className="flex items-center justify-center gap-2 px-3 py-2 bg-gray-600 text-white rounded hover:bg-gray-700 text-sm font-medium"
+                  >
+                    <MailIcon className="h-4 w-4" />
+                    Email
+                  </button>
+
+                  <button
+                    onClick={copyShareLink}
+                    className="flex items-center justify-center gap-2 px-3 py-2 bg-gray-200 text-gray-700 rounded hover:bg-gray-300 text-sm font-medium"
+                  >
+                    {linkCopied ? <CheckIcon className="h-4 w-4" /> : <CopyIcon className="h-4 w-4" />}
+                    {linkCopied ? 'Copied!' : 'Copy Link'}
+                  </button>
+                </div>
+              </div>
+
+              <div className="bg-white border border-gray-300 rounded-lg p-5 mb-6">
+                <h3 className="font-semibold text-gray-900 mb-3">What to Expect:</h3>
+                <div className="space-y-3 text-sm text-gray-700">
+                  <div className="flex gap-3">
+                    <div className="font-bold text-blue-600 min-w-[80px]">24-48 hours:</div>
+                    <div>Email unsubscribe takes effect</div>
+                  </div>
+                  <div className="flex gap-3">
+                    <div className="font-bold text-blue-600 min-w-[80px]">30 days:</div>
+                    <div>Conservative Party must respond to your deletion request</div>
+                  </div>
+                  <div className="flex gap-3">
+                    <div className="font-bold text-blue-600 min-w-[80px]">If no response:</div>
+                    <div>File a complaint with the Office of the Privacy Commissioner</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-amber-50 border border-amber-200 rounded-lg p-4 mb-6 text-sm text-amber-800">
+                <h3 className="font-semibold text-amber-900 mb-2">Next Steps if They Don't Respond:</h3>
+                If the Conservative Party doesn't respond within 30 days, file a formal complaint with the Office of the Privacy Commissioner:
+                <a
+                  href="https://www.priv.gc.ca/en/report-a-concern/file-a-formal-privacy-complaint/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-sm font-medium text-amber-900 hover:text-amber-700 underline ml-1"
+                >
+                  File Complaint
+                  <ChevronRightIcon className="h-4 w-4" />
+                </a>
+              </div>
+
+              <div className="bg-gray-100 rounded-lg p-4 text-xs text-gray-700">
+                <h3 className="font-semibold text-gray-900 mb-2 text-sm">Helpful Resources:</h3>
+                <ul className="space-y-2">
+                  <li>
+                    <a
+                      href="https://www.conservative.ca/privacy-policy/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
+                      Conservative Party Privacy Policy
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.priv.gc.ca/en/privacy-topics/privacy-laws-in-canada/the-personal-information-protection-and-electronic-documents-act-pipeda/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
+                      About PIPEDA (Your Privacy Rights)
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://crtc.gc.ca/eng/phone/telemarketing/identif.htm"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-600 hover:underline"
+                    >
+                      National Do Not Call List Info
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          ),
+        },
+      ];
+
+      return (
+        <div className="max-w-4xl mx-auto py-10 px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-2xl shadow-2xl p-6 sm:p-10">
+            <header className="mb-8 text-center">
+              <p className="text-sm uppercase tracking-[0.32em] text-blue-700 mb-3 font-semibold">
+                Northern Variables Toolkit
+              </p>
+              <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 mb-3">Conservative Party Opt-Out</h1>
+              <p className="text-gray-600 max-w-2xl mx-auto">
+                Follow this guided workflow to exercise your privacy rights, send deletion requests, and stop unwanted outreach from the Conservative Party of Canada.
+              </p>
+            </header>
+
+            <section className="mb-10">
+              <div className="flex justify-between text-xs text-gray-600 mb-2">
+                <span>
+                  Step {currentStep + 1} of {steps.length}
+                </span>
+                <span>{Math.round(((currentStep + 1) / steps.length) * 100)}%</span>
+              </div>
+              <div className="w-full bg-gray-200 rounded-full h-2">
+                <div
+                  className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+                  style={{ width: `${((currentStep + 1) / steps.length) * 100}%` }}
+                />
+              </div>
+            </section>
+
+            <section className="mb-10">
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">{steps[currentStep].title}</h2>
+              <p className="text-gray-600 mb-6">{steps[currentStep].description}</p>
+              <div>{steps[currentStep].content}</div>
+            </section>
+
+            <nav className="flex flex-col sm:flex-row justify-between gap-4">
+              <button
+                onClick={() => setCurrentStep(Math.max(0, currentStep - 1))}
+                disabled={currentStep === 0}
+                className={`flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition ${
+                  currentStep === 0
+                    ? 'bg-gray-200 text-gray-400 cursor-not-allowed'
+                    : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                }`}
+              >
+                <ChevronLeftIcon className="h-5 w-5" />
+                Back
+              </button>
+
+              {currentStep < steps.length - 1 ? (
+                <button
+                  onClick={() => setCurrentStep(Math.min(steps.length - 1, currentStep + 1))}
+                  disabled={currentStep === 0 && !isFormValid}
+                  className={`flex items-center justify-center gap-2 px-6 py-3 rounded-lg font-medium transition ${
+                    currentStep === 0 && !isFormValid
+                      ? 'bg-gray-300 text-gray-500 cursor-not-allowed'
+                      : 'bg-blue-600 text-white hover:bg-blue-700'
+                  }`}
+                >
+                  Next Step
+                  <ChevronRightIcon className="h-5 w-5" />
+                </button>
+              ) : (
+                <button
+                  onClick={() => setCurrentStep(0)}
+                  className="flex items-center justify-center gap-2 px-6 py-3 bg-green-600 text-white rounded-lg hover:bg-green-700 font-medium transition"
+                >
+                  Start Over
+                </button>
+              )}
+            </nav>
+          </div>
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<CPCOptOutTool />);
+  </script>
+</body>
+</html>
