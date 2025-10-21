@@ -1,5 +1,7 @@
 const { useState, useMemo, useEffect, useReducer, useCallback } = React;
 
+const TERRITORY_CODES = new Set(['YT', 'NT', 'NU']);
+
 const rechartsAvailable = typeof window !== 'undefined' && typeof window.Recharts === 'object' && window.Recharts !== null;
 
 const createChartFallback = (message) => {
@@ -163,7 +165,8 @@ const UI_COPY = {
         next: 'Next'
       },
       didYouKnowTitle: 'Did you know?',
-      provincialTag: 'PROVINCIAL'
+      provincialTag: 'PROVINCIAL',
+      territorialTag: 'TERRITORIAL'
     },
     scale: {
       labels: [
@@ -321,16 +324,19 @@ const UI_COPY = {
       loading: 'Loading Vote Spectrum experience...'
     },
     provinces: {
-      Alberta: 'Alberta',
-      'British Columbia': 'British Columbia',
-      Manitoba: 'Manitoba',
-      'New Brunswick': 'New Brunswick',
-      'Newfoundland and Labrador': 'Newfoundland and Labrador',
-      'Nova Scotia': 'Nova Scotia',
-      Ontario: 'Ontario',
-      'Prince Edward Island': 'Prince Edward Island',
-      Quebec: 'Quebec',
-      Saskatchewan: 'Saskatchewan'
+      AB: 'Alberta',
+      BC: 'British Columbia',
+      MB: 'Manitoba',
+      NB: 'New Brunswick',
+      NL: 'Newfoundland and Labrador',
+      NS: 'Nova Scotia',
+      ON: 'Ontario',
+      PE: 'Prince Edward Island',
+      QC: 'Quebec',
+      SK: 'Saskatchewan',
+      YT: 'Yukon',
+      NT: 'Northwest Territories',
+      NU: 'Nunavut'
     },
     pastVoteOptions: {
       'Conservative Party': 'Conservative Party',
@@ -411,7 +417,8 @@ const UI_COPY = {
         next: 'Suivant'
       },
       didYouKnowTitle: 'Le saviez-vous?',
-      provincialTag: 'PROVINCIAL'
+      provincialTag: 'PROVINCIAL',
+      territorialTag: 'TERRITORIAL'
     },
     scale: {
       labels: [
@@ -569,16 +576,19 @@ const UI_COPY = {
       loading: 'Chargement de l’expérience Spectre du vote...'
     },
     provinces: {
-      Alberta: 'Alberta',
-      'British Columbia': 'Colombie-Britannique',
-      Manitoba: 'Manitoba',
-      'New Brunswick': 'Nouveau-Brunswick',
-      'Newfoundland and Labrador': 'Terre-Neuve-et-Labrador',
-      'Nova Scotia': 'Nouvelle-Écosse',
-      Ontario: 'Ontario',
-      'Prince Edward Island': "Île-du-Prince-Édouard",
-      Quebec: 'Québec',
-      Saskatchewan: 'Saskatchewan'
+      AB: 'Alberta',
+      BC: 'Colombie-Britannique',
+      MB: 'Manitoba',
+      NB: 'Nouveau-Brunswick',
+      NL: 'Terre-Neuve-et-Labrador',
+      NS: 'Nouvelle-Écosse',
+      ON: 'Ontario',
+      PE: "Île-du-Prince-Édouard",
+      QC: 'Québec',
+      SK: 'Saskatchewan',
+      YT: 'Yukon',
+      NT: 'Territoires du Nord-Ouest',
+      NU: 'Nunavut'
     },
     pastVoteOptions: {
       'Conservative Party': 'Parti conservateur du Canada',
@@ -594,18 +604,7 @@ const UI_COPY = {
   }
 };
 
-const PROVINCE_ORDER = [
-  'Alberta',
-  'British Columbia',
-  'Manitoba',
-  'New Brunswick',
-  'Newfoundland and Labrador',
-  'Nova Scotia',
-  'Ontario',
-  'Prince Edward Island',
-  'Quebec',
-  'Saskatchewan'
-];
+const PROVINCE_ORDER = ['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'ON', 'PE', 'QC', 'SK', 'YT', 'NT', 'NU'];
 
 const PAST_VOTE_OPTIONS = [
   'Conservative Party',
@@ -739,6 +738,18 @@ const getKnowledgeLocalization = (question, i18n, translations) => {
 const getPastVoteLabel = (value, i18n) => i18n.lookup(`pastVoteOptions.${value}`, value);
 
 const getProvinceLabel = (value, i18n) => i18n.lookup(`provinces.${value}`, value);
+
+const getRelevantProvinceTags = (question, province) => {
+  if (!question || question.jurisdiction !== 'provincial') {
+    return [];
+  }
+
+  if (!province || !Array.isArray(question.province_gate)) {
+    return [];
+  }
+
+  return question.province_gate.filter((code) => code === province);
+};
 
 const translatePartyName = (code, parties, translations, i18n) => {
   const party = parties[code];
@@ -1033,7 +1044,10 @@ const QuestionsScreen = ({
   const issueLabel = currentQuestion
     ? getIssueBucketLabel(currentQuestion.issue_bucket, i18n, translations, issueBucketLabels[currentQuestion.issue_bucket])
     : '';
-  const provinceLabel = province ? getProvinceLabel(province, i18n) : '';
+  const relevantProvinceTags = useMemo(
+    () => getRelevantProvinceTags(currentQuestion, province),
+    [currentQuestion, province]
+  );
 
   if (!questions.length || !currentQuestion) {
     return (
@@ -1076,11 +1090,15 @@ const QuestionsScreen = ({
                 <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
                   {issueLabel.toUpperCase()}
                 </span>
-                {currentQuestion.jurisdiction === 'provincial' && (
-                  <span className="inline-block px-3 py-1 bg-purple-100 text-purple-800 text-xs font-semibold rounded-full">
-                    {provinceLabel} {i18n.t('questions.provincialTag')}
-                  </span>
-                )}
+                {currentQuestion.jurisdiction === 'provincial' &&
+                  relevantProvinceTags.map((code) => (
+                    <span
+                      key={code}
+                      className="inline-block px-3 py-1 bg-purple-100 text-purple-800 text-xs font-semibold rounded-full"
+                    >
+                      {code} {i18n.t(TERRITORY_CODES.has(code) ? 'questions.territorialTag' : 'questions.provincialTag')}
+                    </span>
+                  ))}
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4 h-[10rem] flex items-start overflow-y-auto">
                 {questionText}
