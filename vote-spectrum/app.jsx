@@ -324,16 +324,19 @@ const UI_COPY = {
       loading: 'Loading Vote Spectrum experience...'
     },
     provinces: {
-      Alberta: 'Alberta',
-      'British Columbia': 'British Columbia',
-      Manitoba: 'Manitoba',
-      'New Brunswick': 'New Brunswick',
-      'Newfoundland and Labrador': 'Newfoundland and Labrador',
-      'Nova Scotia': 'Nova Scotia',
-      Ontario: 'Ontario',
-      'Prince Edward Island': 'Prince Edward Island',
-      Quebec: 'Quebec',
-      Saskatchewan: 'Saskatchewan'
+      AB: 'Alberta',
+      BC: 'British Columbia',
+      MB: 'Manitoba',
+      NB: 'New Brunswick',
+      NL: 'Newfoundland and Labrador',
+      NS: 'Nova Scotia',
+      ON: 'Ontario',
+      PE: 'Prince Edward Island',
+      QC: 'Quebec',
+      SK: 'Saskatchewan',
+      YT: 'Yukon',
+      NT: 'Northwest Territories',
+      NU: 'Nunavut'
     },
     pastVoteOptions: {
       'Conservative Party': 'Conservative Party',
@@ -573,16 +576,19 @@ const UI_COPY = {
       loading: 'Chargement de l’expérience Spectre du vote...'
     },
     provinces: {
-      Alberta: 'Alberta',
-      'British Columbia': 'Colombie-Britannique',
-      Manitoba: 'Manitoba',
-      'New Brunswick': 'Nouveau-Brunswick',
-      'Newfoundland and Labrador': 'Terre-Neuve-et-Labrador',
-      'Nova Scotia': 'Nouvelle-Écosse',
-      Ontario: 'Ontario',
-      'Prince Edward Island': "Île-du-Prince-Édouard",
-      Quebec: 'Québec',
-      Saskatchewan: 'Saskatchewan'
+      AB: 'Alberta',
+      BC: 'Colombie-Britannique',
+      MB: 'Manitoba',
+      NB: 'Nouveau-Brunswick',
+      NL: 'Terre-Neuve-et-Labrador',
+      NS: 'Nouvelle-Écosse',
+      ON: 'Ontario',
+      PE: "Île-du-Prince-Édouard",
+      QC: 'Québec',
+      SK: 'Saskatchewan',
+      YT: 'Yukon',
+      NT: 'Territoires du Nord-Ouest',
+      NU: 'Nunavut'
     },
     pastVoteOptions: {
       'Conservative Party': 'Parti conservateur du Canada',
@@ -598,18 +604,7 @@ const UI_COPY = {
   }
 };
 
-const PROVINCE_ORDER = [
-  'Alberta',
-  'British Columbia',
-  'Manitoba',
-  'New Brunswick',
-  'Newfoundland and Labrador',
-  'Nova Scotia',
-  'Ontario',
-  'Prince Edward Island',
-  'Quebec',
-  'Saskatchewan'
-];
+const PROVINCE_ORDER = ['AB', 'BC', 'MB', 'NB', 'NL', 'NS', 'ON', 'PE', 'QC', 'SK', 'YT', 'NT', 'NU'];
 
 const PAST_VOTE_OPTIONS = [
   'Conservative Party',
