@@ -1,5 +1,7 @@
 const { useState, useMemo, useEffect, useReducer, useCallback } = React;
 
+const TERRITORY_CODES = new Set(['YT', 'NT', 'NU']);
+
 const rechartsAvailable = typeof window !== 'undefined' && typeof window.Recharts === 'object' && window.Recharts !== null;
 
 const createChartFallback = (message) => {
@@ -163,7 +165,8 @@ const UI_COPY = {
         next: 'Next'
       },
       didYouKnowTitle: 'Did you know?',
-      provincialTag: 'PROVINCIAL'
+      provincialTag: 'PROVINCIAL',
+      territorialTag: 'TERRITORIAL'
     },
     scale: {
       labels: [
@@ -411,7 +414,8 @@ const UI_COPY = {
         next: 'Suivant'
       },
       didYouKnowTitle: 'Le saviez-vous?',
-      provincialTag: 'PROVINCIAL'
+      provincialTag: 'PROVINCIAL',
+      territorialTag: 'TERRITORIAL'
     },
     scale: {
       labels: [
@@ -740,6 +744,18 @@ const getPastVoteLabel = (value, i18n) => i18n.lookup(`pastVoteOptions.${value}`
 
 const getProvinceLabel = (value, i18n) => i18n.lookup(`provinces.${value}`, value);
 
+const getRelevantProvinceTags = (question, province) => {
+  if (!question || question.jurisdiction !== 'provincial') {
+    return [];
+  }
+
+  if (!province || !Array.isArray(question.province_gate)) {
+    return [];
+  }
+
+  return question.province_gate.filter((code) => code === province);
+};
+
 const translatePartyName = (code, parties, translations, i18n) => {
   const party = parties[code];
   if (!party) {
@@ -1033,7 +1049,10 @@ const QuestionsScreen = ({
   const issueLabel = currentQuestion
     ? getIssueBucketLabel(currentQuestion.issue_bucket, i18n, translations, issueBucketLabels[currentQuestion.issue_bucket])
     : '';
-  const provinceLabel = province ? getProvinceLabel(province, i18n) : '';
+  const relevantProvinceTags = useMemo(
+    () => getRelevantProvinceTags(currentQuestion, province),
+    [currentQuestion, province]
+  );
 
   if (!questions.length || !currentQuestion) {
     return (
@@ -1076,11 +1095,15 @@ const QuestionsScreen = ({
                 <span className="inline-block px-3 py-1 bg-blue-100 text-blue-800 text-xs font-semibold rounded-full">
                   {issueLabel.toUpperCase()}
                 </span>
-                {currentQuestion.jurisdiction === 'provincial' && (
-                  <span className="inline-block px-3 py-1 bg-purple-100 text-purple-800 text-xs font-semibold rounded-full">
-                    {provinceLabel} {i18n.t('questions.provincialTag')}
-                  </span>
-                )}
+                {currentQuestion.jurisdiction === 'provincial' &&
+                  relevantProvinceTags.map((code) => (
+                    <span
+                      key={code}
+                      className="inline-block px-3 py-1 bg-purple-100 text-purple-800 text-xs font-semibold rounded-full"
+                    >
+                      {code} {i18n.t(TERRITORY_CODES.has(code) ? 'questions.territorialTag' : 'questions.provincialTag')}
+                    </span>
+                  ))}
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4 h-[10rem] flex items-start overflow-y-auto">
                 {questionText}
