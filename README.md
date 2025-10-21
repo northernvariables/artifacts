@@ -1,119 +1,46 @@
-# Northern Variables - Interactive Demos
+# Northern Variables Artifacts
 
-This repository hosts interactive React-based demonstrations and components created by Northern Variables. These demos are embedded on our main website and showcase various capabilities and solutions.
+This repository contains the production-ready HTML artifacts that power the interactive experiences on [artifacts.northernvariables.ca](https://artifacts.northernvariables.ca). The site curates data stories, public opinion tools, and policy explainers produced by Northern Variables for use across newsrooms, client deliverables, and the main corporate site.
 
-## 🚀 Live Site
+Each artifact is a self-contained page with all required scripts, styles, and data. The repository is published directly to GitHub Pages, so commits to `main` are automatically deployed.
 
-View all demos: `https://northernvariables.github.io/artifacts/`
+## 📁 Key Directories & Files
 
-## 📁 Repository Structure
+- `index.html` – Landing page and directory listing for every live artifact.
+- `assets/` – Shared static assets such as SVG maps and party logos.
+- `canada-federal-election-45-tracker.html`, `canada-map.html`, `canadian-identity-network.html`, etc. – Individual interactive explainers and dashboards.
+- `vote-spectrum/` – Source files for the Vote Spectrum survey experience, including React components and data modules that are bundled for the published `vote-spectrum.html` page.
+- `submission-widget.js` – Lightweight embed script used for form integrations across artifacts.
+- `_template.html` – Base HTML shell used by the automation pipeline when new artifacts are generated.
 
-```
-artifacts/
-├── index.html              # Directory page listing all demos
-├── _template.html          # Template for creating new demos
-├── example-demo.html       # Example/test demo
-├── your-demo-1.html        # Your demos go here
-├── your-demo-2.html
-└── README.md
-```
+## 🛠️ How New Artifacts Are Added
 
-## ✨ Adding a New Demo
+Artifacts are produced through the Codex automation workflow: prompts and configuration files live in the private operations repository, and Codex writes the compiled HTML (and any supporting assets) directly into this project. Manual setup steps are no longer required.
 
-### Step 1: Get Your Artifact from Claude
-Create your interactive component using Claude and copy the React code.
+If you need to introduce a new interactive outside the automated flow:
 
-### Step 2: Create New Demo File
-```bash
-# Copy the template
-cp _template.html new-demo-name.html
-```
+1. Duplicate `_template.html` and rename the copy to match your artifact.
+2. Drop in the generated markup/scripts or point to modules under `vote-spectrum/` if the experience is React-based.
+3. Update `index.html` with a new card so the artifact appears on the landing page.
+4. Commit the files on `main`; deployment is handled by GitHub Pages.
 
-### Step 3: Paste Your Code
-Open `new-demo-name.html` and paste your Claude artifact code where indicated in the template.
+## 🧰 Technology Snapshot
 
-### Step 4: Test Locally
-Open the HTML file in your browser to verify it works correctly.
+- Static HTML exports with embedded React (via Babel Standalone) for interactive views.
+- Tailwind CSS and utility-first styling baked into each artifact.
+- Client-side JSON/JS modules for survey logic and data visualization.
+- GitHub Pages for hosting and SSL.
 
-### Step 5: Push to GitHub
-```bash
-git add .
-git commit -m "Add new demo: [demo name]"
-git push origin main
-```
+## 📄 Licensing
 
-### Step 6: Update Index Page (Optional)
-Add your new demo to `index.html` in the demo grid:
+All artifacts are © 2025 Northern Variables. Public viewing is permitted; reuse or redistribution requires written permission.
 
-```html
-<a href="new-demo-name.html" class="demo-card">
-  <div class="icon">🎯</div>
-  <h3>Your Demo Title</h3>
-  <p>Brief description of what this demo does.</p>
-</a>
-```
+## 📬 Contact
 
-### Step 7: Embed in WordPress
-Use an iframe in Elementor's HTML widget:
-
-```html
-<div style="width: 100%; max-width: 1200px; margin: 0 auto;">
-  <iframe 
-    src="https://northernvariables.github.io/artifacts/new-demo-name.html"
-    style="width: 100%; height: 600px; border: none; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);"
-    title="Demo Name"
-  ></iframe>
-</div>
-```
-
-## 🎨 Customization
-
-### Brand Colors
-Edit the CSS variables in `_template.html`:
-
-```css
-:root {
-  --nv-primary: #1e40af;
-  --nv-primary-dark: #1e3a8a;
-  --nv-accent: #3b82f6;
-}
-```
-
-### Header/Footer
-The template includes an optional header with the Northern Variables logo. To remove it from specific demos, delete or comment out the header section in that demo file.
-
-## 🛠️ Technology Stack
-
-- **React 18** - UI framework
-- **Tailwind CSS** - Styling
-- **Babel Standalone** - JSX compilation
-- **Lucide Icons** - Icon library (optional)
-- **GitHub Pages** - Hosting
-
-## 📊 Traffic & Bandwidth
-
-GitHub Pages provides:
-- 100GB bandwidth per month
-- ~2 million page loads capacity
-- Suitable for most business demo needs
-
-If traffic exceeds limits, consider migrating to Vercel or Netlify.
-
-## 📝 License & Usage
-
-All code in this repository is © 2025 Northern Variables. 
-
-These demonstrations are publicly viewable for portfolio and reference purposes. The code may not be copied, modified, or distributed without explicit written permission from Northern Variables.
-
-## 📧 Contact
-
-**Northern Variables**
 - Website: [northernvariables.ca](https://northernvariables.ca)
-- Substack: [axorc.substack.com](https://axorc.substack.com)
-- Email: contact@northernvariables.ca
-
-For licensing inquiries or custom demo requests, please reach out.
+- Email: [contact@northernvariables.ca](mailto:contact@northernvariables.ca)
+- Updates: [axorc.substack.com](https://axorc.substack.com)
 
 ---
 
-*Last updated: October 2025*
+*Last updated: November 2025*
