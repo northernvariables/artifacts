@@ -257,7 +257,7 @@ const VoteCompass = () => {
     const provincialAxisScores = {};
     const provincialAxisWeights = {};
 
-    const axes = Object.keys(parties.CPC).filter((key) => key !== 'name' && key !== 'color');
+    const axes = Object.keys(parties.CPC).filter((key) => typeof parties.CPC[key] === 'number');
     axes.forEach((axis) => {
       axisScores[axis] = 0;
       axisWeights[axis] = 0;
