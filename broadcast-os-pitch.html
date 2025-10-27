@@ -1,0 +1,1565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Broadcast OS Pitch - Connexxia Inc.</title>
+  <meta name="description" content="Broadcast OS is the AI-powered operating system that transforms anyone into a professional broadcaster." />
+  <meta property="og:title" content="Broadcast OS Pitch" />
+  <meta property="og:description" content="Broadcast OS is the AI-powered operating system that transforms anyone into a professional broadcaster." />
+  <meta property="og:image" content="https://northernvariables.ca/wp-content/uploads/2025/10/Northern-Variables.jpg" />
+  <meta property="og:image:alt" content="Northern Variables logo" />
+  <meta property="og:image:secure_url" content="https://northernvariables.ca/wp-content/uploads/2025/10/Northern-Variables.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Broadcast OS Pitch" />
+  <meta name="twitter:description" content="Broadcast OS is the AI-powered operating system that transforms anyone into a professional broadcaster." />
+  <meta name="twitter:image" content="https://northernvariables.ca/wp-content/uploads/2025/10/Northern-Variables.jpg" />
+  <meta name="twitter:image:alt" content="Northern Variables logo" />
+
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: [
+              'Inter',
+              'ui-sans-serif',
+              'system-ui',
+              '-apple-system',
+              'BlinkMacSystemFont',
+              'Segoe UI',
+              'Roboto',
+              'Helvetica Neue',
+              'Arial',
+              'Noto Sans',
+              'sans-serif'
+            ]
+          }
+        }
+      }
+    };
+  </script>
+  <script src="https://unpkg.com/lucide-react@latest/dist/lucide-react.umd.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
+      background: radial-gradient(circle at top, rgba(148, 163, 184, 0.12), transparent 45%), #0f172a;
+      color: #e2e8f0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    #root,
+    .broadcast-os-app {
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    @supports (overflow-x: clip) {
+      #root,
+      .broadcast-os-app {
+        overflow-x: clip;
+      }
+    }
+
+    .content-shell {
+      width: min(100%, 80rem);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 4vw, 1.75rem);
+    }
+
+    @supports (padding: max(0px)) {
+      .content-shell {
+        padding-left: max(clamp(1.25rem, 4vw, 1.75rem), env(safe-area-inset-left));
+        padding-right: max(clamp(1.25rem, 4vw, 1.75rem), env(safe-area-inset-right));
+      }
+    }
+
+    .scrollbar-hide::-webkit-scrollbar {
+      display: none;
+    }
+
+    .scrollbar-hide {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .glass-panel {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.86), rgba(15, 23, 42, 0.6));
+      backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useEffect, useState } = React;
+
+    const lucideExports = window.LucideReact || window.lucideReact || {};
+
+    const createEmojiIcon = (symbol) => {
+      const Icon = ({ className = '', ...rest }) => (
+        <span role="img" aria-hidden="true" className={`inline-flex items-center justify-center ${className}`} {...rest}>
+          {symbol}
+        </span>
+      );
+      Icon.displayName = `Emoji${symbol}`;
+      return Icon;
+    };
+
+    const resolveIcon = (name, fallback) => {
+      if (lucideExports && typeof lucideExports[name] === 'function') {
+        return lucideExports[name];
+      }
+      return createEmojiIcon(fallback);
+    };
+
+    const iconRegistry = {
+      Sparkles: resolveIcon('Sparkles', '✨'),
+      Zap: resolveIcon('Zap', '⚡'),
+      TrendingUp: resolveIcon('TrendingUp', '📈'),
+      DollarSign: resolveIcon('DollarSign', '💵'),
+      Users: resolveIcon('Users', '👥'),
+      Video: resolveIcon('Video', '🎬'),
+      Brain: resolveIcon('Brain', '🧠'),
+      Network: resolveIcon('Network', '🕸️'),
+      Globe: resolveIcon('Globe', '🌐'),
+      Rocket: resolveIcon('Rocket', '🚀'),
+      Target: resolveIcon('Target', '🎯'),
+      Award: resolveIcon('Award', '🏆'),
+      GitBranch: resolveIcon('GitBranch', '🌿'),
+      Radio: resolveIcon('Radio', '📻'),
+      Database: resolveIcon('Database', '🗄️'),
+      Shield: resolveIcon('Shield', '🛡️'),
+      BarChart: resolveIcon('BarChart', '📊'),
+      Share2: resolveIcon('Share2', '🔁'),
+      Clock: resolveIcon('Clock', '⏱️'),
+      Cloud: resolveIcon('Cloud', '☁️')
+    };
+
+    const BroadcastOSPitch = () => {
+      const [activeSlide, setActiveSlide] = useState(0);
+
+      const {
+        Sparkles,
+        Zap,
+        TrendingUp,
+        DollarSign,
+        Users,
+        Video,
+        Brain,
+        Network,
+        Globe,
+        Rocket,
+        Target,
+        Award,
+        GitBranch,
+        Radio,
+        Database,
+        Shield,
+        BarChart,
+        Share2,
+        Clock,
+        Cloud
+      } = iconRegistry;
+
+      const slides = [
+        { id: 'pitch', title: 'The Ultimate Pitch', icon: Rocket },
+        { id: 'problem', title: 'The Problem', icon: Target },
+        { id: 'solution', title: 'Our Solution', icon: Sparkles },
+        { id: 'why-now', title: 'Why Now', icon: Clock },
+        { id: 'technology', title: 'Technology Stack', icon: Brain },
+        { id: 'graph-advantage', title: 'Graph Database Power', icon: Network },
+        { id: 'ai-features', title: 'AI Capabilities', icon: Zap },
+        { id: 'business-model', title: 'Business Model', icon: DollarSign },
+        { id: 'market', title: 'Market Opportunity', icon: Globe },
+        { id: 'traction', title: 'Go-to-Market', icon: TrendingUp }
+      ];
+
+      const problemStats = [
+        {
+          stat: '73%',
+          label: 'of independent creators lack technical skills for professional production',
+          icon: Users,
+          gradient: 'from-red-900 to-slate-900',
+          border: 'border-red-500'
+        },
+        {
+          stat: '$50K+',
+          label: 'average cost to build professional broadcast infrastructure',
+          icon: DollarSign,
+          gradient: 'from-orange-900 to-slate-900',
+          border: 'border-orange-500'
+        },
+        {
+          stat: '80%',
+          label: 'of podcast content never gets repurposed across channels',
+          icon: Video,
+          gradient: 'from-yellow-900 to-slate-900',
+          border: 'border-yellow-500'
+        },
+        {
+          stat: '6-12 mo',
+          label: 'time to build & integrate traditional broadcast tech stack',
+          icon: Clock,
+          gradient: 'from-blue-900 to-slate-900',
+          border: 'border-blue-500'
+        }
+      ];
+
+      const aiCapabilities = [
+        {
+          category: 'Content Intelligence',
+          features: [
+            'Automatic transcription & translation (50+ languages)',
+            'AI-powered editing: find best moments, create clips',
+            'SEO optimization: titles, descriptions, tags',
+            'Content repurposing: podcast → blog → social → newsletter',
+            'Smart summarization for every format'
+          ],
+          icon: Brain,
+          gradient: 'from-purple-900 to-slate-900',
+          border: 'border-purple-500'
+        },
+        {
+          category: 'Production Automation',
+          features: [
+            'Virtual studio with AI camera direction',
+            'Real-time graphics & lower-thirds generation',
+            'Voice synthesis for narration & translation',
+            'Background removal & virtual sets',
+            'Automated multi-camera switching'
+          ],
+          icon: Video,
+          gradient: 'from-blue-900 to-slate-900',
+          border: 'border-blue-500'
+        },
+        {
+          category: 'Real-Time Intelligence',
+          features: [
+            'Live fact-checking with source citations',
+            'On-air AI Q&A assistant',
+            'Real-time sentiment analysis',
+            'Dynamic content recommendations',
+            'Automated moderation & content safety'
+          ],
+          icon: Zap,
+          gradient: 'from-yellow-900 to-slate-900',
+          border: 'border-yellow-500'
+        },
+        {
+          category: 'Audience & Analytics',
+          features: [
+            'Predictive engagement scoring',
+            'Personalized content recommendations',
+            'Automated A/B testing',
+            'Revenue optimization algorithms',
+            'Churn prediction & retention strategies'
+          ],
+          icon: BarChart,
+          gradient: 'from-green-900 to-slate-900',
+          border: 'border-green-500'
+        }
+      ];
+
+      const graphAdvantages = [
+        {
+          feature: 'Content Lineage',
+          benefit: 'Track every derivative of every piece of content',
+          businessImpact: 'Automated revenue attribution across content chains',
+          icon: GitBranch
+        },
+        {
+          feature: 'Creator Networks',
+          benefit: 'Map all collaborations and cross-promotions',
+          businessImpact: 'Smart recommendations for creator partnerships',
+          icon: Users
+        },
+        {
+          feature: 'Rights Management',
+          benefit: 'Complex permissions in simple graph queries',
+          businessImpact: 'Instant access control, no permission bugs',
+          icon: Shield
+        },
+        {
+          feature: 'Recommendation Engine',
+          benefit: 'Native graph algorithms for content discovery',
+          businessImpact: '10x faster recommendations = better retention',
+          icon: TrendingUp
+        }
+      ];
+
+      const businessMetrics = [
+        {
+          metric: 'Revenue Model',
+          details: [
+            'SaaS: $99-999/creator/month tiered pricing',
+            'Transaction fee: 5-10% of creator earnings',
+            'Enterprise: Custom licensing for media companies',
+            'Marketplace: 20% commission on templates/plugins'
+          ],
+          gradient: 'from-green-900 to-slate-900',
+          border: 'border-green-500'
+        },
+        {
+          metric: 'Unit Economics',
+          details: [
+            'CAC: $500 (content marketing + partnerships)',
+            'LTV: $12,000 (3-year retention @ $350/mo avg)',
+            'Gross margin: 80% (cloud infrastructure costs)',
+            'Payback period: 1.4 months'
+          ],
+          gradient: 'from-blue-900 to-slate-900',
+          border: 'border-blue-500'
+        },
+        {
+          metric: 'Growth Drivers',
+          details: [
+            'Network effects: More creators = better AI training',
+            'Viral coefficient: 1.4 (creator referrals)',
+            'Cross-sell: Start with tools, upsell to full OS',
+            'Land & expand: Individual → team → enterprise'
+          ],
+          gradient: 'from-purple-900 to-slate-900',
+          border: 'border-purple-500'
+        }
+      ];
+
+      const marketData = [
+        {
+          segment: 'Independent Creators',
+          size: '50M+ worldwide',
+          tam: '$15B',
+          description: 'YouTubers, podcasters, Substackers, citizen journalists',
+          gradient: 'from-blue-900 to-slate-900',
+          border: 'border-blue-500'
+        },
+        {
+          segment: 'SMB Media Companies',
+          size: '100K+ companies',
+          tam: '$25B',
+          description: 'Local news, niche publishers, corporate media',
+          gradient: 'from-purple-900 to-slate-900',
+          border: 'border-purple-500'
+        },
+        {
+          segment: 'Enterprise Broadcasters',
+          size: '5K+ organizations',
+          tam: '$40B',
+          description: 'Regional broadcasters, media conglomerates, streaming services',
+          gradient: 'from-orange-900 to-slate-900',
+          border: 'border-orange-500'
+        }
+      ];
+
+      const growthPhases = [
+        {
+          phase: 'Phase 1: Founding Cohort',
+          timeline: 'Months 0-6',
+          goal: '~10 creators',
+          strategy: 'Hand-picked, co-develop product with them',
+          metrics: 'Product-market fit, feature validation'
+        },
+        {
+          phase: 'Phase 2: Early Adopters',
+          timeline: 'Months 6-12',
+          goal: '50-100 creators',
+          strategy: 'Referrals from founding cohort, targeted outreach',
+          metrics: 'Retention > 90%, NPS > 50'
+        },
+        {
+          phase: 'Phase 3: Growth',
+          timeline: 'Months 12-24',
+          goal: '500-1,000 creators',
+          strategy: 'Content marketing, partnerships, paid acquisition',
+          metrics: 'Viral coefficient > 1.2, payback < 3 months'
+        },
+        {
+          phase: 'Phase 4: Scale',
+          timeline: 'Months 24-36',
+          goal: '5,000+ creators',
+          strategy: 'Platform network effects, enterprise sales',
+          metrics: '$10M+ ARR, 50%+ YoY growth'
+        }
+      ];
+
+      useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, [activeSlide]);
+      useEffect(() => {
+        const style = document.createElement('style');
+        style.textContent = `
+          .scrollbar-hide::-webkit-scrollbar { display: none; }
+          .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+        `;
+        document.head.appendChild(style);
+        return () => document.head.removeChild(style);
+      }, []);
+
+      useEffect(() => {
+        const handleKeyDown = (e) => {
+          if (e.key === 'ArrowRight' && activeSlide < slides.length - 1) {
+            setActiveSlide((prev) => Math.min(prev + 1, slides.length - 1));
+          } else if (e.key === 'ArrowLeft' && activeSlide > 0) {
+            setActiveSlide((prev) => Math.max(prev - 1, 0));
+          }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+      }, [activeSlide, slides.length]);
+
+      return (
+        <div className="broadcast-os-app w-full min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
+          <div className="fixed top-0 left-0 right-0 glass-panel border-b border-slate-800/80 z-[100] shadow-lg">
+            <div className="content-shell py-3 md:py-4">
+              <div className="flex items-center justify-between gap-4 mb-3">
+                <div className="flex items-center gap-3 flex-shrink-0">
+                  <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-2 rounded-lg shadow-md">
+                    <Sparkles size={20} className="md:w-6 md:h-6 text-white" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-base md:text-lg">Broadcast OS</div>
+                    <div className="text-xs text-slate-400 hidden sm:block">AI-Powered Graph Broadcasting Platform</div>
+                  </div>
+                </div>
+              </div>
+              <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide" role="tablist">
+                {slides.map((slide, index) => (
+                  <button
+                    key={slide.id}
+                    onClick={() => setActiveSlide(index)}
+                    className={`px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-semibold transition-all whitespace-nowrap flex-shrink-0 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-400 ${
+                      activeSlide === index
+                        ? 'bg-blue-600 text-white shadow-lg'
+                        : 'bg-slate-800/80 text-slate-300 hover:bg-slate-700'
+                    }`}
+                    role="tab"
+                    aria-selected={activeSlide === index}
+                  >
+                    {index + 1}. {slide.title}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="h-32 md:h-36"></div>
+
+          <div className="pb-40 min-h-screen">
+            <div className="content-shell">
+              {activeSlide === 0 && (
+                <section className="min-h-[80vh] flex flex-col justify-center">
+                  <div className="text-center mb-12">
+                    <div className="inline-block mb-6">
+                      <div className="bg-gradient-to-r from-blue-600 via-purple-600 to-pink-600 p-1 rounded-2xl shadow-2xl">
+                        <div className="bg-slate-900 px-8 py-4 rounded-xl border border-slate-800/70">
+                          <div className="text-6xl font-bold bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 text-transparent bg-clip-text">
+                            Broadcast OS
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                      Turn Anyone Into a
+                      <br />
+                      <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+                        Professional Broadcaster
+                      </span>
+                    </h1>
+
+                    <p className="text-2xl text-slate-300 mb-8 max-w-4xl mx-auto">
+                      The AI-powered operating system that makes professional broadcasting
+                      <span className="text-blue-400 font-semibold"> 100x easier</span> and
+                      <span className="text-purple-400 font-semibold"> 10x cheaper</span>
+                    </p>
+
+                    <div className="flex flex-wrap justify-center gap-4 mb-12">
+                      <div className="bg-gradient-to-r from-blue-900 to-blue-800 px-8 py-4 rounded-xl border-2 border-blue-500 shadow-lg">
+                        <div className="text-3xl font-bold text-blue-300">$80B</div>
+                        <div className="text-sm text-slate-300">Market Opportunity</div>
+                      </div>
+                      <div className="bg-gradient-to-r from-purple-900 to-purple-800 px-8 py-4 rounded-xl border-2 border-purple-500 shadow-lg">
+                        <div className="text-3xl font-bold text-purple-300">50M+</div>
+                        <div className="text-sm text-slate-300">Potential Creators</div>
+                      </div>
+                      <div className="bg-gradient-to-r from-pink-900 to-pink-800 px-8 py-4 rounded-xl border-2 border-pink-500 shadow-lg">
+                        <div className="text-3xl font-bold text-pink-300">24/7</div>
+                        <div className="text-sm text-slate-300">Automated Streams</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-3 gap-6 mb-12">
+                    <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-8 rounded-2xl border border-slate-700 shadow-lg">
+                      <div className="bg-blue-600 w-16 h-16 rounded-xl flex items-center justify-center mb-4 shadow-md">
+                        <Brain size={32} />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-3">AI-Native</h3>
+                      <p className="text-slate-300">
+                        Every function powered by AI: editing, fact-checking, graphics, recommendations, and production automation
+                      </p>
+                    </div>
+
+                    <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-8 rounded-2xl border border-slate-700 shadow-lg">
+                      <div className="bg-purple-600 w-16 h-16 rounded-xl flex items-center justify-center mb-4 shadow-md">
+                        <Network size={32} />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-3">Graph-Powered</h3>
+                      <p className="text-slate-300">
+                        Native relationship modeling for content lineage, creator networks, and revenue attribution
+                      </p>
+                    </div>
+
+                    <div className="bg-gradient-to-br from-slate-800 to-slate-900 p-8 rounded-2xl border border-slate-700 shadow-lg">
+                      <div className="bg-pink-600 w-16 h-16 rounded-xl flex items-center justify-center mb-4 shadow-md">
+                        <Rocket size={32} />
+                      </div>
+                      <h3 className="text-2xl font-bold mb-3">Platform Play</h3>
+                      <p className="text-slate-300">
+                        Not just software—it's an OS that media companies and creators build their entire operation on
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-emerald-900 to-teal-900 p-8 rounded-2xl border-2 border-emerald-500 shadow-2xl">
+                    <div className="flex items-center gap-4 mb-4 flex-wrap">
+                      <Award size={40} className="text-emerald-400" />
+                      <h3 className="text-3xl font-bold">The Unfair Advantage</h3>
+                    </div>
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div>
+                        <h4 className="text-xl font-semibold text-emerald-400 mb-3">What Makes Us Different</h4>
+                        <ul className="space-y-2 text-slate-300">
+                          <li className="flex items-start gap-2">
+                            <span className="text-emerald-400 text-xl">✓</span>
+                            <span><strong>Complete OS</strong>, not just tools—everything integrated</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-emerald-400 text-xl">✓</span>
+                            <span><strong>Graph architecture</strong> solves problems competitors can't</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-emerald-400 text-xl">✓</span>
+                            <span><strong>AI-first design</strong>—built for automation from day one</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-emerald-400 text-xl">✓</span>
+                            <span><strong>Network effects</strong>—value compounds with every creator</span>
+                          </li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-semibold text-emerald-400 mb-3">Why This Wins</h4>
+                        <ul className="space-y-2 text-slate-300">
+                          <li className="flex items-start gap-2">
+                            <span className="text-emerald-400 text-xl">✓</span>
+                            <span>Creators get professional results <strong>without technical skills</strong></span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-emerald-400 text-xl">✓</span>
+                            <span>Media companies <strong>10x their output</strong> with same team</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-emerald-400 text-xl">✓</span>
+                            <span><strong>Viral growth</strong> through creator collaboration features</span>
+                          </li>
+                          <li className="flex items-start gap-2">
+                            <span className="text-emerald-400 text-xl">✓</span>
+                            <span>Data moat: Every interaction <strong>trains better AI</strong></span>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              )}
+              {activeSlide === 1 && (
+                <section>
+                  <h2 className="text-5xl font-bold mb-6 text-center">The Problem is Massive</h2>
+                  <p className="text-xl text-slate-400 text-center mb-12 max-w-3xl mx-auto">
+                    Creating professional broadcast content requires expensive infrastructure,
+                    technical expertise, and massive time investment
+                  </p>
+
+                  <div className="grid md:grid-cols-2 gap-6 mb-12">
+                    {problemStats.map((stat) => (
+                      <div
+                        key={stat.stat}
+                        className={`bg-gradient-to-br ${stat.gradient} p-8 rounded-2xl border-2 ${stat.border} shadow-xl`}
+                      >
+                        <stat.icon size={48} className="text-white mb-4" />
+                        <div className="text-5xl font-bold mb-2">{stat.stat}</div>
+                        <p className="text-slate-200 text-lg">{stat.label}</p>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="bg-slate-800/90 p-8 rounded-2xl border border-slate-700 shadow-xl">
+                    <h3 className="text-2xl font-bold mb-6">The Traditional Broadcast Stack is Broken</h3>
+                    <div className="grid md:grid-cols-3 gap-6">
+                      <div>
+                        <h4 className="font-semibold text-red-400 mb-3 text-xl">Complexity</h4>
+                        <ul className="space-y-2 text-slate-300">
+                          <li>• 20+ separate tools to integrate</li>
+                          <li>• Custom code to glue everything</li>
+                          <li>• Requires dedicated dev team</li>
+                          <li>• Breaks constantly with updates</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-orange-400 mb-3 text-xl">Cost</h4>
+                        <ul className="space-y-2 text-slate-300">
+                          <li>• $50K+ initial infrastructure</li>
+                          <li>• $5K-20K/month operational</li>
+                          <li>• Expensive technical talent</li>
+                          <li>• Doesn't scale economically</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-yellow-400 mb-3 text-xl">Inefficiency</h4>
+                        <ul className="space-y-2 text-slate-300">
+                          <li>• Manual editing takes hours</li>
+                          <li>• Content rarely repurposed</li>
+                          <li>• No AI assistance</li>
+                          <li>• Limited reach & distribution</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-purple-900 to-blue-900 p-8 rounded-2xl border border-purple-500 mt-8 shadow-2xl">
+                    <h3 className="text-2xl font-bold mb-4">Who Feels This Pain?</h3>
+                    <div className="grid md:grid-cols-3 gap-6">
+                      <div className="bg-slate-900/50 p-6 rounded-xl">
+                        <h4 className="font-bold text-lg mb-2">Independent Creators</h4>
+                        <p className="text-slate-300 text-sm">Want to look professional but lack skills/budget</p>
+                      </div>
+                      <div className="bg-slate-900/50 p-6 rounded-xl">
+                        <h4 className="font-bold text-lg mb-2">Small Media Companies</h4>
+                        <p className="text-slate-300 text-sm">Need to compete with big players on limited resources</p>
+                      </div>
+                      <div className="bg-slate-900/50 p-6 rounded-xl">
+                        <h4 className="font-bold text-lg mb-2">Enterprise Broadcasters</h4>
+                        <p className="text-slate-300 text-sm">Legacy systems, expensive, can't move fast enough</p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              )}
+
+              {activeSlide === 2 && (
+                <section>
+                  <h2 className="text-5xl font-bold mb-6 text-center">
+                    <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+                      One Platform. Everything Included.
+                    </span>
+                  </h2>
+                  <p className="text-xl text-slate-400 text-center mb-12 max-w-3xl mx-auto">
+                    Broadcast OS is the complete operating system for modern broadcasting—
+                    combining AI automation with graph intelligence
+                  </p>
+
+                  <div className="bg-gradient-to-r from-slate-800 to-slate-900 p-8 rounded-2xl border border-slate-700 mb-8 shadow-xl">
+                    <h3 className="text-3xl font-bold mb-6 text-center">How It Works</h3>
+                    <div className="grid md:grid-cols-5 gap-4">
+                      <div className="bg-blue-900/30 p-6 rounded-xl border-2 border-blue-500 text-center shadow-lg">
+                        <div className="text-4xl mb-3">📥</div>
+                        <div className="font-bold mb-2">1. Ingest</div>
+                        <p className="text-sm text-slate-400">Upload or record content from any source</p>
+                      </div>
+                      <div className="bg-purple-900/30 p-6 rounded-xl border-2 border-purple-500 text-center shadow-lg">
+                        <div className="text-4xl mb-3">🤖</div>
+                        <div className="font-bold mb-2">2. AI Process</div>
+                        <p className="text-sm text-slate-400">Automatic editing, transcription, optimization</p>
+                      </div>
+                      <div className="bg-green-900/30 p-6 rounded-xl border-2 border-green-500 text-center shadow-lg">
+                        <div className="text-4xl mb-3">🎬</div>
+                        <div className="font-bold mb-2">3. Produce</div>
+                        <p className="text-sm text-slate-400">Virtual studio with professional graphics</p>
+                      </div>
+                      <div className="bg-orange-900/30 p-6 rounded-xl border-2 border-orange-500 text-center shadow-lg">
+                        <div className="text-4xl mb-3">📡</div>
+                        <div className="font-bold mb-2">4. Broadcast</div>
+                        <p className="text-sm text-slate-400">24/7 streaming to all channels</p>
+                      </div>
+                      <div className="bg-red-900/30 p-6 rounded-xl border-2 border-red-500 text-center shadow-lg">
+                        <div className="text-4xl mb-3">📊</div>
+                        <div className="font-bold mb-2">5. Optimize</div>
+                        <p className="text-sm text-slate-400">AI-driven analytics & improvements</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-6 mb-8">
+                    <div className="bg-gradient-to-br from-blue-900 to-blue-800 p-8 rounded-2xl border border-blue-500 shadow-xl">
+                      <Brain size={48} className="text-blue-300 mb-4" />
+                      <h3 className="text-2xl font-bold mb-4">AI Superpowers</h3>
+                      <ul className="space-y-3 text-slate-300">
+                        <li className="flex items-start gap-3">
+                          <Zap size={20} className="text-blue-400 mt-1 flex-shrink-0" />
+                          <span><strong>Auto-edit</strong> your content: find highlights, create clips, add music</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <Zap size={20} className="text-blue-400 mt-1 flex-shrink-0" />
+                          <span><strong>Real-time fact-checking</strong> with on-screen citations during live broadcasts</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <Zap size={20} className="text-blue-400 mt-1 flex-shrink-0" />
+                          <span><strong>Repurpose everything</strong>: One podcast becomes 20+ pieces of content</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <Zap size={20} className="text-blue-400 mt-1 flex-shrink-0" />
+                          <span><strong>Virtual production</strong> that looks like a $500K studio</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-gradient-to-br from-purple-900 to-purple-800 p-8 rounded-2xl border border-purple-500 shadow-xl">
+                      <Network size={48} className="text-purple-300 mb-4" />
+                      <h3 className="text-2xl font-bold mb-4">Graph Intelligence</h3>
+                      <ul className="space-y-3 text-slate-300">
+                        <li className="flex items-start gap-3">
+                          <GitBranch size={20} className="text-purple-400 mt-1 flex-shrink-0" />
+                          <span><strong>Content lineage</strong>: Automatically track and attribute revenue across derivatives</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <GitBranch size={20} className="text-purple-400 mt-1 flex-shrink-0" />
+                          <span><strong>Creator networks</strong>: Smart collaboration recommendations that grow your audience</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <GitBranch size={20} className="text-purple-400 mt-1 flex-shrink-0" />
+                          <span><strong>Instant permissions</strong>: Complex rights management in milliseconds</span>
+                        </li>
+                        <li className="flex items-start gap-3">
+                          <GitBranch size={20} className="text-purple-400 mt-1 flex-shrink-0" />
+                          <span><strong>Smart recommendations</strong>: Native graph algorithms find perfect content matches</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-emerald-900 to-teal-900 p-8 rounded-2xl border-2 border-emerald-500 shadow-2xl">
+                    <h3 className="text-3xl font-bold mb-4 text-center">The Result</h3>
+                    <div className="grid md:grid-cols-3 gap-6">
+                      <div className="text-center">
+                        <div className="text-5xl font-bold text-emerald-400 mb-2">100x</div>
+                        <div className="text-slate-300">Easier to create professional content</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-5xl font-bold text-emerald-400 mb-2">10x</div>
+                        <div className="text-slate-300">More affordable than traditional systems</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-5xl font-bold text-emerald-400 mb-2">5x</div>
+                        <div className="text-slate-300">More content from the same input</div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              )}
+              {activeSlide === 3 && (
+                <section>
+                  <h2 className="text-5xl font-bold mb-6 text-center">Why Now?</h2>
+                  <p className="text-xl text-slate-400 text-center mb-12 max-w-3xl mx-auto">
+                    Three technological shifts have converged to make this possible
+                  </p>
+
+                  <div className="space-y-6 mb-12">
+                    <div className="bg-gradient-to-r from-blue-900 to-blue-800 p-8 rounded-2xl border-2 border-blue-500 shadow-xl">
+                      <div className="flex items-start gap-6">
+                        <div className="bg-blue-600 p-4 rounded-xl shadow-md">
+                          <Brain size={40} />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-3xl font-bold mb-3">1. AI Has Crossed the Quality Threshold</h3>
+                          <p className="text-slate-300 text-lg mb-4">
+                            2024-2025: AI can now do professional-grade editing, fact-checking, and content creation
+                          </p>
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-slate-900/50 p-4 rounded-lg">
+                              <div className="font-semibold mb-2">What Changed</div>
+                              <ul className="text-sm text-slate-400 space-y-1">
+                                <li>• LLMs (GPT-4, Claude) for understanding & generation</li>
+                                <li>• Real-time video processing at consumer cost</li>
+                                <li>• Voice cloning & synthesis indistinguishable from human</li>
+                              </ul>
+                            </div>
+                            <div className="bg-slate-900/50 p-4 rounded-lg">
+                              <div className="font-semibold mb-2">What's Possible Now</div>
+                              <ul className="text-sm text-slate-400 space-y-1">
+                                <li>• Automate 80% of video production work</li>
+                                <li>• Real-time fact-checking during broadcasts</li>
+                                <li>• Professional results without technical skills</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gradient-to-r from-purple-900 to-purple-800 p-8 rounded-2xl border-2 border-purple-500 shadow-xl">
+                      <div className="flex items-start gap-6">
+                        <div className="bg-purple-600 p-4 rounded-xl shadow-md">
+                          <Network size={40} />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-3xl font-bold mb-3">2. Graph Databases Are Production-Ready</h3>
+                          <p className="text-slate-300 text-lg mb-4">
+                            Mature technology that solves relationship problems SQL can't handle
+                          </p>
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-slate-900/50 p-4 rounded-lg">
+                              <div className="font-semibold mb-2">What Changed</div>
+                              <ul className="text-sm text-slate-400 space-y-1">
+                                <li>• Neo4j, Dgraph, Neptune are battle-tested</li>
+                                <li>• Cloud-native, scales to billions of relationships</li>
+                                <li>• Query performance 10-100x better than SQL for graphs</li>
+                              </ul>
+                            </div>
+                            <div className="bg-slate-900/50 p-4 rounded-lg">
+                              <div className="font-semibold mb-2">What's Possible Now</div>
+                              <ul className="text-sm text-slate-400 space-y-1">
+                                <li>• Native content lineage & revenue attribution</li>
+                                <li>• Real-time creator network analysis</li>
+                                <li>• Complex permissions in milliseconds</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gradient-to-r from-orange-900 to-orange-800 p-8 rounded-2xl border-2 border-orange-500 shadow-xl">
+                      <div className="flex items-start gap-6">
+                        <div className="bg-orange-600 p-4 rounded-xl shadow-md">
+                          <Globe size={40} />
+                        </div>
+                        <div className="flex-1">
+                          <h3 className="text-3xl font-bold mb-3">3. The Creator Economy is Exploding</h3>
+                          <p className="text-slate-300 text-lg mb-4">
+                            50M+ creators worldwide need professional tools at consumer prices
+                          </p>
+                          <div className="grid md:grid-cols-2 gap-4">
+                            <div className="bg-slate-900/50 p-4 rounded-lg">
+                              <div className="font-semibold mb-2">Market Dynamics</div>
+                              <ul className="text-sm text-slate-400 space-y-1">
+                                <li>• Creator economy: $250B+ and growing 30% YoY</li>
+                                <li>• Traditional media losing trust & audience</li>
+                                <li>• Platforms desperate for differentiated content</li>
+                              </ul>
+                            </div>
+                            <div className="bg-slate-900/50 p-4 rounded-lg">
+                              <div className="font-semibold mb-2">The Opportunity</div>
+                              <ul className="text-sm text-slate-400 space-y-1">
+                                <li>• Massive addressable market ready to pay</li>
+                                <li>• No incumbent has a complete solution</li>
+                                <li>• Network effects create winner-take-most dynamics</li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-red-900 to-pink-900 p-8 rounded-2xl border-2 border-red-500 shadow-2xl">
+                    <h3 className="text-3xl font-bold mb-4 text-center">The Window is Now</h3>
+                    <p className="text-xl text-slate-300 text-center mb-6">
+                      These three technologies converged in 2024-2025. First mover wins.
+                    </p>
+                    <div className="grid md:grid-cols-3 gap-4">
+                      <div className="bg-slate-900/50 p-4 rounded-lg text-center">
+                        <div className="font-bold text-red-400 mb-2">Traditional Media</div>
+                        <p className="text-sm text-slate-400">Too slow, legacy mindset, can't pivot</p>
+                      </div>
+                      <div className="bg-slate-900/50 p-4 rounded-lg text-center">
+                        <div className="font-bold text-orange-400 mb-2">Point Solutions</div>
+                        <p className="text-sm text-slate-400">Solving one problem, not the whole stack</p>
+                      </div>
+                      <div className="bg-slate-900/50 p-4 rounded-lg text-center">
+                        <div className="font-bold text-green-400 mb-2">Broadcast OS</div>
+                        <p className="text-sm text-slate-400">Complete platform, perfect timing</p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              )}
+              {activeSlide === 4 && (
+                <section>
+                  <h2 className="text-5xl font-bold mb-6 text-center">Technology Architecture</h2>
+                  <p className="text-xl text-slate-400 text-center mb-12 max-w-3xl mx-auto">
+                    Enterprise-grade infrastructure combining AI, graph databases, and cloud-native services
+                  </p>
+
+                  <div className="space-y-6">
+                    <div className="bg-gradient-to-r from-blue-900 to-blue-800 p-6 rounded-2xl border-2 border-blue-500 shadow-xl">
+                      <h3 className="text-2xl font-bold mb-4">Application Layer</h3>
+                      <div className="grid md:grid-cols-4 gap-4">
+                        <div className="bg-slate-900/50 p-4 rounded-lg">
+                          <div className="font-semibold mb-1">Creator Portal</div>
+                          <div className="text-sm text-slate-400">React, Next.js</div>
+                        </div>
+                        <div className="bg-slate-900/50 p-4 rounded-lg">
+                          <div className="font-semibold mb-1">Virtual Studio</div>
+                          <div className="text-sm text-slate-400">WebRTC, Three.js</div>
+                        </div>
+                        <div className="bg-slate-900/50 p-4 rounded-lg">
+                          <div className="font-semibold mb-1">Live Director</div>
+                          <div className="text-sm text-slate-400">Real-time controls</div>
+                        </div>
+                        <div className="bg-slate-900/50 p-4 rounded-lg">
+                          <div className="font-semibold mb-1">Analytics Dashboard</div>
+                          <div className="text-sm text-slate-400">D3.js, Recharts</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gradient-to-r from-purple-900 to-purple-800 p-6 rounded-2xl border-2 border-purple-500 shadow-xl">
+                      <h3 className="text-2xl font-bold mb-4">AI Services Layer</h3>
+                      <div className="grid md:grid-cols-4 gap-4">
+                        <div className="bg-slate-900/50 p-4 rounded-lg">
+                          <div className="font-semibold mb-1">LLM Services</div>
+                          <div className="text-sm text-slate-400">GPT-4, Claude, Gemini</div>
+                        </div>
+                        <div className="bg-slate-900/50 p-4 rounded-lg">
+                          <div className="font-semibold mb-1">Video AI</div>
+                          <div className="text-sm text-slate-400">Runway, Descript APIs</div>
+                        </div>
+                        <div className="bg-slate-900/50 p-4 rounded-lg">
+                          <div className="font-semibold mb-1">Voice AI</div>
+                          <div className="text-sm text-slate-400">ElevenLabs, Whisper</div>
+                        </div>
+                        <div className="bg-slate-900/50 p-4 rounded-lg">
+                          <div className="font-semibold mb-1">Custom ML Models</div>
+                          <div className="text-sm text-slate-400">PyTorch, TensorFlow</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gradient-to-r from-green-900 to-green-800 p-6 rounded-2xl border-2 border-green-500 shadow-xl">
+                      <h3 className="text-2xl font-bold mb-4">Graph + Data Layer</h3>
+                      <div className="grid md:grid-cols-4 gap-4">
+                        <div className="bg-slate-900/50 p-4 rounded-lg">
+                          <div className="font-semibold mb-1">Graph DB</div>
+                          <div className="text-sm text-slate-400">Neo4j / Dgraph (Primary)</div>
+                        </div>
+                        <div className="bg-slate-900/50 p-4 rounded-lg">
+                          <div className="font-semibold mb-1">Time-Series</div>
+                          <div className="text-sm text-slate-400">TimescaleDB</div>
+                        </div>
+                        <div className="bg-slate-900/50 p-4 rounded-lg">
+                          <div className="font-semibold mb-1">Document Store</div>
+                          <div className="text-sm text-slate-400">PostgreSQL JSONB</div>
+                        </div>
+                        <div className="bg-slate-900/50 p-4 rounded-lg">
+                          <div className="font-semibold mb-1">Search</div>
+                          <div className="text-sm text-slate-400">Elasticsearch</div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gradient-to-r from-orange-900 to-orange-800 p-6 rounded-2xl border-2 border-orange-500 shadow-xl">
+                      <h3 className="text-2xl font-bold mb-4">Infrastructure Layer</h3>
+                      <div className="grid md:grid-cols-4 gap-4">
+                        <div className="bg-slate-900/50 p-4 rounded-lg">
+                          <div className="font-semibold mb-1">Compute</div>
+                          <div className="text-sm text-slate-400">Kubernetes, AWS ECS</div>
+                        </div>
+                        <div className="bg-slate-900/50 p-4 rounded-lg">
+                          <div className="font-semibold mb-1">Streaming</div>
+                          <div className="text-sm text-slate-400">AWS MediaLive, Mux</div>
+                        </div>
+                        <div className="bg-slate-900/50 p-4 rounded-lg">
+                          <div className="font-semibold mb-1">CDN</div>
+                          <div className="text-sm text-slate-400">Cloudflare, AWS CloudFront</div>
+                        </div>
+                        <div className="bg-slate-900/50 p-4 rounded-lg">
+                          <div className="font-semibold mb-1">Storage</div>
+                          <div className="text-sm text-slate-400">S3, GCS</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-6 mt-8">
+                    <div className="bg-slate-800/90 p-6 rounded-xl border border-slate-700 shadow-xl">
+                      <h3 className="text-xl font-bold mb-4">Why This Stack Wins</h3>
+                      <ul className="space-y-3 text-slate-300">
+                        <li className="flex items-start gap-2">
+                          <Zap size={20} className="text-yellow-400 mt-1" />
+                          <span><strong>Best-in-class AI</strong> via API—no need to train own models</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Network size={20} className="text-purple-400 mt-1" />
+                          <span><strong>Graph native</strong>—solves problems competitors can't</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Cloud size={20} className="text-blue-400 mt-1" />
+                          <span><strong>Cloud-native</strong>—scales automatically, pay per use</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Shield size={20} className="text-green-400 mt-1" />
+                          <span><strong>Enterprise-ready</strong>—SOC2, GDPR compliant from day one</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="bg-slate-800/90 p-6 rounded-xl border border-slate-700 shadow-xl">
+                      <h3 className="text-xl font-bold mb-4">Development Velocity</h3>
+                      <ul className="space-y-3 text-slate-300">
+                        <li className="flex items-start gap-2">
+                          <Rocket size={20} className="text-orange-400 mt-1" />
+                          <span><strong>MVP: 3-4 months</strong>—Basic streaming + AI editing</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Rocket size={20} className="text-orange-400 mt-1" />
+                          <span><strong>Beta: 6-8 months</strong>—Full feature set, 10 creators</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Rocket size={20} className="text-orange-400 mt-1" />
+                          <span><strong>Scale: 12 months</strong>—100+ creators, enterprise features</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Rocket size={20} className="text-orange-400 mt-1" />
+                          <span><strong>Platform: 18 months</strong>—Multi-tenant, marketplace</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </section>
+              )}
+              {activeSlide === 5 && (
+                <section>
+                  <h2 className="text-5xl font-bold mb-6 text-center">
+                    <span className="bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text">
+                      Why Graph Databases Win
+                    </span>
+                  </h2>
+                  <p className="text-xl text-slate-400 text-center mb-12 max-w-3xl mx-auto">
+                    Broadcasting is fundamentally about relationships. Graph databases make relationships first-class citizens.
+                  </p>
+
+                  <div className="grid md:grid-cols-2 gap-6 mb-8">
+                    {graphAdvantages.map((adv) => (
+                      <div key={adv.feature} className="bg-slate-800/90 p-6 rounded-xl border border-slate-700 shadow-xl">
+                        <div className="flex items-start gap-4 mb-4">
+                          <div className="bg-purple-600 p-3 rounded-lg shadow-md">
+                            <adv.icon size={28} />
+                          </div>
+                          <div>
+                            <h3 className="text-xl font-bold mb-1">{adv.feature}</h3>
+                            <p className="text-slate-400 text-sm">{adv.benefit}</p>
+                          </div>
+                        </div>
+                        <div className="bg-gradient-to-r from-green-900/30 to-emerald-900/30 p-4 rounded-lg border border-green-500/30">
+                          <div className="text-sm text-green-400 font-semibold mb-1">Business Impact:</div>
+                          <div className="text-slate-300">{adv.businessImpact}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="bg-gradient-to-r from-slate-800 to-slate-900 p-8 rounded-2xl border border-slate-700 mb-8 shadow-xl">
+                    <h3 className="text-2xl font-bold mb-6">Performance Comparison: Graph vs SQL</h3>
+                    <div className="space-y-4">
+                      {[{
+                        query: 'Find all content derived from a podcast',
+                        graph: '10ms',
+                        sql: '150ms',
+                        multiplier: '15x faster'
+                      }, {
+                        query: 'Creators within 3 degrees of separation',
+                        graph: '25ms',
+                        sql: '2000ms+',
+                        multiplier: '80x faster'
+                      }, {
+                        query: 'Personalized content recommendations',
+                        graph: '50ms',
+                        sql: '5000ms+',
+                        multiplier: '100x faster'
+                      }, {
+                        query: 'Calculate revenue across content chain',
+                        graph: '30ms',
+                        sql: 'Complex',
+                        multiplier: 'Impossible in SQL'
+                      }].map((item) => (
+                        <div key={item.query} className="bg-slate-900/50 p-4 rounded-lg">
+                          <div className="flex items-center justify-between mb-2">
+                            <span className="font-semibold">{item.query}</span>
+                            <span className="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm font-bold">
+                              {item.multiplier}
+                            </span>
+                          </div>
+                          <div className="flex gap-4 text-sm">
+                            <div>
+                              <span className="text-purple-400">Graph:</span> <span className="text-white font-bold">{item.graph}</span>
+                            </div>
+                            <div>
+                              <span className="text-orange-400">SQL:</span> <span className="text-slate-400">{item.sql}</span>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-purple-900 to-blue-900 p-8 rounded-2xl border-2 border-purple-500 shadow-2xl">
+                    <h3 className="text-2xl font-bold mb-4 text-center">The Competitive Moat</h3>
+                    <p className="text-slate-300 text-center mb-6">
+                      Competitors using SQL will struggle to replicate these features.
+                      By the time they realize they need graph, we'll have years of head start.
+                    </p>
+                    <div className="grid md:grid-cols-3 gap-4">
+                      <div className="bg-slate-900/50 p-4 rounded-lg text-center">
+                        <div className="text-3xl font-bold text-purple-400 mb-2">2-3 years</div>
+                        <div className="text-sm text-slate-300">Time advantage over SQL-based competitors</div>
+                      </div>
+                      <div className="bg-slate-900/50 p-4 rounded-lg text-center">
+                        <div className="text-3xl font-bold text-purple-400 mb-2">10-100x</div>
+                        <div className="text-sm text-slate-300">Performance advantage for graph queries</div>
+                      </div>
+                      <div className="bg-slate-900/50 p-4 rounded-lg text-center">
+                        <div className="text-3xl font-bold text-purple-400 mb-2">Defensible</div>
+                        <div className="text-sm text-slate-300">Entire architecture built on graph—can't copy easily</div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              )}
+              {activeSlide === 6 && (
+                <section>
+                  <h2 className="text-5xl font-bold mb-6 text-center">
+                    <span className="bg-gradient-to-r from-blue-400 to-purple-500 text-transparent bg-clip-text">
+                      AI-Powered Capabilities
+                    </span>
+                  </h2>
+                  <p className="text-xl text-slate-400 text-center mb-12 max-w-3xl mx-auto">
+                    Every function automated, optimized, and enhanced by artificial intelligence
+                  </p>
+
+                  <div className="grid md:grid-cols-2 gap-6">
+                    {aiCapabilities.map((cap) => (
+                      <div
+                        key={cap.category}
+                        className={`bg-gradient-to-br ${cap.gradient} p-6 rounded-2xl border-2 ${cap.border} shadow-xl`}
+                      >
+                        <div className="flex items-center gap-3 mb-4">
+                          <div className="bg-white/10 p-3 rounded-lg">
+                            <cap.icon size={32} />
+                          </div>
+                          <h3 className="text-2xl font-bold">{cap.category}</h3>
+                        </div>
+                        <ul className="space-y-3 text-slate-300">
+                          {cap.features.map((feature) => (
+                            <li key={feature} className="flex items-start gap-2">
+                              <span className="text-white text-lg leading-none">✓</span>
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="bg-gradient-to-r from-emerald-900 to-teal-900 p-8 rounded-2xl border-2 border-emerald-500 mt-8 shadow-2xl">
+                    <h3 className="text-3xl font-bold mb-6 text-center">The AI Flywheel</h3>
+                    <div className="grid md:grid-cols-4 gap-6">
+                      <div className="text-center">
+                        <div className="bg-emerald-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl font-bold">
+                          1
+                        </div>
+                        <h4 className="font-bold mb-2">More Creators</h4>
+                        <p className="text-sm text-slate-300">Join the platform</p>
+                      </div>
+                      <div className="text-center">
+                        <div className="bg-emerald-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl font-bold">
+                          2
+                        </div>
+                        <h4 className="font-bold mb-2">More Data</h4>
+                        <p className="text-sm text-slate-300">Train better AI models</p>
+                      </div>
+                      <div className="text-center">
+                        <div className="bg-emerald-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl font-bold">
+                          3
+                        </div>
+                        <h4 className="font-bold mb-2">Better Results</h4>
+                        <p className="text-sm text-slate-300">AI gets smarter, outputs improve</p>
+                      </div>
+                      <div className="text-center">
+                        <div className="bg-emerald-600 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 text-2xl font-bold">
+                          4
+                        </div>
+                        <h4 className="font-bold mb-2">Attracts More</h4>
+                        <p className="text-sm text-slate-300">Loop accelerates</p>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              )}
+              {activeSlide === 7 && (
+                <section>
+                  <h2 className="text-5xl font-bold mb-6 text-center">Business Model & Economics</h2>
+                  <p className="text-xl text-slate-400 text-center mb-12 max-w-3xl mx-auto">
+                    Multiple revenue streams with strong unit economics and clear path to profitability
+                  </p>
+
+                  <div className="grid md:grid-cols-3 gap-6 mb-8">
+                    {businessMetrics.map((metric) => (
+                      <div
+                        key={metric.metric}
+                        className={`bg-gradient-to-br ${metric.gradient} p-6 rounded-2xl border-2 ${metric.border} shadow-xl`}
+                      >
+                        <h3 className="text-2xl font-bold mb-4">{metric.metric}</h3>
+                        <ul className="space-y-3 text-slate-300">
+                          {metric.details.map((detail) => (
+                            <li key={detail} className="flex items-start gap-2">
+                              <span className="text-white/80">•</span>
+                              <span>{detail}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="bg-slate-800/90 p-8 rounded-2xl border border-slate-700 shadow-xl mb-8">
+                    <h3 className="text-2xl font-bold mb-6 text-center">5-Year Financial Projections</h3>
+                    <div className="grid md:grid-cols-5 gap-4">
+                      {[
+                        { year: 'Year 1', creators: '50', revenue: '$150K', margin: '-200%' },
+                        { year: 'Year 2', creators: '500', revenue: '$2M', margin: '-50%' },
+                        { year: 'Year 3', creators: '2,500', revenue: '$10M', margin: '20%' },
+                        { year: 'Year 4', creators: '10,000', revenue: '$42M', margin: '40%' },
+                        { year: 'Year 5', creators: '35,000', revenue: '$150M', margin: '50%' }
+                      ].map((projection) => (
+                        <div key={projection.year} className="bg-slate-900/60 p-4 rounded-lg text-center">
+                          <div className="font-bold text-blue-300 mb-3">{projection.year}</div>
+                          <div className="space-y-2 text-sm">
+                            <div>
+                              <div className="text-slate-400">Creators</div>
+                              <div className="font-semibold">{projection.creators}</div>
+                            </div>
+                            <div>
+                              <div className="text-slate-400">Revenue</div>
+                              <div className="font-semibold text-green-300">{projection.revenue}</div>
+                            </div>
+                            <div>
+                              <div className="text-slate-400">Margin</div>
+                              <div className="font-semibold">{projection.margin}</div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-6">
+                    <div className="bg-gradient-to-br from-blue-900 to-blue-800 p-6 rounded-xl border border-blue-500 shadow-xl">
+                      <h3 className="text-xl font-bold mb-4">Path to $100M ARR</h3>
+                      <ul className="space-y-3 text-slate-300">
+                        <li className="flex items-start gap-2">
+                          <span className="text-blue-300">→</span>
+                          <span>10K creators at $350/mo avg = $42M ARR</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-blue-300">→</span>
+                          <span>50 enterprise at $100K/year = $5M ARR</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-blue-300">→</span>
+                          <span>Transaction fees on $500M GMV = $25M ARR</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-blue-300">→</span>
+                          <span>Marketplace revenue = $5M ARR</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-blue-300">→</span>
+                          <span>Additional services = $23M ARR</span>
+                        </li>
+                      </ul>
+                      <div className="mt-4 pt-4 border-t border-blue-500/60">
+                        <div className="text-2xl font-bold text-blue-200">Total: $100M ARR by Year 5</div>
+                      </div>
+                    </div>
+
+                    <div className="bg-gradient-to-br from-purple-900 to-purple-800 p-6 rounded-xl border border-purple-500 shadow-xl">
+                      <h3 className="text-xl font-bold mb-4">Why Investors Win</h3>
+                      <ul className="space-y-3 text-slate-300">
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-300">★</span>
+                          <span>Massive TAM: $80B market, growing 30% annually</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-300">★</span>
+                          <span>Strong unit economics: 1.4 month payback, 24:1 LTV:CAC</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-300">★</span>
+                          <span>Network effects: Platform gets better with scale</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-300">★</span>
+                          <span>Defensible moat: Graph + AI creates multi-year lead</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-300">★</span>
+                          <span>Multiple exit paths: IPO or strategic acquisition</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </section>
+              )}
+              {activeSlide === 8 && (
+                <section>
+                  <h2 className="text-5xl font-bold mb-6 text-center">Market Opportunity</h2>
+                  <p className="text-xl text-slate-400 text-center mb-12 max-w-3xl mx-auto">
+                    $80B+ TAM across three customer segments, all growing rapidly
+                  </p>
+
+                  <div className="grid md:grid-cols-3 gap-6 mb-8">
+                    {marketData.map((segment) => (
+                      <div
+                        key={segment.segment}
+                        className={`bg-gradient-to-br ${segment.gradient} p-6 rounded-2xl border-2 ${segment.border} shadow-xl`}
+                      >
+                        <div className="text-center mb-4">
+                          <div className="text-5xl font-bold mb-2">{segment.tam}</div>
+                          <div className="text-sm text-slate-300">TAM</div>
+                        </div>
+                        <h3 className="text-xl font-bold mb-2">{segment.segment}</h3>
+                        <p className="text-slate-300 mb-3">{segment.description}</p>
+                        <div className="bg-slate-900/50 p-3 rounded-lg">
+                          <div className="text-sm text-slate-400">Market Size</div>
+                          <div className="font-semibold">{segment.size}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="bg-slate-800/90 p-8 rounded-2xl border border-slate-700 shadow-xl mb-8">
+                    <h3 className="text-2xl font-bold mb-6">Competitive Landscape</h3>
+                    <div className="grid md:grid-cols-4 gap-6">
+                      <div className="bg-slate-900/50 p-4 rounded-lg">
+                        <h4 className="font-bold mb-3 text-red-400">Legacy Broadcasters</h4>
+                        <p className="text-sm text-slate-400 mb-3">Expensive, complex, slow</p>
+                        <div className="text-xs text-slate-500">Examples: Grass Valley, Ross Video</div>
+                      </div>
+                      <div className="bg-slate-900/50 p-4 rounded-lg">
+                        <h4 className="font-bold mb-3 text-orange-400">Point Solutions</h4>
+                        <p className="text-sm text-slate-400 mb-3">Single features, not integrated</p>
+                        <div className="text-xs text-slate-500">Examples: Descript, Riverside, StreamYard</div>
+                      </div>
+                      <div className="bg-slate-900/50 p-4 rounded-lg">
+                        <h4 className="font-bold mb-3 text-yellow-400">DIY Stacks</h4>
+                        <p className="text-sm text-slate-400 mb-3">Creators cobble together 10+ tools</p>
+                        <div className="text-xs text-slate-500">Time-consuming, brittle, expensive</div>
+                      </div>
+                      <div className="bg-slate-900/50 p-4 rounded-lg border-2 border-green-500">
+                        <h4 className="font-bold mb-3 text-green-400">Broadcast OS</h4>
+                        <p className="text-sm text-slate-400 mb-3">Complete, integrated, AI-powered</p>
+                        <div className="text-xs text-green-400">Only true OS solution</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-purple-900 to-blue-900 p-8 rounded-2xl border-2 border-purple-500 shadow-2xl">
+                    <h3 className="text-3xl font-bold mb-6 text-center">Why We Win</h3>
+                    <div className="grid md:grid-cols-2 gap-8">
+                      <div>
+                        <h4 className="text-xl font-semibold mb-4 text-purple-300">Against Legacy</h4>
+                        <ul className="space-y-2 text-slate-200">
+                          <li>• 10x cheaper ($350/mo vs $5K+/mo)</li>
+                          <li>• 100x easier (no technical skills needed)</li>
+                          <li>• Cloud-native vs on-premise</li>
+                          <li>• AI-first vs manual workflows</li>
+                        </ul>
+                      </div>
+                      <div>
+                        <h4 className="text-xl font-semibold mb-4 text-blue-300">Against Point Solutions</h4>
+                        <ul className="space-y-2 text-slate-200">
+                          <li>• Complete OS vs single feature</li>
+                          <li>• Integrated workflow vs switching tools</li>
+                          <li>• Graph-powered relationships</li>
+                          <li>• Platform effects at scale</li>
+                        </ul>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              )}
+              {activeSlide === 9 && (
+                <section>
+                  <h2 className="text-5xl font-bold mb-6 text-center">Go-to-Market Strategy</h2>
+                  <p className="text-xl text-slate-400 text-center mb-12 max-w-3xl mx-auto">
+                    Land-and-expand approach starting with ~10 creators, scaling to thousands
+                  </p>
+
+                  <div className="bg-gradient-to-r from-slate-800 to-slate-900 p-8 rounded-2xl border border-slate-700 mb-8 shadow-xl">
+                    <h3 className="text-2xl font-bold mb-6">Growth Roadmap</h3>
+                    <div className="space-y-6">
+                      {growthPhases.map((phase) => (
+                        <div key={phase.phase} className="bg-slate-900/50 p-6 rounded-lg border-l-4 border-blue-500">
+                          <div className="flex items-center justify-between mb-3 flex-wrap gap-2">
+                            <h4 className="text-xl font-bold">{phase.phase}</h4>
+                            <span className="bg-blue-600 px-3 py-1 rounded-full text-sm">{phase.timeline}</span>
+                          </div>
+                          <div className="grid md:grid-cols-3 gap-4 text-sm">
+                            <div>
+                              <div className="text-slate-400 mb-1">Goal</div>
+                              <div className="font-semibold">{phase.goal}</div>
+                            </div>
+                            <div>
+                              <div className="text-slate-400 mb-1">Strategy</div>
+                              <div className="text-slate-300">{phase.strategy}</div>
+                            </div>
+                            <div>
+                              <div className="text-slate-400 mb-1">Key Metrics</div>
+                              <div className="text-slate-300">{phase.metrics}</div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="grid md:grid-cols-2 gap-6 mb-8">
+                    <div className="bg-gradient-to-br from-green-900 to-green-800 p-6 rounded-xl border border-green-500 shadow-xl">
+                      <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                        <Users className="text-green-400" />
+                        Customer Acquisition
+                      </h3>
+                      <ul className="space-y-3 text-slate-300">
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-400">1.</span>
+                          <span><strong>Content Marketing</strong>: Show creators what's possible with AI</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-400">2.</span>
+                          <span><strong>Creator Partnerships</strong>: Successful creators bring their network</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-400">3.</span>
+                          <span><strong>Platform Integrations</strong>: Partner with Substack, YouTube, etc.</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-green-400">4.</span>
+                          <span><strong>Enterprise Sales</strong>: Direct outreach to media companies</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="bg-gradient-to-br from-purple-900 to-purple-800 p-6 rounded-xl border border-purple-500 shadow-xl">
+                      <h3 className="text-xl font-bold mb-4 flex items-center gap-2">
+                        <TrendingUp className="text-purple-400" />
+                        Viral Growth Loops
+                      </h3>
+                      <ul className="space-y-3 text-slate-300">
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-400">→</span>
+                          <span><strong>Collaboration Features</strong>: Creators invite others for cross-promotion</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-400">→</span>
+                          <span><strong>Content Sharing</strong>: "Powered by Broadcast OS" on every video</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-400">→</span>
+                          <span><strong>Templates & Plugins</strong>: Creators share their setups</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <span className="text-purple-400">→</span>
+                          <span><strong>Referral Program</strong>: 20% recurring commission for referrals</span>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+
+                  <div className="bg-gradient-to-r from-orange-900 to-red-900 p-8 rounded-2xl border-2 border-orange-500 shadow-2xl">
+                    <h3 className="text-3xl font-bold mb-4 text-center">Current Traction</h3>
+                    <div className="grid md:grid-cols-4 gap-6">
+                      <div className="bg-slate-900/50 p-6 rounded-lg text-center">
+                        <div className="text-4xl font-bold text-orange-400 mb-2">~10</div>
+                        <div className="text-slate-300">Founding Creators</div>
+                        <div className="text-xs text-slate-400 mt-2">Ready to onboard</div>
+                      </div>
+                      <div className="bg-slate-900/50 p-6 rounded-lg text-center">
+                        <div className="text-4xl font-bold text-orange-400 mb-2">MVP</div>
+                        <div className="text-slate-300">In Development</div>
+                        <div className="text-xs text-slate-400 mt-2">3-4 months to launch</div>
+                      </div>
+                      <div className="bg-slate-900/50 p-6 rounded-lg text-center">
+                        <div className="text-4xl font-bold text-orange-400 mb-2">$80B</div>
+                        <div className="text-slate-300">Market Size</div>
+                        <div className="text-xs text-slate-400 mt-2">Growing 30% YoY</div>
+                      </div>
+                      <div className="bg-slate-900/50 p-6 rounded-lg text-center">
+                        <div className="text-4xl font-bold text-orange-400 mb-2">Now</div>
+                        <div className="text-slate-300">Perfect Timing</div>
+                        <div className="text-xs text-slate-400 mt-2">AI + Graph converged</div>
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              )}
+          </div>
+        </div>
+
+        <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-t from-slate-950 via-slate-950 to-transparent py-4 md:py-6 z-[100]">
+          <div className="content-shell">
+            <div className="flex justify-center gap-2 md:gap-4 mb-3">
+              <button
+                onClick={() => setActiveSlide(Math.max(0, activeSlide - 1))}
+                disabled={activeSlide === 0}
+                className="bg-slate-800 hover:bg-slate-700 disabled:opacity-30 disabled:cursor-not-allowed px-4 md:px-6 py-2 md:py-3 rounded-lg text-sm md:text-base font-semibold transition-all shadow-lg"
+              >
+                ← <span className="hidden sm:inline">Previous</span><span className="sm:hidden">Prev</span>
+              </button>
+              <div className="bg-slate-800 px-4 md:px-6 py-2 md:py-3 rounded-lg text-sm md:text-base font-semibold shadow-lg">
+                {activeSlide + 1} / {slides.length}
+              </div>
+              <button
+                onClick={() => setActiveSlide(Math.min(slides.length - 1, activeSlide + 1))}
+                disabled={activeSlide === slides.length - 1}
+                className="bg-blue-600 hover:bg-blue-700 disabled:opacity-30 disabled:cursor-not-allowed px-4 md:px-6 py-2 md:py-3 rounded-lg text-sm md:text-base font-semibold transition-all shadow-lg"
+              >
+                <span className="hidden sm:inline">Next</span><span className="sm:hidden">Next</span> →
+              </button>
+            </div>
+            <div className="text-center text-xs text-slate-500">
+              © {new Date().getFullYear()} Connexxia Inc. All rights reserved.
+            </div>
+          </div>
+        </div>
+      </div>
+      );
+    };
+
+    ReactDOM.createRoot(document.getElementById('root')).render(<BroadcastOSPitch />);
+  </script>
+</body>
+</html>
