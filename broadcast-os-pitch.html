@@ -52,11 +52,49 @@
       color-scheme: dark;
     }
 
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html,
     body {
       margin: 0;
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
       background: radial-gradient(circle at top, rgba(148, 163, 184, 0.12), transparent 45%), #0f172a;
       color: #e2e8f0;
       font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    #root,
+    .broadcast-os-app {
+      width: 100%;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    @supports (overflow-x: clip) {
+      #root,
+      .broadcast-os-app {
+        overflow-x: clip;
+      }
+    }
+
+    .content-shell {
+      width: min(100%, 80rem);
+      margin-inline: auto;
+      padding-inline: clamp(1.25rem, 4vw, 1.75rem);
+    }
+
+    @supports (padding: max(0px)) {
+      .content-shell {
+        padding-left: max(clamp(1.25rem, 4vw, 1.75rem), env(safe-area-inset-left));
+        padding-right: max(clamp(1.25rem, 4vw, 1.75rem), env(safe-area-inset-right));
+      }
     }
 
     .scrollbar-hide::-webkit-scrollbar {
@@ -394,9 +432,9 @@
       }, [activeSlide, slides.length]);
 
       return (
-        <div className="w-full min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
+        <div className="broadcast-os-app w-full min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white">
           <div className="fixed top-0 left-0 right-0 glass-panel border-b border-slate-800/80 z-[100] shadow-lg">
-            <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4">
+            <div className="content-shell py-3 md:py-4">
               <div className="flex items-center justify-between gap-4 mb-3">
                 <div className="flex items-center gap-3 flex-shrink-0">
                   <div className="bg-gradient-to-r from-blue-600 to-purple-600 p-2 rounded-lg shadow-md">
@@ -430,8 +468,8 @@
 
           <div className="h-32 md:h-36"></div>
 
-          <div className="px-6 pb-40 min-h-screen">
-            <div className="max-w-7xl mx-auto">
+          <div className="pb-40 min-h-screen">
+            <div className="content-shell">
               {activeSlide === 0 && (
                 <section className="min-h-[80vh] flex flex-col justify-center">
                   <div className="text-center mb-12">
@@ -1488,11 +1526,12 @@
                   </div>
                 </section>
               )}
-            </div>
           </div>
+        </div>
 
-          <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-t from-slate-950 via-slate-950 to-transparent py-4 md:py-6 z-[100]">
-            <div className="flex justify-center gap-2 md:gap-4 px-4 mb-3">
+        <div className="fixed bottom-0 left-0 right-0 bg-gradient-to-t from-slate-950 via-slate-950 to-transparent py-4 md:py-6 z-[100]">
+          <div className="content-shell">
+            <div className="flex justify-center gap-2 md:gap-4 mb-3">
               <button
                 onClick={() => setActiveSlide(Math.max(0, activeSlide - 1))}
                 disabled={activeSlide === 0}
@@ -1516,6 +1555,7 @@
             </div>
           </div>
         </div>
+      </div>
       );
     };
 
