@@ -1,0 +1,31 @@
+/**
+ * Vote Spectrum - Main Styles
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Import design system styles */
+@import '@design-system/styles/index.css';
+
+/* Base styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utility: Touch-friendly minimum sizes */
+.min-touch {
+  min-width: 44px;
+  min-height: 44px;
+}

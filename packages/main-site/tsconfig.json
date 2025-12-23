@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "composite": false,
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@design-system/*": ["../design-system/src/*"]
+    }
+  },
+  "include": ["src/**/*", "../design-system/src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

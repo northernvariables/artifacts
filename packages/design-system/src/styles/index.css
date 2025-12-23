@@ -1,0 +1,123 @@
+/**
+ * Northern Variables Design System Styles
+ * Global styles, dark mode, and accessibility utilities
+ */
+
+/* CSS Custom Properties (matching design tokens) */
+:root {
+  /* Colors - Artifacts Brand */
+  --nv-primary: #0f2747;
+  --nv-primary-dark: #091a30;
+  --nv-primary-mid: #163b6b;
+  --nv-accent: #ff6719;
+  --nv-accent-dark: #d85612;
+  --nv-text: #0f172a;
+  --nv-soft: #f1f5f9;
+
+  /* Colors - WordPress Brand */
+  --brand-primary: #2563eb;
+  --brand-secondary: #ff6719;
+
+  /* Spacing */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2rem;
+  --space-xl: 3rem;
+
+  /* Typography */
+  --font-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+}
+
+/* Dark Mode Support */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --nv-primary: #163b6b;
+    --nv-primary-dark: #0f2747;
+    --nv-text: #f1f5f9;
+    --nv-soft: #1e293b;
+    --bg-primary: #0f172a;
+    --bg-secondary: #1e293b;
+  }
+
+  body {
+    background: var(--bg-primary);
+    color: var(--nv-text);
+  }
+}
+
+/* Reduced Motion Support (Accessibility) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Focus Visible Styles (Accessibility) */
+*:focus-visible {
+  outline: 3px solid var(--nv-accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Skip to Main Content Link (Accessibility) */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--nv-accent);
+  color: white;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  z-index: 100;
+  border-radius: 0 0 0.25rem 0;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
+/* Touch-Friendly Minimum Sizes (WCAG 2.1 Level AAA) */
+.min-touch {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+button,
+a.button,
+[role="button"] {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Base Typography */
+body {
+  font-family: var(--font-sans);
+  color: var(--nv-text);
+  line-height: 1.6;
+}
+
+/* Utility Classes */
+.nv-gradient-primary {
+  background: linear-gradient(135deg, var(--nv-primary-dark) 0%, var(--nv-primary-mid) 55%, var(--nv-accent) 100%);
+}
+
+.nv-gradient-footer {
+  background: linear-gradient(120deg, var(--nv-primary-dark) 0%, var(--nv-primary) 60%, var(--nv-accent-dark) 100%);
+}
+
+.nv-shadow {
+  box-shadow: 0 10px 30px rgba(9, 26, 48, 0.25);
+}
+
+.nv-shadow-soft {
+  box-shadow: 0 12px 30px rgba(9, 26, 48, 0.15);
+}

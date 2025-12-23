@@ -1,0 +1,75 @@
+{
+  "compilerOptions": {
+    // TypeScript and ECMAScript target
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "useDefineForClassFields": true,
+
+    // Module resolution
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "allowImportingTsExtensions": true,
+
+    // Emit configuration
+    "noEmit": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+
+    // JSX configuration
+    "jsx": "react-jsx",
+    "jsxImportSource": "react",
+
+    // Type checking - start lenient, enable strict mode per-package
+    "strict": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": false,
+    "noImplicitAny": false,
+
+    // Path aliases (matching vite.config.ts)
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@shared/*": ["./packages/artifacts/shared/src/*"],
+      "@design-system/*": ["./packages/design-system/src/*"],
+      "@main-site/*": ["./packages/main-site/src/*"],
+      "@assets/*": ["./assets/*"]
+    },
+
+    // Allow JavaScript files
+    "allowJs": true,
+    "checkJs": false,
+
+    // Better error messages
+    "pretty": true,
+
+    // Incremental compilation for faster builds
+    "incremental": true,
+    "composite": true
+  },
+
+  // Include all TypeScript and JavaScript files
+  "include": [
+    "packages/*/src/**/*",
+    "packages/artifacts/*/src/**/*",
+    "vite.config.ts",
+    "tailwind.config.js"
+  ],
+
+  // Exclude node_modules and build outputs
+  "exclude": [
+    "node_modules",
+    "**/dist",
+    "**/build",
+    "**/*.spec.ts",
+    "**/*.test.ts"
+  ],
+
+  // Project references for monorepo
+  "references": [
+    { "path": "./packages/design-system" },
+    { "path": "./packages/artifacts/vote-spectrum" }
+  ]
+}

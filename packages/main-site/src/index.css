@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Accessibility - Skip to main content link */
+.skip-link {
+  position: absolute;
+  top: -100px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #0f2747;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 0 0 8px 8px;
+  z-index: 9999;
+  font-weight: 600;
+  text-decoration: none;
+  transition: top 0.2s ease-in-out;
+}
+
+.skip-link:focus {
+  top: 0;
+  outline: 3px solid #ff6719;
+  outline-offset: 2px;
+}
+
+/* Accessibility - Focus visible styles */
+*:focus-visible {
+  outline: 3px solid #ff6719;
+  outline-offset: 2px;
+}
+
+/* Remove default focus outline for mouse users */
+*:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Accessibility - Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Main site specific styles */
+
+/* Ensure smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Base typography improvements */
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Container utility */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Section spacing */
+.section {
+  padding: 4rem 0;
+}
+
+@media (min-width: 768px) {
+  .section {
+    padding: 6rem 0;
+  }
+}
+
+/* Hero gradient backgrounds */
+.hero-gradient {
+  background: linear-gradient(135deg, #0f2747 0%, #163b6b 100%);
+}
+
+.hero-gradient-alt {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+}
+
+/* Article card hover animations */
+article a {
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+/* Button and link transitions */
+a, button {
+  transition: all 0.2s ease;
+}
+
+/* Smooth image hover effects */
+.group img {
+  transition: transform 0.3s ease;
+}
+
+.group:hover img {
+  transform: scale(1.02);
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
+}
+
+/* Typography refinements */
+h1, h2, h3, h4, h5, h6 {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Line clamp fallback for older browsers */
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Gradient text for special elements */
+.text-gradient {
+  background: linear-gradient(135deg, #0f2747 0%, #163b6b 50%, #ff6719 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Mobile-first responsive adjustments */
+@media (max-width: 640px) {
+  /* Ensure touch targets are at least 44px */
+  a, button {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Adjust navigation for mobile */
+  .grid-cols-3 {
+    gap: 0.5rem;
+  }
+}
+
+/* Chat Widget Animations */
+@keyframes chat-pulse {
+  0%, 100% {
+    box-shadow: 0 4px 14px rgba(220, 38, 38, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(220, 38, 38, 0.6), 0 0 0 8px rgba(220, 38, 38, 0.1);
+  }
+}
+
+.chat-button-pulse {
+  animation: chat-pulse 2s ease-in-out infinite;
+}
+
+/* Respect reduced motion for chat widget */
+@media (prefers-reduced-motion: reduce) {
+  .chat-button-pulse {
+    animation: none;
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "@northernvariables/design-system",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Shared design system for Northern Variables - design tokens, components, and styles",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./tokens": "./src/tokens/index.ts",
+    "./components": "./src/components/index.ts",
+    "./styles": "./src/styles/index.css"
+  },
+  "scripts": {
+    "dev": "echo 'Design system has no dev server - imported by other packages'",
+    "build": "echo 'Design system builds with consuming packages'",
+    "typecheck": "tsc --noEmit"
+  },
+  "peerDependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.0",
+    "@types/react-dom": "^18.3.0",
+    "typescript": "^5.6.0"
+  }
+}

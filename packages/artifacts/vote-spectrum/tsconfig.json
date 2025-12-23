@@ -1,0 +1,17 @@
+{
+  "extends": "../../../tsconfig.json",
+  "compilerOptions": {
+    "composite": false,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"],
+      "@design-system/*": ["../../design-system/src/*"]
+    }
+  },
+  "include": [
+    "src/**/*",
+    "vite.config.ts",
+    "../../design-system/src/**/*"
+  ],
+  "exclude": ["node_modules", "dist"]
+}
