@@ -27,3 +27,5 @@ npm-debug.log*
 # Large binary files (keep in Google Drive, not git)
 *.psd
 *.gsheet
+CanadaGPT/
+Confidence/

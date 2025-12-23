@@ -3,28 +3,28 @@ export function Artifacts() {
     {
       title: 'Vote Spectrum',
       description: 'Discover where you stand on the Canadian political spectrum with our comprehensive voting advice application.',
-      url: 'https://artifacts.northernvariables.ca/vote-spectrum',
+      url: '/artifacts/vote-spectrum',
       icon: '🗳️',
       tags: ['Survey', 'Federal', 'Provincial']
     },
     {
       title: 'Canada Federal Election Tracker',
       description: 'Track polling, seat projections, and key metrics for Canada\'s 45th federal election.',
-      url: 'https://artifacts.northernvariables.ca/canada-federal-election-45-tracker.html',
+      url: '/artifacts/canada-federal-election-45-tracker.html',
       icon: '📊',
       tags: ['Election', 'Federal', 'Live Data']
     },
     {
       title: 'Canadian Politics Survey',
       description: 'A comprehensive survey exploring Canadian political attitudes and preferences.',
-      url: 'https://artifacts.northernvariables.ca/canadian-politics-survey.html',
+      url: '/artifacts/canadian-politics-survey.html',
       icon: '📋',
       tags: ['Survey', 'Research']
     },
     {
       title: 'Finkelstein Playbook',
       description: 'Interactive exploration of political campaign strategies and tactics.',
-      url: 'https://artifacts.northernvariables.ca/finkelstein-playbook.html',
+      url: '/artifacts/finkelstein-playbook.html',
       icon: '📖',
       tags: ['Strategy', 'Education']
     }

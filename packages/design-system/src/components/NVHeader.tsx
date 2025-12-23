@@ -17,7 +17,7 @@ export const NVHeader: React.FC<NVHeaderProps> = ({
 }) => {
   const href = linkTo === 'main'
     ? '/'
-    : 'https://artifacts.northernvariables.ca'
+    : '/artifacts'
 
   return (
     <header
