@@ -171,6 +171,22 @@ export const NVFooter: React.FC<NVFooterProps> = ({
         <p style={{ fontSize: '0.85rem', letterSpacing: '0.01em' }}>
           &copy; {year} Northern Variables. All rights reserved.
         </p>
+        <p style={{ fontSize: '0.75rem', letterSpacing: '0.01em', marginTop: '0.5rem', opacity: 0.75 }}>
+          Technology and AI design by{' '}
+          <a
+            href="https://connexxia.ca"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{
+              color: '#ffd7c2',
+              textDecoration: 'none',
+              borderBottom: '1px solid rgba(255, 215, 194, 0.3)',
+              transition: 'border-color 0.2s ease'
+            }}
+          >
+            Connexxia, Inc.
+          </a>
+        </p>
       </div>
     </footer>
   )
