@@ -24,6 +24,21 @@ const artifacts = [
   // etc.
 ]
 
+// Legacy HTML files to copy (static article pages)
+const legacyHtmlFiles = [
+  'broadcast-os-pitch.html',
+  'canada-federal-election-45-tracker.html',
+  'canada-map.html',
+  'canadian-identity-network.html',
+  'canadian-politics-survey.html',
+  'cpc-opt-out.html',
+  'cpc-privacy-policy-visual-analysis.html',
+  'finkelstein-playbook.html',
+  'vote-spectrum.html',
+  'vote-spectrum-data.json',
+  'submission-widget.js'
+]
+
 const log = {
   info: (msg) => console.log(`\x1b[36mℹ\x1b[0m ${msg}`),
   success: (msg) => console.log(`\x1b[32m✓\x1b[0m ${msg}`),
@@ -93,7 +108,17 @@ async function build() {
       }
     }
 
-    // Step 5: Copy static assets
+    // Step 5: Copy legacy HTML files (static article pages)
+    log.step('Copying legacy HTML article files...')
+    for (const file of legacyHtmlFiles) {
+      const sourcePath = path.join(rootDir, file)
+      if (await fs.pathExists(sourcePath)) {
+        await fs.copy(sourcePath, path.join(rootDir, 'public', file))
+        log.success(`Copied ${file}`)
+      }
+    }
+
+    // Step 6: Copy static assets
     log.step('Copying static assets...')
 
     const assetsPath = path.join(rootDir, 'assets')
@@ -102,14 +127,14 @@ async function build() {
       log.success('Assets copied to public/assets')
     }
 
-    // Step 6: Copy CNAME if it exists
+    // Step 7: Copy CNAME if it exists
     const cnamePath = path.join(rootDir, 'CNAME')
     if (await fs.pathExists(cnamePath)) {
       await fs.copy(cnamePath, path.join(rootDir, 'public/CNAME'))
       log.success('CNAME copied to public/')
     }
 
-    // Step 7: Create .nojekyll file for GitHub Pages
+    // Step 8: Create .nojekyll file for GitHub Pages
     await fs.writeFile(path.join(rootDir, 'public/.nojekyll'), '')
     log.success('Created .nojekyll file')
 
