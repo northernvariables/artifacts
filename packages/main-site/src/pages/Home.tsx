@@ -205,8 +205,8 @@ export function Home() {
           backgroundImage: 'url(/aurora-banner.jpg)'
         }}
       >
-        {/* Gradient overlay for better text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60"></div>
+        {/* Gradient overlay for better text contrast - doesn't extend to bottom */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-transparent"></div>
 
         {/* Hero Content */}
         <div className="relative z-10 flex-1 flex items-center justify-center px-6 pt-20">
@@ -233,13 +233,8 @@ export function Home() {
           </div>
         </div>
 
-        {/* Bottom fade - extended for smoother transition */}
-        <div
-          className="absolute bottom-0 left-0 right-0 h-96"
-          style={{
-            background: 'linear-gradient(to top, rgb(255,255,255) 0%, rgba(255,255,255,0.9) 20%, rgba(255,255,255,0.6) 40%, rgba(255,255,255,0.3) 60%, rgba(255,255,255,0.1) 80%, transparent 100%)'
-          }}
-        ></div>
+        {/* Bottom fade to white */}
+        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent"></div>
       </header>
 
       {/* Main Content */}
