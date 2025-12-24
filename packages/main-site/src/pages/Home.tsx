@@ -117,7 +117,7 @@ export function Home() {
             <div className="flex justify-start">
               <Link to="/" className="flex items-center gap-3 group">
                 <img
-                  src="https://northernvariables.ca/wp-content/uploads/2025/10/Northern-Variables.jpg"
+                  src="/logo.jpg"
                   alt="Northern Variables"
                   className="h-11 w-11 rounded-lg shadow-lg group-hover:shadow-xl transition-shadow"
                 />
@@ -242,10 +242,10 @@ export function Home() {
       <main id="main-content" className="max-w-[960px] mx-auto pt-8 pb-20 px-6 md:px-12">
         {/* Mission Statement */}
         <div className="text-center mb-20">
-          <h2 className="font-serif text-[clamp(1.5rem,3.5vw,2.25rem)] text-[#0f2747] font-semibold mb-6 leading-snug tracking-tight max-w-3xl mx-auto">
+          <h2 className="font-serif text-[clamp(1.5rem,3.5vw,2.25rem)] text-gray-900 font-semibold mb-6 leading-snug tracking-tight max-w-3xl mx-auto">
             Understanding not just what is happening in Canadian politics, but why.
           </h2>
-          <p className="text-lg text-[#64748b] max-w-2xl mx-auto leading-relaxed">
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Evidence-based reporting on power, policy, and narrative. Context and institutional reality over partisan spin.
           </p>
         </div>
