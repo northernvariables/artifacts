@@ -100,7 +100,7 @@ export function Home() {
   }, [])
 
   return (
-    <div className="font-sans">
+    <div className="font-sans bg-white">
       {/* Accessibility - Skip to main content link */}
       <a href="#main-content" className="skip-link">
         Skip to main content
