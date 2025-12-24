@@ -36,10 +36,10 @@ export function Home() {
       try {
         // Use a CORS proxy to fetch the RSS feed
         const feedUrl = 'https://substack.northernvariables.ca/feed'
-        const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(feedUrl)}`
+        const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(feedUrl)}`
 
         const response = await fetch(proxyUrl)
-        if (!response.ok) throw new Error('Feed fetch failed')
+        if (!response.ok) throw new Error(`Feed fetch failed: ${response.status}`)
 
         const text = await response.text()
         const parser = new DOMParser()
