@@ -327,11 +327,11 @@ export function Home() {
                     <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl font-semibold mb-5 leading-tight group-hover:text-[#ff6719] transition-colors">
                       {posts[0].title}
                     </h3>
-                    <p className="text-white/75 text-lg leading-relaxed mb-8 max-w-3xl">
+                    <p className="text-white/95 text-lg leading-relaxed mb-8 max-w-3xl">
                       {posts[0].description}
                     </p>
-                    <div className="flex items-center justify-between border-t border-white/10 pt-6">
-                      <time className="text-white/50 text-sm font-medium" dateTime={posts[0].pubDate}>
+                    <div className="flex items-center justify-between border-t border-white/20 pt-6">
+                      <time className="text-white/70 text-sm font-medium" dateTime={posts[0].pubDate}>
                         {new Date(posts[0].pubDate).toLocaleDateString('en-US', {
                           month: 'long',
                           day: 'numeric',
