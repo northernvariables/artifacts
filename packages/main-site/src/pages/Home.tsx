@@ -234,7 +234,12 @@ export function Home() {
         </div>
 
         {/* Bottom fade to white */}
-        <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-white to-transparent"></div>
+        <div
+          className="absolute bottom-0 left-0 right-0 h-40"
+          style={{
+            background: 'linear-gradient(to top, rgb(255,255,255) 0%, rgba(255,255,255,0.8) 35%, rgba(255,255,255,0.4) 60%, transparent 85%)'
+          }}
+        ></div>
       </header>
 
       {/* Main Content */}
