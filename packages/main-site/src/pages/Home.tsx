@@ -31,12 +31,11 @@ export function Home() {
   }, [])
 
   useEffect(() => {
-    // Fetch Substack RSS feed via CORS proxy
+    // Fetch Substack RSS feed via serverless function
     const fetchSubstackFeed = async () => {
       try {
-        // Use a CORS proxy to fetch the RSS feed
-        const feedUrl = 'https://substack.northernvariables.ca/feed'
-        const proxyUrl = `https://corsproxy.io/?${encodeURIComponent(feedUrl)}`
+        // Use our own serverless function to fetch the RSS feed
+        const proxyUrl = '/api/substack-feed'
 
         const response = await fetch(proxyUrl)
         if (!response.ok) throw new Error(`Feed fetch failed: ${response.status}`)
