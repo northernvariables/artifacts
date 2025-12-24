@@ -115,13 +115,13 @@ export function Home() {
         <div className="max-w-[1200px] mx-auto px-6 grid grid-cols-3 items-center">
             {/* Logo */}
             <div className="flex justify-start">
-              <a href="/" className="flex items-center gap-3 group">
+              <Link to="/" className="flex items-center gap-3 group">
                 <img
                   src="https://northernvariables.ca/wp-content/uploads/2025/10/Northern-Variables.jpg"
                   alt="Northern Variables"
                   className="h-11 w-11 rounded-lg shadow-lg group-hover:shadow-xl transition-shadow"
                 />
-              </a>
+              </Link>
             </div>
 
             {/* Center Navigation */}
@@ -324,10 +324,10 @@ export function Home() {
                     <span className="inline-block px-3 py-1.5 bg-[#ff6719] text-white text-xs font-bold uppercase tracking-widest rounded mb-6">
                       Latest
                     </span>
-                    <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl font-semibold mb-5 leading-tight group-hover:text-[#ff6719] transition-colors">
+                    <h3 className="font-serif text-2xl md:text-3xl lg:text-4xl font-semibold mb-5 leading-tight group-hover:text-[#ff6719] transition-colors drop-shadow-lg">
                       {posts[0].title}
                     </h3>
-                    <p className="text-white/95 text-lg leading-relaxed mb-8 max-w-3xl">
+                    <p className="text-white text-lg leading-relaxed mb-8 max-w-3xl drop-shadow-md">
                       {posts[0].description}
                     </p>
                     <div className="flex items-center justify-between border-t border-white/20 pt-6">
