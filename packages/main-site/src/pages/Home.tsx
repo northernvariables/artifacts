@@ -238,9 +238,9 @@ export function Home() {
       </header>
 
       {/* Main Content */}
-      <main id="main-content" className="max-w-[960px] mx-auto pt-8 pb-20 px-6 md:px-12">
+      <main id="main-content" className="max-w-[960px] mx-auto pt-2 pb-20 px-6 md:px-12">
         {/* Mission Statement */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-16">
           <h2 className="font-serif text-[clamp(1.5rem,3.5vw,2.25rem)] text-[#0f2747] font-semibold mb-6 leading-snug tracking-tight max-w-3xl mx-auto">
             Understanding not just what is happening in Canadian politics, but why.
           </h2>
